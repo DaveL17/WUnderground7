@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-WUnderground Plugin
+WUnderground7 Plugin
 plugin.py
 Author: DaveL17
 Credits:

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PluginVersion</key>
+	<string>7.0.01</string>
+	<key>ServerApiVersion</key>
+	<string>2.0.0</string>
+	<key>IwsApiVersion</key>
+	<string>1.0.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>WUnderground7</string>
+	<key>CFBundleName</key>
+	<string>WUnderground7</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.fogbert.indigoplugin.wunderground7</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>https://google.com</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -62,13 +62,10 @@ For information regarding the use of this plugin, see the license located in
 the plugin package or located on GitHub:
 https://github.com/DaveL17/WUnderground/blob/master/LICENSE
 """
-# TODO: Deprecate proper_icon_name_all_day?
-# TODO: Allow each device to update on its own frequency. (WU7)
+
 # TODO: Set up weather forecast email as a concatenation rather than one big string and consider whether to remove history and record data from email if the data aren't available. (WU7)
 # TODO: Augment nestedLookup to allow for different types of defaults. Instead of using default=u"" attribute, instead send the type of default desired? (i.e., string, float, int, etc.)
 # TODO: Consider an Indigo UI alert if weather alerts are true?
-
-# TODO: Pass key_value_list as an attribute, append in method, return it and then update?
 
 import datetime as dt
 import indigoPluginUpdateChecker
@@ -1009,9 +1006,9 @@ class Plugin(indigo.PluginBase):
             self.logger.debug(u"parseAlmanacData(self, dev) method called.")
 
         try:
-            almanac_states_list = []
-            location            = dev.pluginProps['location']
-            weather_data        = self.masterWeatherDict[location]
+            almanac_states_list  = []
+            location     = dev.pluginProps['location']
+            weather_data = self.masterWeatherDict[location]
 
             airport_code              = self.nestedLookup(weather_data, keys=('almanac', 'airport_code'))
             current_observation       = self.nestedLookup(weather_data, keys=('current_observation', 'observation_time'))
@@ -2292,6 +2289,8 @@ class Plugin(indigo.PluginBase):
                 self.masterWeatherDict = {}
 
                 for dev in indigo.devices.itervalues("self"):
+
+                    states_list = []
 
                     if not self.wuOnline:
                         break

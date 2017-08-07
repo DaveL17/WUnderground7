@@ -21,5 +21,4 @@ summary via email (enable in weather device settings.)
            tooltip="Please enter the email address to receive notifications of updates to the plugin.">
         <Label>Email address:</Label>
     </Field>
-<!-- foo -->
 </Template>

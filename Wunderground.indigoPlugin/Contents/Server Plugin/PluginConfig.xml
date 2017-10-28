@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <PluginConfig>
     <Field id="infoLabel00" type="label">
-        <Label>WUnderground7 Plugin</Label>
+        <Label>WUnderground 7 Plugin</Label>
     </Field>
 
     <Field id="space000" type="label" fontSize="small">

@@ -63,35 +63,51 @@ the plugin package or located on GitHub:
 https://github.com/DaveL17/WUnderground/blob/master/LICENSE
 """
 
-# TODO: Set up weather forecast email as a concatenation rather than one big string and consider whether to remove history and record data from email if the data aren't available. (WU7)
-# TODO: Augment nestedLookup to allow for different types of defaults. Instead of using default=u"" attribute, instead send the type of default desired? (i.e., string, float, int, etc.)
-# TODO: Consider an Indigo UI alert if weather alerts are true?
+# =================================== TO DO ===================================
 
+# TODO: Set up weather forecast email as a concatenation rather than one big string and consider whether to remove history and record data from email if the data aren't available. (WU7)
+# TODO: Set up "working hours" -- the plugin won't make a call unless it's within working hours.
+# TODO: Bolster the docs.
+
+# ================================== IMPORTS ==================================
+
+# Built-in modules
 import datetime as dt
-import indigoPluginUpdateChecker
 import logging
 import simplejson
 import socket
 import sys
 import time
-
 try:
     import requests  # (weather data)
 except ImportError:
     import urllib   # (satellite imagery)
     import urllib2  # (weather data fallback)
 
+# Third-party modules
+from DLFramework import indigoPluginUpdateChecker
 try:
     import indigo
 except ImportError:
     pass
+try:
+    import pydevd
+except ImportError:
+    pass
 
-__author__ = "DaveL17"
-__build__ = ""
-__copyright__ = "Copyright 2017 DaveL17"
-__license__ = "MIT"
-__title__ = "WUnderground7 Plugin for Indigo Home Control"
-__version__ = "7.0.01"
+# My modules
+import DLFramework.DLFramework as Dave
+
+# =================================== HEADER ==================================
+
+__author__    = Dave.__author__
+__copyright__ = Dave.__copyright__
+__license__   = Dave.__license__
+__build__     = Dave.__build__
+__title__     = "WUnderground7 Plugin for Indigo Home Control"
+__version__   = "7.0.01"
+
+# =============================================================================
 
 kDefaultPluginPrefs = {
     u'alertLogging': False,           # Write severe weather alerts to the log?
@@ -106,8 +122,10 @@ kDefaultPluginPrefs = {
     u'noAlertLogging': False,         # Suppresses "no active alerts" logging.
     u'showDebugInfo': False,          # Verbose debug logging?
     u'showDebugLevel': 1,             # Low, Medium or High debug output.
+    u'uiDateFormat': u"DD-MM-YYYY",   # Preferred date format string.
     u'uiHumidityDecimal': 1,          # Precision for Indigo UI display (humidity).
     u'uiTempDecimal': 1,              # Precision for Indigo UI display (temperature).
+    u'uiTimeFormat': u"military",     # Preferred time format string.
     u'uiWindDecimal': 1,              # Precision for Indigo UI display (wind).
     u'updaterEmail': "",              # Email to notify of plugin updates.
     u'updaterEmailsEnabled': False    # Notification of plugin updates wanted.
@@ -131,14 +149,27 @@ class Plugin(indigo.PluginBase):
         self.debugLevel = int(self.pluginPrefs.get('showDebugLevel', '30'))
         self.indigo_log_handler.setLevel(self.debugLevel)
 
-        self.logger.info(u"")
-        self.logger.info(u"{0:=^130}".format(" Initializing New Plugin Session "))
-        self.logger.info(u"{0:<31} {1}".format("Plugin name:", pluginDisplayName))
-        self.logger.info(u"{0:<31} {1}".format("Plugin version:", pluginVersion))
-        self.logger.info(u"{0:<31} {1}".format("Plugin ID:", pluginId))
-        self.logger.info(u"{0:<31} {1}".format("Indigo version:", indigo.server.version))
-        self.logger.info(u"{0:<31} {1}".format("Python version:", sys.version.replace('\n', '')))
-        self.logger.info(u"{0:=^130}".format(""))
+        # ====================== Initialize DLFramework =======================
+
+        self.Fogbert   = Dave.Fogbert(self)
+        self.Formatter = Dave.Formatter(self)
+
+        self.date_format = self.Formatter.dateFormat()
+        self.time_format = self.Formatter.timeFormat()
+
+        # Log pluginEnvironment information when plugin is first started
+        self.Fogbert.pluginEnvironment()
+
+        # Convert old debugLevel scale (low, medium, high) to new scale (1, 2, 3).
+        if not 0 < self.pluginPrefs.get('showDebugLevel', 1) <= 3:
+            self.pluginPrefs['showDebugLevel'] = self.Fogbert.convertDebugLevel(self.pluginPrefs['showDebugLevel'])
+
+        # =====================================================================
+
+        # try:
+        #     pydevd.settrace('localhost', port=5678, stdoutToServer=True, stderrToServer=True, suspend=False)
+        # except:
+        #     pass
 
     def __del__(self):
         indigo.PluginBase.__del__(self)
@@ -168,7 +199,7 @@ class Plugin(indigo.PluginBase):
 
         # See if we have exceeded the daily call limit.  If we have, set the "dailyCallLimitReached" flag to be true.
         if calls_made >= calls_max:
-            self.logger.info(u"Daily call limit ({0}) reached. Taking the rest of the day off.".format(calls_max), type="WUnderground Status")
+            self.logger.info(u"Daily call limit ({0}) reached. Taking the rest of the day off.".format(calls_max))
             self.logger.debug(u"  Setting call limiter to: True")
 
             self.pluginPrefs['dailyCallLimitReached'] = True
@@ -198,10 +229,10 @@ class Plugin(indigo.PluginBase):
         today_unstr        = dt.datetime.strptime(call_day, "%Y-%m-%d")
         today_unstr_conv   = today_unstr.date()
 
-        if debug_level >= 3:
+        if debug_level <= 10:
             self.logger.debug(u"callDay() method called.")
 
-        if debug_level >= 2:
+        if debug_level <= 20:
             self.logger.debug(u"  callDay: {0}".format(call_day))
             self.logger.debug(u"  dailyCallLimitReached: {0}".format(call_limit_reached))
             self.logger.debug(u"  Is todays_date: {0} greater than dailyCallDay: {1}?".format(todays_date, today_unstr_conv))
@@ -227,23 +258,23 @@ class Plugin(indigo.PluginBase):
                 except Exception as error:
                     self.logger.debug(u"Exception updating weather summary email sent value. Error: (Line {0}  {1})".format(sys.exc_traceback.tb_lineno, error))
 
-            if debug_level >= 2:
+            if debug_level <= 20:
                 self.logger.debug(u"  Today is a new day. Reset the call counter.\n"
-                              u"  Reset dailyCallLimitReached to: False\n"
-                              u"  Reset dailyCallCounter to: 0\n"
-                              u"  Update dailyCallDay to: {0}".format(today_str))
+                                  u"  Reset dailyCallLimitReached to: False\n"
+                                  u"  Reset dailyCallCounter to: 0\n"
+                                  u"  Update dailyCallDay to: {0}".format(today_str))
             self.updater.checkVersionPoll()
 
         else:
-            if debug_level >= 2:
+            if debug_level <= 20:
                 self.logger.debug(u"    Today is not a new day.")
 
         if call_limit_reached:
-            self.logger.info(u"    Daily call limit reached. Taking the rest of the day off.", type="WUnderground Status")
+            self.logger.info(u"    Daily call limit reached. Taking the rest of the day off.")
             self.sleep(sleep_time)
 
         else:
-            if debug_level >= 2:
+            if debug_level <= 20:
                 self.logger.debug(u"    The daily call limit has not been reached.")
 
     def checkVersionNow(self):
@@ -267,7 +298,7 @@ class Plugin(indigo.PluginBase):
         debug_level = valuesDict['showDebugLevel']
         show_debug = valuesDict['showDebugInfo']
 
-        if debug_level >= 3:
+        if debug_level <= 10:
             self.logger.debug(u"closedPrefsConfigUi() method called.")
 
         if userCancelled:
@@ -277,7 +308,7 @@ class Plugin(indigo.PluginBase):
             self.debug = show_debug
 
             # Debug output can contain sensitive data.
-            if debug_level >= 3:
+            if debug_level <= 10:
                 self.logger.debug(u"============ valuesDict ============")
                 for key, value in valuesDict.iteritems():
                     self.logger.debug(u"{0}: {1}".format(key, value))
@@ -330,14 +361,14 @@ class Plugin(indigo.PluginBase):
             self.logger.debug(u"Debugging on. Debug level set to [Low (1), Medium (2), High (3)]: {0}".format(debug_level))
 
             # Debug output can contain sensitive info, show only if debug level is high.
-            if debug_level >= 3:
+            if debug_level <= 10:
                 self.logger.debug(u"{0}{1}Caution! Debug set to high. Output contains sensitive information (API key, location, email, etc.){1}{0}".format('=' * 130, pad_log))
             else:
                 self.logger.debug(u"Plugin preferences suppressed. Set debug level to [High] to write them to the log.")
         else:
             self.pluginPrefs['showDebugInfo'] = False
             self.debug = False
-            self.logger.info(u"Debugging off.", type="WUnderground Status")
+            self.logger.info(u"Debugging off.")
 
     def deviceStartComm(self, dev):
         """ Start communication with plugin devices. """
@@ -407,7 +438,7 @@ class Plugin(indigo.PluginBase):
                     logfile.write(u"Location Specified: {0}\n".format(key).encode('utf-8'))
                     logfile.write(u"{0}\n\n".format(self.masterWeatherDict[key]).encode('utf-8'))
 
-            self.logger.info(u"Weather data written to: {0}".format(file_name), type="WUnderground Status")
+            self.logger.info(u"Weather data written to: {0}".format(file_name))
 
         except IOError:
             self.logger.info(u"Unable to write to Indigo Log folder.")
@@ -680,7 +711,7 @@ class Plugin(indigo.PluginBase):
         destination = dev.pluginProps['imageDestinationLocation']
         source      = dev.pluginProps['imageSourceLocation']
 
-        if debug_level >= 3:
+        if debug_level <= 10:
             self.logger.debug(u"getSatelliteImage() method called.")
 
         try:
@@ -688,7 +719,7 @@ class Plugin(indigo.PluginBase):
 
                 # If requests doesn't work for some reason, revert to urllib.
                 try:
-                    r = requests.get(source, stream=True)
+                    r = requests.get(source, stream=True, timeout=10)
 
                     with open(destination, 'wb') as img:
                         for chunk in r.iter_content(2000):
@@ -700,7 +731,7 @@ class Plugin(indigo.PluginBase):
                 dev.updateStateOnServer('onOffState', value=True, uiValue=u" ")
                 dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
 
-                if debug_level >= 2:
+                if debug_level <= 20:
                     self.logger.debug(u"Image downloader source: {0}".format(source))
                     self.logger.debug(u"Image downloader destination: {0}".format(destination))
                     self.logger.debug(u"Satellite image downloaded successfully.")
@@ -751,7 +782,7 @@ class Plugin(indigo.PluginBase):
             'width': int(dev.pluginProps.get('width', 500)),
         }
 
-        if debug_level >= 3:
+        if debug_level <= 10:
             self.logger.debug(u"getSatelliteImage() method called.")
 
         try:
@@ -773,7 +804,7 @@ class Plugin(indigo.PluginBase):
 
             else:
                 for key in ('minlat', 'minlon', 'maxlat', 'maxlon', 'imagetype', 'centerlat', 'centerlon', 'radius',):
-                    location = dev.pluginProps['location']
+                    location = u"q/{0}".format(dev.pluginProps['location'])
                     name = ''
                     del parms_dict[key]
 
@@ -798,28 +829,35 @@ class Plugin(indigo.PluginBase):
                     parms += "&{0}={1}".format(k, v)
 
             source = 'http://api.wunderground.com/api/{0}/{1}/{2}{3}{4}?{5}'.format(self.pluginPrefs['apiKey'], radartype, location, name, '.gif', parms)
-            destination = "{0}/IndigoWebServer/images/controls/static/{1}.png".format(indigo.server.getInstallFolderPath(), dev.pluginProps['imagename'])
+            destination = "{0}/IndigoWebServer/images/controls/static/{1}.gif".format(indigo.server.getInstallFolderPath(), dev.pluginProps['imagename'])
 
             # If requests doesn't work for some reason, revert to urllib.
             try:
-                r = requests.get(source, stream=True)
-                with open(destination, 'wb') as img:
+                r = requests.get(source, stream=True, timeout=10)
+                self.logger.debug(u"Image request status code: {0}".format(r.status_code))
 
-                    for chunk in r.iter_content(2000):
-                        img.write(chunk)
+                if r.status_code == 200:
+                    with open(destination, 'wb') as img:
+
+                        for chunk in r.iter_content(1024):
+                            img.write(chunk)
+
+                    if debug_level <= 20:
+                        self.logger.debug(u"Radar image source: {0}".format(source))
+                        self.logger.debug(u"Satellite image downloaded successfully.")
+
+                    dev.updateStateOnServer('onOffState', value=True, uiValue=u" ")
+                    dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
+
+                else:
+                    self.errorLog(u"Error downloading image file: {0}".format(r.status_code))
+                    raise NameError
 
             except NameError:
                 urllib.urlretrieve(source, destination)
 
             # Since this uses the API, go increment the call counter.
             self.callCount()
-
-            dev.updateStateOnServer('onOffState', value=True, uiValue=u" ")
-            dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
-
-            if debug_level >= 2:
-                self.logger.debug(u"Radar image source: {0}".format(source))
-                self.logger.debug(u"Satellite image downloaded successfully.")
 
         except Exception as error:
             self.errorLog(u"Error downloading satellite image. Error: (Line {0}  {1})".format(sys.exc_traceback.tb_lineno, error))
@@ -831,7 +869,7 @@ class Plugin(indigo.PluginBase):
 
         debug_level = self.pluginPrefs['showDebugLevel']
 
-        if debug_level >= 3:
+        if debug_level <= 10:
             self.logger.debug(u"getWeatherData() method called.")
 
         if dev.model not in ['Satellite Image Downloader', 'WUnderground Satellite Image Downloader']:
@@ -859,7 +897,7 @@ class Plugin(indigo.PluginBase):
                            u"yesterday_v11/tide_v11/q/{2}.json?apiref=97986dc4c4b7e764".format(self.pluginPrefs['apiKey'], self.pluginPrefs['language'], location))
 
                     # Debug output can contain sensitive data.
-                    if debug_level >= 3:
+                    if debug_level <= 10:
                         self.logger.debug(u"  URL prepared for API call: {0}".format(url))
                     else:
                         self.logger.debug(u"Weather Underground URL suppressed. Set debug level to [High] to write it to the log.")
@@ -870,7 +908,7 @@ class Plugin(indigo.PluginBase):
 
                     # If requests doesn't work for some reason, try urllib2 instead.
                     try:
-                        f = requests.get(url)
+                        f = requests.get(url, timeout=10)
                         simplejson_string = f.text  # We convert the file to a json object below, so we don't use requests' built-in decoder.
 
                     except NameError:
@@ -885,21 +923,21 @@ class Plugin(indigo.PluginBase):
                         # ==============================================================
                         except urllib2.HTTPError as error:
                             self.logger.debug(u"Unable to reach Weather Underground - HTTPError (Line {0}  {1}) Sleeping until next scheduled poll.".format(sys.exc_traceback.tb_lineno,
-                                                                                                                                                        error))
+                                                                                                                                                            error))
                             for dev in indigo.devices.itervalues("self"):
                                 dev.updateStateOnServer("onOffState", value=False, uiValue=u" ")
                             return
 
                         except urllib2.URLError as error:
                             self.logger.debug(u"Unable to reach Weather Underground. - URLError (Line {0}  {1}) Sleeping until next scheduled poll.".format(sys.exc_traceback.tb_lineno,
-                                                                                                                                                        error))
+                                                                                                                                                            error))
                             for dev in indigo.devices.itervalues("self"):
                                 dev.updateStateOnServer("onOffState", value=False, uiValue=u" ")
                             return
 
                         except Exception as error:
                             self.logger.debug(u"Unable to reach Weather Underground. - Exception (Line {0}  {1}) Sleeping until next scheduled poll.".format(sys.exc_traceback.tb_lineno,
-                                                                                                                                                         error))
+                                                                                                                                                             error))
                             for dev in indigo.devices.itervalues("self"):
                                 dev.updateStateOnServer("onOffState", value=False, uiValue=u" ")
                             return
@@ -908,7 +946,7 @@ class Plugin(indigo.PluginBase):
                     data_cycle_time = (dt.datetime.now() - get_data_time)
                     data_cycle_time = (dt.datetime.min + data_cycle_time).time()
 
-                    if debug_level >= 1 and simplejson_string != "":
+                    if debug_level <= 30 and simplejson_string != "":
                         self.logger.debug(u"[{0} download: {1} seconds]".format(dev.name, data_cycle_time.strftime('%S.%f')))
 
                     # Load the JSON data from the file.
@@ -972,6 +1010,22 @@ class Plugin(indigo.PluginBase):
 
         return [(dev.id, dev.name) for dev in indigo.devices.itervalues(filter='self')]
 
+    def listOfWeatherDevices(self, typeId, valuesDict, targetId, devId):
+        """ listOfDevices returns a list of plugin devices limited to weather
+        devices only (not forecast devices, etc. """
+
+        if self.pluginPrefs['showDebugLevel'] <= 20:
+            self.logger.debug(u"listOfDevices method() called.")
+            self.logger.debug(u"typeID: {0}".format(typeId))
+            self.logger.debug(u"targetId: {0}".format(targetId))
+            self.logger.debug(u"devId: {0}".format(devId))
+            self.logger.debug(u"============ valuesDict ============\n")
+
+            for key, value in valuesDict.iteritems():
+                self.logger.debug(u"{0}: {1}".format(key, value))
+
+        return [(dev.id, dev.name) for dev in indigo.devices.itervalues(filter='self.wunderground')]
+
     def nestedLookup(self, obj, keys, default=u"Not available"):
         """The nestedLookup() method is used to extract the relevant data from
         the Weather Underground JSON return. The JSON is known to sometimes be
@@ -993,14 +1047,11 @@ class Plugin(indigo.PluginBase):
             except StopIteration:
                 return default
 
-        # TODO: think about whether to change empty string values to something indicative of success (like the default text).  There may be situations where and empty string is desirable...
-
         return current
 
     def parseAlmanacData(self, dev):
         """ The parseAlmanacData() method takes selected almanac data and
         parses it to device states. """
-
 
         if self.pluginPrefs['showDebugLevel'] <= 20:
             self.logger.debug(u"parseAlmanacData(self, dev) method called.")
@@ -1034,7 +1085,7 @@ class Plugin(indigo.PluginBase):
             almanac_states_list.append({'key': 'currentObservationEpoch', 'value': current_observation_epoch, 'uiValue': current_observation_epoch})
 
             # Current Observation Time 24 Hour (string)
-            current_observation_24hr = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(current_observation_epoch)))
+            current_observation_24hr = time.strftime("{0} {1}".format(self.date_format, self.time_format), time.localtime(int(current_observation_epoch)))
             almanac_states_list.append({'key': 'currentObservation24hr', 'value': current_observation_24hr, 'uiValue': current_observation_24hr})
 
             for key, value in no_ui_format.iteritems():
@@ -1079,7 +1130,7 @@ class Plugin(indigo.PluginBase):
         current_observation       = self.nestedLookup(weather_data, keys=('current_observation', 'observation_time'))
         current_observation_epoch = self.nestedLookup(weather_data, keys=('current_observation', 'observation_epoch'))
 
-        if debug_level >= 3:
+        if debug_level <= 10:
             self.logger.debug(u"parseAlerts(self, dev) method called.")
 
         try:
@@ -1087,7 +1138,7 @@ class Plugin(indigo.PluginBase):
             alerts_states_list.append({'key': 'currentObservationEpoch', 'value': current_observation_epoch, 'uiValue': current_observation_epoch})
 
             # Current Observation Time 24 Hour (string)
-            current_observation_24hr = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(current_observation_epoch)))
+            current_observation_24hr = time.strftime("{0} {1}".format(self.date_format, self.time_format), time.localtime(int(current_observation_epoch)))
             alerts_states_list.append({'key': 'currentObservation24hr', 'value': current_observation_24hr})
 
             # Alerts: This segment iterates through all available alert information. It retains only the first five alerts. We set all alerts to an empty string each time, and then
@@ -1105,7 +1156,7 @@ class Plugin(indigo.PluginBase):
                 alerts_states_list.append({'key': 'alertStatus', 'value': "false", 'uiValue': u"False"})
 
                 if alert_logging and not no_alert_logging and not alerts_suppressed:
-                    self.logger.info(u"There are no severe weather alerts for the {0} location.".format(location_city), type="WUnderground Info")
+                    self.logger.info(u"There are no severe weather alerts for the {0} location.".format(location_city))
 
             # If there is at least one alert (the list is not empty):
             else:
@@ -1135,18 +1186,18 @@ class Plugin(indigo.PluginBase):
                 if len(alert_array) == 1:
                     # If user has enabled alert logging, write alert message to the Indigo log.
                     if alert_logging and not alerts_suppressed:
-                        self.logger.info(u"There is 1 severe weather alert for the {0} location:".format(location_city), type="WUnderground Info")
+                        self.logger.info(u"There is 1 severe weather alert for the {0} location:".format(location_city))
                 else:
                     # If user has enabled alert logging, write alert message to the Indigo log.
                     if alert_logging and not alerts_suppressed:
-                        self.logger.info(u"There are {0} severe weather alerts for the {1} location:".format(len(alert_array), u"{0}".format(location_city)), type="WUnderground Info")
+                        self.logger.info(u"There are {0} severe weather alerts for the {1} location:".format(len(alert_array), u"{0}".format(location_city)))
 
                     # If user has enabled alert logging, write alert message to the Indigo log.
                     if alert_logging and not alerts_suppressed and len(alert_array) > 4:
-                        self.logger.info(u"The plugin only retains information for the first 5 alerts.", type="WUnderground Info")
+                        self.logger.info(u"The plugin only retains information for the first 5 alerts.")
 
                 # Debug output can contain sensitive data.
-                if debug_level >= 2:
+                if debug_level <= 20:
                     self.logger.debug(u"{0}".format(alert_array))
 
                 alert_counter = 1
@@ -1159,10 +1210,10 @@ class Plugin(indigo.PluginBase):
                         alert_counter += 1
 
                     if alert_logging and not alerts_suppressed:
-                        self.logger.info(u"{0}".format(alert_array[alert][2]), type="WUnderground Status")
+                        self.logger.info(u"{0}".format(alert_array[alert][2]))
 
             if attribution != u"":
-                self.logger.info(attribution, type="WUnderground Info")
+                self.logger.info(attribution)
 
             dev.updateStatesOnServer(alerts_states_list)
 
@@ -1208,14 +1259,14 @@ class Plugin(indigo.PluginBase):
         station_id                = self.nestedLookup(weather_data, keys=('current_observation', 'station_id'))
 
         astronomy_dict = {'ageOfMoon':              self.nestedLookup(weather_data, keys=('moon_phase', 'ageOfMoon')),
-                          'currentTimeHour':        self.nestedLookup(weather_data, keys=('moon_phase', 'current_time','hour')),
-                          'currentTimeMinute':      self.nestedLookup(weather_data, keys=('moon_phase', 'current_time','minute')),
+                          'currentTimeHour':        self.nestedLookup(weather_data, keys=('moon_phase', 'current_time', 'hour')),
+                          'currentTimeMinute':      self.nestedLookup(weather_data, keys=('moon_phase', 'current_time', 'minute')),
                           'hemisphere':             self.nestedLookup(weather_data, keys=('moon_phase', 'hemisphere')),
                           'phaseOfMoon':            self.nestedLookup(weather_data, keys=('moon_phase', 'phaseofMoon')),
                           'sunriseHourMoonphase':   self.nestedLookup(weather_data, keys=('moon_phase', 'sunrise', 'hour')),
                           'sunriseHourSunphase':    self.nestedLookup(weather_data, keys=('sun_phase', 'sunrise', 'hour')),
                           'sunriseMinuteMoonphase': self.nestedLookup(weather_data, keys=('moon_phase', 'sunrise', 'minute')),
-                          'sunriseMinuteSunphase':  self.nestedLookup(weather_data, keys=('sun_phase', 'sunset', 'minute')),
+                          'sunriseMinuteSunphase':  self.nestedLookup(weather_data, keys=('sun_phase', 'sunrise', 'minute')),
                           'sunsetHourMoonphase':    self.nestedLookup(weather_data, keys=('moon_phase', 'sunset', 'hour')),
                           'sunsetHourSunphase':     self.nestedLookup(weather_data, keys=('sun_phase', 'sunset', 'hour')),
                           'sunsetMinuteMoonphase':  self.nestedLookup(weather_data, keys=('moon_phase', 'sunset', 'minute')),
@@ -1227,7 +1278,7 @@ class Plugin(indigo.PluginBase):
             astronomy_states_list.append({'key': 'currentObservationEpoch', 'value': current_observation_epoch, 'uiValue': current_observation_epoch})
 
             # Current Observation Time 24 Hour (string)
-            current_observation_24hr = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(current_observation_epoch)))
+            current_observation_24hr = time.strftime("{0} {1}".format(self.date_format, self.time_format), time.localtime(int(current_observation_epoch)))
             astronomy_states_list.append({'key': 'currentObservation24hr', 'value': current_observation_24hr, 'uiValue': current_observation_24hr})
 
             for key, value in astronomy_dict.iteritems():
@@ -1240,6 +1291,31 @@ class Plugin(indigo.PluginBase):
             percent_illuminated = self.floatEverything(state_name=u"Percent Illuminated", val=percent_illuminated)
             astronomy_states_list.append({'key': 'percentIlluminated', 'value': percent_illuminated, 'uiValue': u"{0}".format(percent_illuminated)})
 
+            # ========================= NEW =========================
+            # Sunrise and Sunset states
+
+            # Get today's date
+            year = dt.datetime.today().year
+            month = dt.datetime.today().month
+            day = dt.datetime.today().day
+            datetime_formatter = "{0} {1}".format(self.date_format, self.time_format)  # Get the latest format preferences
+
+            sunrise = dt.datetime(year, month, day, int(astronomy_dict['sunriseHourMoonphase']), int(astronomy_dict['sunriseMinuteMoonphase']))
+            sunset = dt.datetime(year, month, day, int(astronomy_dict['sunsetHourMoonphase']), int(astronomy_dict['sunsetMinuteMoonphase']))
+
+            sunrise_string = dt.datetime.strftime(sunrise, datetime_formatter)
+            dev.updateStateOnServer('sunriseString', value=sunrise_string)
+
+            sunset_string = dt.datetime.strftime(sunset, datetime_formatter)
+            dev.updateStateOnServer('sunsetString', value=sunset_string)
+
+            sunrise_epoch = int(time.mktime(sunrise.timetuple()))
+            dev.updateStateOnServer('sunriseEpoch', value=sunrise_epoch)
+
+            sunset_epoch = int(time.mktime(sunset.timetuple()))
+            dev.updateStateOnServer('sunsetEpoch', value=sunset_epoch)
+
+            # ========================= NEW =========================
             new_props = dev.pluginProps
             new_props['address'] = station_id
             dev.replacePluginPropsOnServer(new_props)
@@ -1297,6 +1373,7 @@ class Plugin(indigo.PluginBase):
                         fore_day     = self.nestedLookup(day, keys=('date', 'weekday'))
                         fore_high    = self.nestedLookup(day, keys=('high', 'celsius'))
                         fore_low     = self.nestedLookup(day, keys=('low', 'celsius'))
+                        icon         = self.nestedLookup(day, keys=('icon',))
                         max_humidity = self.nestedLookup(day, keys=('maxhumidity',))
                         pop          = self.nestedLookup(day, keys=('pop',))
 
@@ -1325,6 +1402,8 @@ class Plugin(indigo.PluginBase):
                         value, ui_value = self.fixCorruptedData(state_name=u"foreHum{0}".format(fore_counter), val=max_humidity)
                         ui_value = self.uiFormatPercentage(dev=dev, state_name=u"foreHum{0}".format(fore_counter), val=ui_value)
                         forecast_states_list.append({'key': u"foreHum{0}".format(fore_counter), 'value': value, 'uiValue': ui_value})
+
+                        forecast_states_list.append({'key': u"foreIcon{0}".format(fore_counter), 'value': icon, 'uiValue': icon})
 
                         value, ui_value = self.fixCorruptedData(state_name=u"forePop{0}".format(fore_counter), val=pop)
                         ui_value = self.uiFormatPercentage(dev=dev, state_name=u"forePop{0}".format(fore_counter), val=ui_value)
@@ -1358,6 +1437,7 @@ class Plugin(indigo.PluginBase):
                         fore_day     = self.nestedLookup(day, keys=('date', 'weekday'))
                         fore_high    = self.nestedLookup(day, keys=('high', 'celsius'))
                         fore_low     = self.nestedLookup(day, keys=('low', 'celsius'))
+                        icon         = self.nestedLookup(day, keys=('icon',))
                         max_humidity = self.nestedLookup(day, keys=('maxhumidity',))
                         pop          = self.nestedLookup(day, keys=('pop',))
 
@@ -1379,6 +1459,8 @@ class Plugin(indigo.PluginBase):
                         value, ui_value = self.fixCorruptedData(state_name=u"foreHum{0}".format(fore_counter), val=max_humidity)
                         ui_value = self.uiFormatPercentage(dev=dev, state_name=u"foreHum{0}".format(fore_counter), val=ui_value)
                         forecast_states_list.append({'key': u"foreHum{0}".format(fore_counter), 'value': value, 'uiValue': ui_value})
+
+                        forecast_states_list.append({'key': u"foreIcon{0}".format(fore_counter), 'value': icon, 'uiValue': icon})
 
                         value, ui_value = self.fixCorruptedData(state_name=u"forePop{0}".format(fore_counter), val=pop)
                         ui_value = self.uiFormatPercentage(dev=dev, state_name=u"forePop{0}".format(fore_counter), val=ui_value)
@@ -1412,6 +1494,7 @@ class Plugin(indigo.PluginBase):
                         fore_high    = self.nestedLookup(day, keys=('high', 'fahrenheit'))
                         fore_low     = self.nestedLookup(day, keys=('low', 'fahrenheit'))
                         max_humidity = self.nestedLookup(day, keys=('maxhumidity',))
+                        icon         = self.nestedLookup(day, keys=('icon',))
                         pop          = self.nestedLookup(day, keys=('pop',))
 
                         value, ui_value = self.fixCorruptedData(state_name=u"foreWind{0}".format(fore_counter), val=average_wind)
@@ -1432,6 +1515,8 @@ class Plugin(indigo.PluginBase):
                         value, ui_value = self.fixCorruptedData(state_name=u"foreHum{0}".format(fore_counter), val=max_humidity)
                         ui_value = self.uiFormatPercentage(dev=dev, state_name=u"foreHum{0}".format(fore_counter), val=ui_value)
                         forecast_states_list.append({'key': u"foreHum{0}".format(fore_counter), 'value': value, 'uiValue': ui_value})
+
+                        forecast_states_list.append({'key': u"foreIcon{0}".format(fore_counter), 'value': icon, 'uiValue': icon})
 
                         value, ui_value = self.fixCorruptedData(state_name=u"forePop{0}".format(fore_counter), val=pop)
                         ui_value = self.uiFormatPercentage(dev=dev, state_name=u"forePop{0}".format(fore_counter), val=ui_value)
@@ -1510,7 +1595,7 @@ class Plugin(indigo.PluginBase):
             hourly_forecast_states_list.append({'key': 'currentObservation', 'value': current_observation_time, 'uiValue': current_observation_time})
             hourly_forecast_states_list.append({'key': 'currentObservationEpoch', 'value': current_observation_epoch, 'uiValue': current_observation_epoch})
 
-            current_observation_24hr = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(int(current_observation_epoch)))
+            current_observation_24hr = time.strftime("{0} {1}".format(self.date_format, self.time_format), time.localtime(int(current_observation_epoch)))
             hourly_forecast_states_list.append({'key': 'currentObservation24hr', 'value': u"{0}".format(current_observation_24hr)})
 
             fore_counter = 1
@@ -1552,7 +1637,8 @@ class Plugin(indigo.PluginBase):
                     hourly_forecast_states_list.append({'key': u"h{0}_icon".format(fore_counter_text), 'value': icon, 'uiValue': icon})
                     hourly_forecast_states_list.append({'key': u"h{0}_proper_icon".format(fore_counter_text), 'value': icon, 'uiValue': icon})
                     hourly_forecast_states_list.append({'key': u"h{0}_time".format(fore_counter_text), 'value': civil_time, 'uiValue': civil_time})
-                    hourly_forecast_states_list.append({'key': u"h{0}_windDirLong".format(fore_counter_text), 'value': self.verboseWindNames(u"h{0}_windDirLong".format(fore_counter_text), wind_dir)})
+                    hourly_forecast_states_list.append({'key': u"h{0}_windDirLong".format(fore_counter_text),
+                                                        'value': self.verboseWindNames(u"h{0}_windDirLong".format(fore_counter_text), wind_dir)})
                     hourly_forecast_states_list.append({'key': u"h{0}_windDegrees".format(fore_counter_text), 'value': int(wind_degrees), 'uiValue': str(int(wind_degrees))})
 
                     time_long = u"{0}-{1}-{2} {3}:{4}".format(year, month, day, hour, minute)
@@ -1666,7 +1752,7 @@ class Plugin(indigo.PluginBase):
             ten_day_forecast_states_list.append({'key': 'currentObservationEpoch', 'value': current_observation_epoch, 'uiValue': current_observation_epoch})
 
             # Current Observation Time 24 Hour (string)
-            current_observation_24hr = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(float(current_observation_epoch)))
+            current_observation_24hr = time.strftime("{0} {1}".format(self.date_format, self.time_format), time.localtime(float(current_observation_epoch)))
             ten_day_forecast_states_list.append({'key': 'currentObservation24hr', 'value': current_observation_24hr})
 
             fore_counter = 1
@@ -1859,7 +1945,7 @@ class Plugin(indigo.PluginBase):
             tide_states_list.append({'key': 'currentObservationEpoch', 'value': current_observation_epoch, 'uiValue': current_observation_epoch})
 
             # Current Observation Time 24 Hour (string)
-            current_observation_24hr = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(float(current_observation_epoch)))
+            current_observation_24hr = time.strftime("{0} {1}".format(self.date_format, self.time_format), time.localtime(float(current_observation_epoch)))
             tide_states_list.append({'key': 'currentObservation24hr', 'value': current_observation_24hr})
 
             # Tide location information. This is only appropriate for some locations.
@@ -1948,7 +2034,7 @@ class Plugin(indigo.PluginBase):
             heat_index_c              = self.nestedLookup(weather_data, keys=('current_observation', 'heat_index_c',))
             heat_index_f              = self.nestedLookup(weather_data, keys=('current_observation', 'heat_index_f',))
             icon                      = self.nestedLookup(weather_data, keys=('current_observation', 'icon',))
-            location_city             = self.nestedLookup(weather_data, keys=('current_observation', 'city',))
+            location_city             = self.nestedLookup(weather_data, keys=('location', 'city',))
             nearby_stations           = self.nestedLookup(weather_data, keys=('location', 'nearby_weather_stations', 'pws', 'station'))
             precip_1hr_m              = self.nestedLookup(weather_data, keys=('current_observation', 'precip_1hr_metric',))
             precip_1hr_in             = self.nestedLookup(weather_data, keys=('current_observation', 'precip_1hr_in',))
@@ -1972,18 +2058,17 @@ class Plugin(indigo.PluginBase):
             wind_speed_kph            = self.nestedLookup(weather_data, keys=('current_observation', 'wind_kph',))
             wind_speed_mph            = self.nestedLookup(weather_data, keys=('current_observation', 'wind_mph',))
 
-            temp_c, temp_c_ui = self.fixCorruptedData(state_name=u'temp_c', val=current_temp_c)
-            temp_c_ui = self.uiFormatTemperature(dev=dev, state_name=u"tempC (M, MS, I)", val=temp_c_ui)
-
-            temp_f, temp_f_ui = self.fixCorruptedData(state_name=u'temp_f', val=current_temp_f)
-            temp_f_ui = self.uiFormatTemperature(dev=dev, state_name=u"tempF (S)", val=temp_f_ui)
-
             if config_menu_units in ['M', 'MS', 'I']:
+                temp_c, temp_c_ui = self.fixCorruptedData(state_name=u'temp_c', val=current_temp_c)
+                temp_c_ui = self.uiFormatTemperature(dev=dev, state_name=u"tempC (M, MS, I)", val=temp_c_ui)
+
                 weather_states_list.append({'key': 'temp', 'value': temp_c, 'uiValue': temp_c_ui})
                 icon_value = u"{0}".format(str(round(temp_c, 0)).replace('.', ''))
                 weather_states_list.append({'key': 'tempIcon', 'value': icon_value})
 
             else:
+                temp_f, temp_f_ui = self.fixCorruptedData(state_name=u'temp_f', val=current_temp_f)
+                temp_f_ui = self.uiFormatTemperature(dev=dev, state_name=u"tempF (S)", val=temp_f_ui)
                 weather_states_list.append({'key': 'temp', 'value': temp_f, 'uiValue': temp_f_ui})
                 icon_value = u"{0}".format(str(round(temp_f, 0)).replace('.', ''))
                 weather_states_list.append({'key': 'tempIcon', 'value': icon_value})
@@ -2000,7 +2085,7 @@ class Plugin(indigo.PluginBase):
                 display_value = u"{0} \N{DEGREE SIGN}F ({1} \N{DEGREE SIGN}C)".format(self.itemListTemperatureFormat(val=temp_f), self.itemListTemperatureFormat(val=temp_c))
 
             elif config_itemlist_ui_units == "MS":  # Displays °C (°F)
-                display_value = u"{0} \N{DEGREE SIGN}C ({1} \N{DEGREE SIGN}F)".format(self.itemListTemperatureFormat(val=temp_c), self.itemListTemperatureFormat(val=temp_f))
+                display_value = u"{0} \N{DEGREE SIGN}C ({1} \N{DEGREE SIGN}F)".format(self.itemListTemperatureFormat(val=temp_c), self.itemListTemperatureFormat(val=temp_c))
 
             elif config_itemlist_ui_units == "MN":  # Displays C no units
                 display_value = self.itemListTemperatureFormat(temp_c)
@@ -2035,7 +2120,7 @@ class Plugin(indigo.PluginBase):
             weather_states_list.append({'key': 'currentObservation', 'value': current_observation_time, 'uiValue': current_observation_time})
 
             # Current Observation Time 24 Hour (string)
-            current_observation_24hr = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(float(current_observation_epoch)))
+            current_observation_24hr = time.strftime("{0} {1}".format(self.date_format, self.time_format), time.localtime(float(current_observation_epoch)))
             weather_states_list.append({'key': 'currentObservation24hr', 'value': current_observation_24hr})
 
             # Current Observation Time Epoch (string)
@@ -2250,12 +2335,12 @@ class Plugin(indigo.PluginBase):
                 visibility, visibility_ui = self.fixCorruptedData(state_name=u"visibility (S)", val=visibility_mi)
                 weather_states_list.append({'key': 'visibility', 'value': visibility, 'uiValue': u"{0}{1}".format(int(round(visibility)), config_distance_units)})
 
-                new_props = dev.pluginProps
-                new_props['address'] = station_id
-                dev.replacePluginPropsOnServer(new_props)
+            new_props = dev.pluginProps
+            new_props['address'] = station_id
+            dev.replacePluginPropsOnServer(new_props)
 
-                dev.updateStatesOnServer(weather_states_list)
-                dev.updateStateImageOnServer(indigo.kStateImageSel.TemperatureSensorOn)
+            dev.updateStatesOnServer(weather_states_list)
+            dev.updateStateImageOnServer(indigo.kStateImageSel.TemperatureSensorOn)
 
         except IndexError:
             self.errorLog(u"Note: List index out of range. This is likely normal.")
@@ -2290,19 +2375,19 @@ class Plugin(indigo.PluginBase):
 
                 for dev in indigo.devices.itervalues("self"):
 
-                    states_list = []
+                    # states_list = []
 
                     if not self.wuOnline:
                         break
 
                     if not dev:
                         # There are no WUnderground devices, so go to sleep.
-                        self.logger.info(u"There aren't any devices to poll yet. Sleeping.", type="WUnderground Status")
+                        self.logger.info(u"There aren't any devices to poll yet. Sleeping.")
                         self.sleep(sleep_time)
 
                     elif not dev.configured:
                         # A device has been created, but hasn't been fully configured yet.
-                        self.logger.info(u"A device has been created, but is not fully configured. Sleeping for a minute while you finish.", type="WUnderground Status")
+                        self.logger.info(u"A device has been created, but is not fully configured. Sleeping for a minute while you finish.")
                         self.sleep(60)
 
                     if api_key in ["", "API Key"]:
@@ -2328,6 +2413,7 @@ class Plugin(indigo.PluginBase):
                             # If we've successfully downloaded data from Weather Underground, let's unpack it and assign it to the relevant device.
                             try:
                                 # If a site location query returns a site unknown (in other words 'querynotfound' result, notify the user).
+                                # Note that if the query is good, the error key won't exist in the dict.
                                 response = self.masterWeatherDict[location]['response']['error']['type']
                                 if response == 'querynotfound':
                                     self.errorLog(u"Location query for {0} not found. Please ensure that device location follows examples precisely.".format(dev.name))
@@ -2342,7 +2428,7 @@ class Plugin(indigo.PluginBase):
                                 else:
                                     self.logger.debug(u"Error: (Line {0}  {1})".format(sys.exc_traceback.tb_lineno, error))
 
-                                # Estimated Weather Data (integer: 1 if estimated weather)
+                                # Estimated Weather Data (integer: 1 if estimated weather), not present if false.
                                 ignore_estimated = False
                                 try:
                                     estimated = self.masterWeatherDict[location]['current_observation']['estimated']['estimated']
@@ -2381,9 +2467,9 @@ class Plugin(indigo.PluginBase):
 
                                     good_time = device_epoch <= weather_data_epoch
                                     if not good_time:
-                                        self.logger.info(u"Latest data are older than data we already have. Skipping {0} update.".format(dev.name), type="WUnderground Status")
+                                        self.logger.info(u"Latest data are older than data we already have. Skipping {0} update.".format(dev.name))
                                 except KeyError:
-                                    self.logger.info(u"{0} cannot determine age of data. Skipping until next scheduled poll.".format(dev.name), type="WUnderground Status")
+                                    self.logger.info(u"{0} cannot determine age of data. Skipping until next scheduled poll.".format(dev.name))
                                     good_time = False
 
                                 # If the weather dict is not empty, the data are newer than the data we already have, an
@@ -2515,19 +2601,19 @@ class Plugin(indigo.PluginBase):
 
                                 # If the observation is older than offline_delta
                                 if diff >= offline_delta:
-                                    self.logger.info(u"{0} location appears to be offline for {1:}".format(dev.name, diff), type="WUnderground Status")
+                                    self.logger.info(u"{0} location appears to be offline for {1:}".format(dev.name, diff))
                                     indigo.trigger.execute(trigger_id)
 
-                                # If the temperature observation is lower than -55 C
+                                # If the temperature observation is lower than -55
                                 elif dev.states['temp'] <= -55.0:
-                                    self.logger.info(u"{0} location appears to be offline (reported temperature).".format(dev.name), type="WUnderground Status")
+                                    self.logger.info(u"{0} location appears to be offline (ambient temperature lower than -55).".format(dev.name))
                                     indigo.trigger.execute(trigger_id)
 
                             if indigo.triggers[trigger_id].pluginTypeId == 'weatherAlert':
 
                                 # If at least one severe weather alert exists for the location
                                 if dev.states['alertStatus'] == 'true':
-                                    self.logger.info(u"{0} location has at least one severe weather alert.".format(dev.name), type="WUnderground Info")
+                                    self.logger.info(u"{0} location has at least one severe weather alert.".format(dev.name))
                                     indigo.trigger.execute(trigger_id)
 
         except KeyError:

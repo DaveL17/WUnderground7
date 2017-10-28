@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <PluginConfig>
-    <Field id="infoLabel00" type="label" fontSize="large">
-        <Label>WUnderground Plugin</Label>
+    <Field id="infoLabel00" type="label">
+        <Label>WUnderground7 Plugin</Label>
     </Field>
 
-    <Field id="space00" type="label" fontSize="small">
+    <Field id="space000" type="label" fontSize="small">
         <Label>Developed by DaveL17</Label>
     </Field>
 
@@ -12,7 +12,13 @@
         <Label>Data provided by Weather Underground, LLC. This plugin and its author are in no way affiliated with Weather Underground.</Label>
     </Field>
 
-    <Field id="separator00" type="separator"/>
+    <Field id="space00" type="label"/>
+
+    <Field id="space001" type="label" alignText="right">
+        <Label>Plugin Settings:</Label>
+    </Field>
+
+	<Field id="simpleSeparator0" type="separator"/>
 
     <Field id="dailyCallCounter" type="textfield" defaultValue="0" readonly= "true" tooltip="The number of API calls today so far.">
         <Label>API Calls Today:</Label>
@@ -121,7 +127,7 @@
         </List>
     </Field>
 
-    <Field id="separator01" type="separator"/>
+    <Field id="separator01a" type="separator"/>
 
     <Field id="showDownloadSettings" type="checkbox" tooltip="Check to show download settings.">
         <Label>Download Settings:</Label>
@@ -158,10 +164,10 @@
         <Description>Skip Update if Estimated</Description>
     </Field>
 
-    <Field id="separator02" type="separator"/>
+    <Field id="separator02a" type="separator"/>
 
-    <Field id="showTemperatureSettings" type="checkbox" tooltip="Check to show value precision settings.">
-        <Label>Value Precision:</Label>
+    <Field id="showTemperatureSettings" type="checkbox" tooltip="Check to show value display settings.">
+        <Label>Value Display:</Label>
         <Description>Show/Hide</Description>
     </Field>
 
@@ -169,9 +175,28 @@
         <Label>Controls the precision of certain values displayed by Indigo.</Label>
     </Field>
 
+    <Field id="uiDateFormat" type="menu" defaultValue="DD-MM-YYYY" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
+           tooltip="Please select the desired display format for date values.">
+        <Label>Date UI Value:</Label>
+        <List>
+            <Option value="DD-MM-YYYY">DD-MM-YYYY</Option>
+            <Option value="MM-DD-YYYY">MM-DD-YYYY</Option>
+            <Option value="YYYY-MM-DD">YYYY-MM-DD</Option>
+        </List>
+    </Field>
+
+    <Field id="uiHumidityDecimal" type="menu" defaultValue="1" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
+           tooltip="Please select the desired number of decimal places to display for humidity values in control pages.">
+        <Label>Humidity UI Value:</Label>
+        <List>
+            <Option value="0">0 decimal places</Option>
+            <Option value="1">1 decimal place</Option>
+        </List>
+    </Field>
+
     <Field id="itemListTempDecimal" type="menu" defaultValue="1" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
            tooltip="Please select the desired number of decimal places to display for temperature values in the item list (main list of Indigo devices.)">
-        <Label>Item List (temperature):</Label>
+        <Label>Temperature Item List:</Label>
         <List>
             <Option value="0">0 decimal places</Option>
             <Option value="1">1 decimal place</Option>
@@ -180,60 +205,62 @@
 
     <Field id="uiTempDecimal" type="menu" defaultValue="1" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
            tooltip="Please select the desired number of decimal places to display for temperature values in control pages.">
-        <Label>UI Value (temperature):</Label>
+        <Label>Temperature UI Value:</Label>
         <List>
             <Option value="0">0 decimal places</Option>
             <Option value="1">1 decimal place</Option>
         </List>
     </Field>
 
-    <Field id="uiHumidityDecimal" type="menu" defaultValue="1" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
-           tooltip="Please select the desired number of decimal places to display for humidity values in control pages.">
-        <Label>UI Value (humidity):</Label>
+    <Field id="uiTimeFormat" type="menu" defaultValue="military" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
+           tooltip="Please select the desired display format for time values.">
+        <Label>Time UI Value:</Label>
         <List>
-            <Option value="0">0 decimal places</Option>
-            <Option value="1">1 decimal place</Option>
+            <Option value="standard">12 Hour</Option>
+            <Option value="military">24 Hour</Option>
         </List>
     </Field>
 
     <Field id="uiWindDecimal" type="menu" defaultValue="1" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
            tooltip="Please select the desired number of decimal places to display for wind values in control pages.">
-        <Label>UI Value (wind):</Label>
+        <Label>Wind UI Value:</Label>
         <List>
             <Option value="0">0 decimal places</Option>
             <Option value="1">1 decimal place</Option>
         </List>
     </Field>
 
+    <Field id="alertLabel" type="label" alignText="Right">
+        <Label>Alert Logging</Label>
+    </Field>
+
     <Field id="separator03" type="separator"/>
 
     <Field id="showAlertSettings" type="checkbox" tooltip="Check to show alert logging settings.">
-        <Label>Alert Logging:</Label>
-        <Description>Show/Hide</Description>
+        <Label>Display Settings:</Label>
+        <Descriptionn/>
     </Field>
 
-    <Field id="space04" type="label" fontSize="small">
+    <Field id="space04" type="label" fontSize="small" visibleBindingId="showAlertSettings" visibleBindingValue="true">
         <Label>Controls whether the plugin will write severe weather alert information to the log.</Label>
     </Field>
 
     <Field id="alertLogging" type="checkbox" defaultValue="false" visibleBindingId="showAlertSettings" visibleBindingValue="true"
            tooltip="Enables (disables) logging of severe weather alerts. Checking this box means that you do want to see severe weather alerts in the log. This setting applies to all weather devices.">
         <Label>Log active alert messages:</Label>
-        <Description>Check to enable.</Description>
+        <Description>Enable/Disable</Description>
     </Field>
 
     <Field id="noAlertLogging" type="checkbox" defaultValue="false" visibleBindingId="showAlertSettings" visibleBindingValue="true"
            tooltip="Hides (shows) log message when there are no severe weather alerts. Checking this box means that you do not want to see these messages in the log. This setting applies to all weather devices.">
         <Label>Hide "No Alert" messages:</Label>
-        <Description>Check to enable.</Description>
+        <Description>Enable/Disable</Description>
     </Field>
 
-    <Field id="separator04" type="separator"/>
+    <!-- Notifications Template -->
+    <Template file="DLFramework/template_notifications.xml" />
 
-    <Template file="template_notifications.xml" />
-
-    <Field id="separator05" type="separator"/>
-
-    <Template file="template_debugging.xml" />
+    <!-- Debugging Template -->
+    <Template file="DLFramework/template_debugging.xml" />
 
 </PluginConfig>

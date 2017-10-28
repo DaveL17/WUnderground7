@@ -7,3 +7,5 @@ v7.0.01
 - Adds setting to allow user to control time of day for weather email summary.
 - Takes advantage of API improvements for device state updates.
 - Takes advantage of API improvements for debug logging.
+- Limits list of devices for severe weather alert trigger to only weather devices (not forecast devices, etc.)
+- Code consolidation using DLFramework.

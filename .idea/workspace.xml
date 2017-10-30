@@ -4,9 +4,8 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="">
+    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="- improves converstion of debug level to logger style setting.D">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,10 +40,10 @@
       <file leaf-file-name="plugin.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="502">
-              <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="38" />
+            <state relative-caret-position="82">
+              <caret line="70" column="77" lean-forward="false" selection-start-line="70" selection-start-column="77" selection-end-line="70" selection-end-column="77" />
               <folding>
-                <element signature="e#3406#3427#0" expanded="true" />
+                <element signature="e#3484#3505#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,6 +166,19 @@
               <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
               <item name="WUnderground7" type="462c0819:PsiDirectoryNode" />
               <item name="Wunderground.indigoPlugin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WUnderground7" type="462c0819:PsiDirectoryNode" />
+              <item name="Wunderground.indigoPlugin" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WUnderground7" type="462c0819:PsiDirectoryNode" />
+              <item name="Wunderground.indigoPlugin" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="dictionaries" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
@@ -360,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509219376387</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="- improves converstion of debug level to logger style setting.D">
+      <created>1509364023840</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1509364023840</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -402,14 +421,15 @@
     <MESSAGE value="Changing template to hard link (trying something)." />
     <MESSAGE value="Confirming all templates as hard links." />
     <MESSAGE value="- Refactors so that plugin can be installed over WUnderground 6.x &#10;installations." />
-    <option name="LAST_COMMIT_MESSAGE" value="- Refactors so that plugin can be installed over WUnderground 6.x &#10;installations." />
+    <MESSAGE value="- improves converstion of debug level to logger style setting.D" />
+    <option name="LAST_COMMIT_MESSAGE" value="- improves converstion of debug level to logger style setting.D" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py</url>
-          <line>2528</line>
+          <line>2529</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
@@ -423,7 +443,7 @@
         <state relative-caret-position="1815">
           <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
           <folding>
-            <element signature="e#3406#3427#0" expanded="true" />
+            <element signature="e#3484#3505#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -478,7 +498,7 @@
         <state relative-caret-position="990">
           <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
           <folding>
-            <element signature="e#3406#3427#0" expanded="true" />
+            <element signature="e#3484#3505#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -503,7 +523,7 @@
         <state relative-caret-position="37740">
           <caret line="2522" column="131" lean-forward="false" selection-start-line="2522" selection-start-column="131" selection-end-line="2522" selection-end-column="131" />
           <folding>
-            <element signature="e#3406#3427#0" expanded="true" />
+            <element signature="e#3484#3505#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -586,7 +606,7 @@
         <state relative-caret-position="28800">
           <caret line="1920" column="8" lean-forward="false" selection-start-line="1920" selection-start-column="8" selection-end-line="1920" selection-end-column="8" />
           <folding>
-            <element signature="e#3406#3427#0" expanded="true" />
+            <element signature="e#3484#3505#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -604,7 +624,7 @@
         <state relative-caret-position="1020">
           <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding>
-            <element signature="e#3406#3427#0" expanded="true" />
+            <element signature="e#3484#3505#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -644,7 +664,7 @@
         <state relative-caret-position="1020">
           <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding>
-            <element signature="e#3406#3427#0" expanded="true" />
+            <element signature="e#3484#3505#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -802,10 +822,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="502">
-          <caret line="98" column="0" lean-forward="false" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="38" />
+        <state relative-caret-position="82">
+          <caret line="70" column="77" lean-forward="false" selection-start-line="70" selection-start-column="77" selection-end-line="70" selection-end-column="77" />
           <folding>
-            <element signature="e#3406#3427#0" expanded="true" />
+            <element signature="e#3484#3505#0" expanded="true" />
           </folding>
         </state>
       </provider>

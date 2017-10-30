@@ -147,7 +147,6 @@ class Plugin(indigo.PluginBase):
         self.plugin_file_handler.setFormatter(logging.Formatter('%(asctime)s.%(msecs)03d\t%(levelname)-10s\t%(name)s.%(funcName)-28s %(msg)s', datefmt='%Y-%m-%d %H:%M:%S'))
         self.debug      = True
         self.debugLevel = int(self.pluginPrefs.get('showDebugLevel', '30'))
-        self.indigo_log_handler.setLevel(self.debugLevel)
 
         # ====================== Initialize DLFramework =======================
 
@@ -160,10 +159,15 @@ class Plugin(indigo.PluginBase):
         # Log pluginEnvironment information when plugin is first started
         self.Fogbert.pluginEnvironment()
 
-        # Convert old debugLevel scale (low, medium, high) to new scale (1, 2, 3).
-        if not 0 < self.pluginPrefs.get('showDebugLevel', 1) <= 3:
-            self.pluginPrefs['showDebugLevel'] = self.Fogbert.convertDebugLevel(self.pluginPrefs['showDebugLevel'])
+        # Convert old debugLevel scale (low, medium, high or 1, 2, 3) to new scale (logger).
+        debug_level = self.pluginPrefs.get('showDebugLevel', '30')  # Get current debug level
+        debug_level = self.Fogbert.convertDebugLevel(debug_level)  # If it's the old [low, medium, high], convert it
+        if 0 < debug_level <= 3 and self.debug:
+            self.pluginPrefs['showDebugLevel'] = '10'
+        else:
+            self.pluginPrefs['showDebugLevel'] = '30'
 
+        self.indigo_log_handler.setLevel(self.debugLevel)
         # =====================================================================
 
         # try:

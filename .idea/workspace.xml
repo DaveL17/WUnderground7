@@ -5,33 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_WUndergroundLogo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_control_pages.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_pluginConfigDialog.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_pluginMenuItems.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weatherDeviceConfigDialog.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weatherForecast.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weatherForecast_plus_clear.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weatherForecast_plus_cloudy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weatherForecast_plus_rain.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weather_location_offline.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weather_plus_clear.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weather_plus_cloudy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weather_plus_nt_clear.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weather_plus_nt_cloudy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weather_plus_nt_rain.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_weather_plus_rain.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/img_wundergroundLogo_4c_horz.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_debugging.xml" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_debugging.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_notifications.xml" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_notifications.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_changelog.txt" afterPath="$PROJECT_DIR$/_changelog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wunderground7_version.html" afterPath="$PROJECT_DIR$/wunderground7_version.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,21 +27,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_changelog.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_changelog.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_changelog.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugin.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="plugin.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="628">
-              <caret line="2944" column="67" lean-forward="true" selection-start-line="2944" selection-start-column="67" selection-end-line="2944" selection-end-column="67" />
+            <state relative-caret-position="554">
+              <caret line="615" column="31" lean-forward="true" selection-start-line="615" selection-start-column="31" selection-end-line="615" selection-end-column="31" />
               <folding>
                 <element signature="e#3629#3650#0" expanded="true" />
               </folding>
@@ -87,8 +62,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5655">
-              <caret line="377" column="47" lean-forward="true" selection-start-line="377" selection-start-column="47" selection-end-line="377" selection-end-column="47" />
+            <state relative-caret-position="280">
+              <caret line="356" column="58" lean-forward="false" selection-start-line="356" selection-start-column="31" selection-end-line="356" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -174,9 +149,9 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" />
-        <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
         <option value="$PROJECT_DIR$/_changelog.txt" />
+        <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
       </list>
     </option>
   </component>
@@ -213,11 +188,6 @@
             <path>
               <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
               <item name="WUnderground7" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WUnderground7" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
@@ -430,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509364354685</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="- Adds button to plugin config dialog to open browser session with &#10;  Weather Underground for users to sign up for API key.">
+      <created>1510051427012</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1510051427012</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -452,10 +429,10 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21030043" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21030043" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1788269" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1788269" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39974293" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -482,7 +459,8 @@
     <MESSAGE value="Confirming all templates as hard links." />
     <MESSAGE value="- Refactors so that plugin can be installed over WUnderground 6.x &#10;installations." />
     <MESSAGE value="- improves converstion of debug level to logger style setting.D" />
-    <option name="LAST_COMMIT_MESSAGE" value="- improves converstion of debug level to logger style setting.D" />
+    <MESSAGE value="- Adds button to plugin config dialog to open browser session with &#10;  Weather Underground for users to sign up for API key." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Adds button to plugin config dialog to open browser session with &#10;  Weather Underground for users to sign up for API key." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -840,16 +818,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="2944" column="67" lean-forward="true" selection-start-line="2944" selection-start-column="67" selection-end-line="2944" selection-end-column="67" />
-          <folding>
-            <element signature="e#3629#3650#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -863,19 +831,29 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/_changelog.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5655">
-          <caret line="377" column="47" lean-forward="true" selection-start-line="377" selection-start-column="47" selection-end-line="377" selection-end-column="47" />
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_changelog.txt">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="48" lean-forward="false" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+        <state relative-caret-position="280">
+          <caret line="356" column="58" lean-forward="false" selection-start-line="356" selection-start-column="31" selection-end-line="356" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="615" column="31" lean-forward="true" selection-start-line="615" selection-start-column="31" selection-end-line="615" selection-end-column="31" />
+          <folding>
+            <element signature="e#3629#3650#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

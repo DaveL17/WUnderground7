@@ -611,7 +611,7 @@ class Plugin(indigo.PluginBase):
             else:
                 return val, str(val)
 
-        except ValueError:
+        except (ValueError, TypeError):
             self.logger.debug(u"Imputing missing data. Returning: {0}, {1}".format(-99.0, u"--"))
             return -99.0, u"--"
 

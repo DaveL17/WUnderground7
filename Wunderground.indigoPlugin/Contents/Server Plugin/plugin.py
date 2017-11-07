@@ -80,7 +80,6 @@ import simplejson
 import socket
 import sys
 import time
-import webbrowser
 try:
     import requests  # (weather data)
 except ImportError:

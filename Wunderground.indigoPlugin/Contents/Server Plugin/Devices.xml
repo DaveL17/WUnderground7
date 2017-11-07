@@ -18,63 +18,28 @@
                 <Label>Location:</Label>
             </Field>
 
-            <Field id="space01" type="label" fontSize="small">
+            <Field id="space01" type="label" fontSize="small" alignWithControl="True">
                 <Label>Enter the observation location. Locations must follow one of the example formats provided.</Label>
             </Field>
 
-            <Field id="space02" type="checkbox" tooltip="Check to show sample settings.">
-                <Label>Examples:</Label>
-                <Description>Show/Hide</Description>
+            <Field id="space03" type="label" fontSize="small" alignWithControl="True">
+                <Label>Examples:
+  - Automatic IP detection (autoip)
+  - City (i.e., CA/San_Francisco, Canada/Toronto)
+  - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
+  - ICAO Airport Station (i.e., KORD, CYYZ)
+  - Personal Weather Station (i.e., pws:KMNCHASK10)
+  - US ZIP (i.e., 12345)
+</Label>
             </Field>
 
-            <Field id="space03" type="label" visibleBindingId="space02" visibleBindingValue="true" fontSize="small">
-                <Label>- Automatic IP detection (autoip)
-- City (i.e., CA/San_Francisco, Canada/Toronto)
-- Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
-- ICAO Airport Station (i.e., KORD, CYYZ)
-- Personal Weather Station (i.e., pws:KMNCHASK10)
-- US ZIP (i.e., 12345)
-                </Label>
-            </Field>
-
-            <Field id="space06" type="checkbox" tooltip="Check to show display units settings.">
-                <Label>Display Units:</Label>
-                <Description>Show/Hide</Description>
-            </Field>
-
-            <Field id="space07" type="label" fontSize="small">
-                <Label>Controls how values will be displayed on control pages, etc.</Label>
-            </Field>
-
-            <!--<Field id="distanceUnits" type="textfield" defaultValue=" mi." visibleBindingId="space06" visibleBindingValue="true" tooltip="Appended to all distance values. (5 mi.)">-->
-                <!--<Label>Distance:</Label>-->
-            <!--</Field>-->
-
-            <!--<Field id="percentageUnits" type="textfield" defaultValue="%" visibleBindingId="space06" visibleBindingValue="true"-->
-                   <!--tooltip="Appended to all probability and percentage values. (80%)">-->
-                <!--<Label>Percentage:</Label>-->
-            <!--</Field>-->
-
-            <!--<Field id="pressureUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true" defaultValue=" in." tooltip="Appended to all pressure values. (30.05 in.)">-->
-                <!--<Label>Pressure:</Label>-->
-            <!--</Field>-->
-
-            <!--<Field id="rainUnits" type="textfield" defaultValue=" in." visibleBindingId="space06" visibleBindingValue="true" tooltip="Appended to all rain values. (0.5 in.)">-->
-                <!--<Label>Rainfall:</Label>-->
-            <!--</Field>-->
-
-            <!--<Field id="snowAmountUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true" defaultValue="in."-->
-                   <!--tooltip="Appended to all snow volume units. (Values reported in either in. or cm.)">-->
-                <!--<Label>Snow:</Label>-->
-            <!--</Field>-->
-
-            <Field id="temperatureUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true" defaultValue="°" tooltip="Appended to all temperature values. (75°)">
+            <Field id="temperatureUnits" type="textfield" defaultValue="°" tooltip="Appended to all temperature values. (75°)">
                 <Label>Temperature:</Label>
             </Field>
 
-            <!--<Field id="windUnits" type="textfield" defaultValue=" mph" visibleBindingId="space06" visibleBindingValue="true" tooltip="Appended to all wind values. (5 mph)">-->
-                <!--<Label>Wind:</Label>-->
-            <!--</Field>-->
+            <Field id="space07" type="label" fontSize="small" alignWithControl="True">
+                <Label>Controls how values will be displayed on control pages, etc.</Label>
+            </Field>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
             </Field>
@@ -208,23 +173,18 @@
                 <Label>Location:</Label>
             </Field>
 
-            <Field id="space01" type="label" fontSize="small">
+            <Field id="space01" type="label" fontSize="small" alignWithControl="True">
                 <Label>Enter the observation location. Locations must follow one of the example formats provided.</Label>
             </Field>
 
-            <Field id="space02" type="checkbox" tooltip="Check to show observation location examples.">
-                <Label>Examples:</Label>
-                <Description>Show/Hide</Description>
-            </Field>
-
-            <Field id="space03" type="label" visibleBindingId="space02" visibleBindingValue="true" fontSize="small">
-                <Label>- Automatic IP detection (autoip)
-                    - City (i.e., CA/San_Francisco, Canada/Toronto)
-                    - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
-                    - ICAO Airport Station (i.e., KORD, CYYZ)
-                    - Personal Weather Station (i.e., pws:KMNCHASK10)
-                    - US ZIP (i.e., 12345)
-                </Label>
+            <Field id="space03" type="label" fontSize="small">
+                <Label>Examples:
+  - Automatic IP detection (autoip)
+  - City (i.e., CA/San_Francisco, Canada/Toronto)
+  - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
+  - ICAO Airport Station (i.e., KORD, CYYZ)
+  - Personal Weather Station (i.e., pws:KMNCHASK10)
+  - US ZIP (i.e., 12345)</Label>
             </Field>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
@@ -399,38 +359,32 @@
                 <Label>Location:</Label>
             </Field>
 
-            <Field id="space01" type="label" fontSize="small">
+            <Field id="space01" type="label" fontSize="small" alignWithControl="True">
                 <Label>Enter the observation location. Locations must follow one of the example formats provided.</Label>
             </Field>
 
-            <Field id="space02" type="checkbox" tooltip="Check to show observation location examples.">
-                <Label>Examples:</Label>
-                <Description>Show/Hide</Description>
+            <Field id="space03" type="label" fontSize="small">
+                <Label>Examples:
+  - Automatic IP detection (autoip)
+  - City (i.e., CA/San_Francisco, Canada/Toronto)
+  - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
+  - ICAO Airport Station (i.e., KORD, CYYZ)
+  - Personal Weather Station (i.e., pws:KMNCHASK10)
+  - US ZIP (i.e., 12345)</Label>
             </Field>
 
-            <Field id="space03" type="label" visibleBindingId="space02" visibleBindingValue="true" fontSize="small">
-                <Label>- Automatic IP detection (autoip)
-                    - City (i.e., CA/San_Francisco, Canada/Toronto)
-                    - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
-                    - ICAO Airport Station (i.e., KORD, CYYZ)
-                    - Personal Weather Station (i.e., pws:KMNCHASK10)
-                    - US ZIP (i.e., 12345)
-                </Label>
+            <Field id="displayValuesLabel" type="label" alignText="Right">
+                <Label>
+Display Values</Label>
             </Field>
 
             <Field id="separator00" type="separator"/>
-
-            <Field id="space04" type="checkbox" tooltip="Check to show weather units settings.">
-                <Label>Weather Units:</Label>
-                <Description>Show/Hide</Description>
-            </Field>
 
             <Field id="space05" type="label" fontSize="small">
                 <Label>Controls how values will be displayed throughout Indigo. They are independent of the Display Units settings below.</Label>
             </Field>
 
-            <Field id="configMenuUnits" type="menu" defaultValue="S" visibleBindingId="space04" visibleBindingValue="true"
-                   tooltip="Please select the desired measurement units for this location.">
+            <Field id="configMenuUnits" type="menu" defaultValue="S" tooltip="Please select the desired measurement units for this location.">
                 <Label>Standard or Metric:</Label>
                 <List>
                     <Option value="S">Standard (°F and MPH)</Option>
@@ -440,8 +394,7 @@
                 </List>
             </Field>
 
-            <Field id="configWindDirUnits" type="menu" defaultValue="DIR" visibleBindingId="space04" visibleBindingValue="true"
-                   tooltip="Please select the desired wind direction units for this location.">
+            <Field id="configWindDirUnits" type="menu" defaultValue="DIR" tooltip="Please select the desired wind direction units for this location.">
                 <Label>Wind Direction:</Label>
                 <List>
                     <Option value="DIR">Text (N-E-S-W)</Option>
@@ -449,49 +402,39 @@
                 </List>
             </Field>
 
-            <Field id="separator01" type="separator"/>
-
-            <Field id="space06" type="checkbox" tooltip="Check to show display units settings.">
-                <Label>Display Units:</Label>
-                <Description>Show/Hide</Description>
+            <Field id="displayUnitsLabel" type="label" alignText="Right">
+                <Label>
+Display Units</Label>
             </Field>
+
+            <Field id="separator01" type="separator"/>
 
             <Field id="space07" type="label" fontSize="small">
                 <Label>Controls how values will be displayed on control pages, etc.</Label>
             </Field>
 
-            <Field id="space08" type="label" visibleBindingId="space06" visibleBindingValue="true" fontSize="small">
-                <Label>These settings are independent of the Weather Units settings above. They do not affect the underlying value of the data point.</Label>
-            </Field>
-
-            <!--<Field id="distanceUnits" type="textfield" defaultValue=" mi." visibleBindingId="space06" visibleBindingValue="true" tooltip="Appended to all distance values. (5 mi.)">-->
-                <!--<Label>Distance:</Label>-->
-            <!--</Field>-->
-
-            <Field id="percentageUnits" type="textfield" defaultValue="%" visibleBindingId="space06" visibleBindingValue="true"
-                   tooltip="Appended to all probability and percentage values. (80%)">
+            <Field id="percentageUnits" type="textfield" defaultValue="%" tooltip="Appended to all probability and percentage values. (80%)">
                 <Label>Percentage:</Label>
             </Field>
 
-            <!--<Field id="pressureUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true" defaultValue=" in." tooltip="Appended to all pressure values. (30.05 in.)">-->
-                <!--<Label>Pressure:</Label>-->
-            <!--</Field>-->
-
-            <Field id="rainUnits" type="textfield" defaultValue=" in." visibleBindingId="space06" visibleBindingValue="true" tooltip="Appended to all rain values. (0.5 in.)">
+            <Field id="rainUnits" type="textfield" defaultValue=" in." tooltip="Appended to all rain values. (0.5 in.)">
                 <Label>Rainfall:</Label>
             </Field>
 
-            <Field id="snowAmountUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true" defaultValue="in."
-                   tooltip="Appended to all snow volume units. (Values reported in either in. or cm.)">
+            <Field id="snowAmountUnits" type="textfield" defaultValue="in." tooltip="Appended to all snow volume units. (Values reported in either in. or cm.)">
                 <Label>Snow:</Label>
             </Field>
 
-            <Field id="temperatureUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true" defaultValue="°" tooltip="Appended to all temperature values. (75°)">
+            <Field id="temperatureUnits" type="textfield" defaultValue="°" tooltip="Appended to all temperature values. (75°)">
                 <Label>Temperature:</Label>
             </Field>
 
-            <Field id="windUnits" type="textfield" defaultValue=" mph" visibleBindingId="space06" visibleBindingValue="true" tooltip="Appended to all wind values. (5 mph)">
+            <Field id="windUnits" type="textfield" defaultValue=" mph" tooltip="Appended to all wind values. (5 mph)">
                 <Label>Wind:</Label>
+            </Field>
+
+            <Field id="space08" type="label" fontSize="small" alignWithControl="True">
+                <Label>These settings are independent of the Weather Units settings above. They do not affect the underlying value of the data point.</Label>
             </Field>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
@@ -2743,10 +2686,7 @@
         <ConfigUI>
 
             <Field id="space00" type="label" fontSize="small">
-                <Label>The image downloader only supports gif, jpg, jpeg, and png extensions. There is no limit to the number of downloader devices you can have.
-
-                    Source: a valid url that returns an image file.
-                    Destination: /any/valid/pathname/image.png</Label>
+                <Label>The image downloader only supports gif, jpg, jpeg, and png extensions. There is no limit to the number of downloader devices you can have.</Label>
             </Field>
 
             <Field id="space01" type="label"/>
@@ -2755,25 +2695,21 @@
                 <Label>Source Location:</Label>
             </Field>
 
+            <Field id="sourceExamples" type="label" fontSize="small" alignWithControl="True">
+                <Label>Examples:
+http://www.website.com/imagefile.png
+file:///Users/username/Desktop/imagefile.png
+</Label>
+            </Field>
+
             <Field id="imageDestinationLocation" type="textfield" defaultValue="/User/username/Desktop"
                    tooltip="Please enter the location where you would like the image to be saved.">
                 <Label>Destination Location:</Label>
             </Field>
 
-            <Field id="imageExamples" type="checkbox" tooltip="Check to show destination location examples.">
-                <Label>Examples:</Label>
-                <Description>Show/Hide</Description>
-            </Field>
-
-            <Field id="space02" type="label" fontSize="small" visibleBindingId="imageExamples" visibleBindingValue="true">
-                <Label>
-                    Source:
-                    http://www.website.com/imagefile.png
-                    file:///Users/username/Desktop/imagefile.png
-
-                    Destination:
-                    /Users/username/Desktop/imagefile.png
-                </Label>
+            <Field id="destinationExamples" type="label" fontSize="small" alignWithControl="True">
+                <Label>Example:
+/Users/username/Desktop/imagefile.png</Label>
             </Field>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
@@ -2806,8 +2742,6 @@
 
             <Field id="space01" type="label"/>
 
-            <Field id="titleseparator" type="separator"/>
-
             <Field id="imagename" type="textfield" defaultValue="WUradar" tooltip="Please enter the name for your image file (do not include an extension).">
                 <Label>Image Name:</Label>
             </Field>
@@ -2820,13 +2754,18 @@
                 <Label>Image Width:</Label>
             </Field>
 
-            <Field id="positionlabel" type="checkbox" defaultValue="true" tooltip="Please tick this box to display the settings for the area to display. Once configured, you can hide the location settings again by unticking the box.">
-                <Label/>
-                <Description>Location settings (show/hide)</Description>
+            <Field id="locationTitle" type="label" alignText="Right">
+                <Label>
+Location</Label>
             </Field>
 
-            <Field id="imagetype" type="menu" defaultValue="radius" visibleBindingId="positionlabel" visibleBindingValue="true"
-                   tooltip="Please select the desired method for defining the boundaries of the image.">
+            <Field id="locationSeparator" type="separator"/>
+
+            <Field id="typelabel" type="label" fontSize="small">
+                <Label>Location settings control the area covered by the radar image. You can hide the location settings once they are configured. A bounding box requires data for the four sides of the image. A location requires a valid WU location (Click the (?) below for additional information). A radius requires a center point and a radial distance.</Label>
+            </Field>
+
+            <Field id="imagetype" type="menu" defaultValue="radius" tooltip="Please select the desired method for defining the boundaries of the image.">
                 <Label>Type:</Label>
                 <List>
                     <Option value="boundingbox">Bounding Box</Option>
@@ -2835,23 +2774,9 @@
                 </List>
             </Field>
 
-            <Field id="typelabel" type="label" visibleBindingId="positionlabel" visibleBindingValue="true" fontSize="small" alignWithControl="true">
-                <Label>Location settings control the area covered by the radar image. You can hide the location settings once they are configured. A bounding box requires data for the four sides of the image. A location requires a valid WU location (Click the (?) below for additional information). A radius requires a center point and a radial distance.</Label>
-            </Field>
-
-            <Field id="boxeparator" type="separator" visibleBindingId="positionlabel" visibleBindingValue="true"/>
-
-            <Field id="locationlabel" type="label" visibleBindingId="imagetype" visibleBindingValue="locationbox">
-                <Label>Location Settings:</Label>
-            </Field>
-
             <Field id="location" type="textfield" defaultValue="autoip" visibleBindingId="imagetype" visibleBindingValue="locationbox"
                    tooltip="Please enter the location of the radar image.  If using a personal weather station, be sure to begin the location with PWS:(pws_name).">
                 <Label>Location:</Label>
-            </Field>
-
-            <Field id="boundingboxlabel" type="label" visibleBindingId="imagetype" visibleBindingValue="boundingbox">
-                <Label>Bounding Box Settings:</Label>
             </Field>
 
             <Field id="minlat" type="textfield" defaultValue="39.0" visibleBindingId="imagetype" visibleBindingValue="boundingbox"
@@ -2872,10 +2797,6 @@
             <Field id="maxlon" type="textfield" defaultValue="-90.5" visibleBindingId="imagetype" visibleBindingValue="boundingbox"
                    tooltip="Please enter the maximum longitude for the image. This value controls the right edge of the image (-180.0 to 180.0).">
                 <Label>Max Long:</Label>
-            </Field>
-
-            <Field id="radiuslabel" type="label" visibleBindingId="imagetype" visibleBindingValue="radius">
-                <Label>Radius Settings:</Label>
             </Field>
 
             <Field id="centerlat" type="textfield" defaultValue="0" visibleBindingId="imagetype" visibleBindingValue="radius"
@@ -2909,6 +2830,11 @@
                     </List>
             </Field>
 
+            <Field id="animationTitle" type="label" alignText="Right">
+                <Label>
+Animation</Label>
+            </Field>
+
             <Field id="animationseparator" type="separator"/>
 
             <Field id="animationlabel" type="label" fontSize="small">
@@ -2939,6 +2865,11 @@
                     </List>
             </Field>
 
+            <Field id="timestampTitle" type="label" alignText="Right">
+                <Label>
+Timestamp</Label>
+            </Field>
+
             <Field id="timeseparator" type="separator"/>
 
             <Field id="timestamplabel" type="label" fontSize="small">
@@ -2957,6 +2888,11 @@
             <Field id="timelabely" type="textfield" defaultValue="20" visibleBindingId="timelabel" visibleBindingValue="true"
                    tooltip="Please enter the number of pixels to move the time label (from the top edge of the image).">
                 <Label>Time Stamp Y:</Label>
+            </Field>
+
+            <Field id="featuresTitle" type="label" alignText="Right">
+                <Label>
+Features</Label>
             </Field>
 
             <Field id="featureseparator" type="separator"/>
@@ -3017,38 +2953,32 @@
                 <Label>Location:</Label>
             </Field>
 
-            <Field id="space01" type="label" fontSize="small">
+            <Field id="space01" type="label" fontSize="small" alignWithControl="True">
                 <Label>Enter the observation location. Locations must follow one of the example formats provided.</Label>
             </Field>
 
-            <Field id="space02" type="checkbox" tooltip="Check to show observation location examples.">
-                <Label>Examples:</Label>
-                <Description>Show/Hide</Description>
+            <Field id="space03" type="label" fontSize="small" alignWithControl="True">
+                <Label>Examples:
+  - Automatic IP detection (autoip)
+  - City (i.e., CA/San_Francisco, Canada/Toronto)
+  - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
+  - ICAO Airport Station (i.e., KORD, CYYZ)
+  - Personal Weather Station (i.e., pws:KMNCHASK10)
+  - US ZIP (i.e., 12345)</Label>
             </Field>
 
-            <Field id="space03" type="label" visibleBindingId="space02" visibleBindingValue="true" fontSize="small">
-                <Label>- Automatic IP detection (autoip)
-                    - City (i.e., CA/San_Francisco, Canada/Toronto)
-                    - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
-                    - ICAO Airport Station (i.e., KORD, CYYZ)
-                    - Personal Weather Station (i.e., pws:KMNCHASK10)
-                    - US ZIP (i.e., 12345)
-                </Label>
+            <Field id="displayValuesLabel" type="label" alignText="Right">
+                <Label>
+Display Values</Label>
             </Field>
 
             <Field id="separator00" type="separator"/>
-
-            <Field id="space04" type="checkbox" tooltip="Check to show weather units settings.">
-                <Label>Weather Units:</Label>
-                <Description>Show/Hide</Description>
-            </Field>
 
             <Field id="space05" type="label" fontSize="small">
                 <Label>Controls how values will be displayed throughout Indigo. They are independent of the Display Units settings below.</Label>
             </Field>
 
-            <Field id="configMenuUnits" type="menu" defaultValue="S" visibleBindingId="space04" visibleBindingValue="true"
-                   tooltip="Please select the desired measurement units for this location.">
+            <Field id="configMenuUnits" type="menu" defaultValue="S" tooltip="Please select the desired measurement units for this location.">
                 <Label>Standard or Metric:</Label>
                 <List>
                     <Option value="S">Standard (°F and MPH)</Option>
@@ -3058,8 +2988,7 @@
                 </List>
             </Field>
 
-            <Field id="configWindSpdUnits" type="menu" defaultValue="AVG" visibleBindingId="space04" visibleBindingValue="true"
-                   tooltip="Please select the desired wind speed measure for this location.">
+            <Field id="configWindSpdUnits" type="menu" defaultValue="AVG" tooltip="Please select the desired wind speed measure for this location.">
                 <Label>Wind Speed:</Label>
                 <List>
                     <Option value="AVG">Average</Option>
@@ -3067,8 +2996,7 @@
                 </List>
             </Field>
 
-            <Field id="configWindDirUnits" type="menu" defaultValue="DIR" visibleBindingId="space04" visibleBindingValue="true"
-                   tooltip="Please select the desired wind direction units for this location.">
+            <Field id="configWindDirUnits" type="menu" defaultValue="DIR" tooltip="Please select the desired wind direction units for this location.">
                 <Label>Wind Direction:</Label>
                 <List>
                     <Option value="DIR">Text (N-E-S-W)</Option>
@@ -3076,50 +3004,39 @@
                 </List>
             </Field>
 
-            <Field id="separator01" type="separator"/>
-
-            <Field id="space06" type="checkbox" tooltip="Check to show display units settings.">
-                <Label>Display Units:</Label>
-                <Description>Show/Hide</Description>
+            <Field id="displayUnitsLabel" type="label" alignText="Right">
+                <Label>
+Display Units</Label>
             </Field>
+
+            <Field id="separator01" type="separator"/>
 
             <Field id="space07" type="label" fontSize="small">
                 <Label>Controls how values will be displayed on control pages, etc.</Label>
             </Field>
 
-            <Field id="space08" type="label" visibleBindingId="space06" visibleBindingValue="true" fontSize="small">
-                <Label>These settings are independent of the Weather Units settings above. They do not affect the underlying value of the data point.</Label>
-            </Field>
-
-            <!--<Field id="distanceUnits" type="textfield" defaultValue=" mi." visibleBindingId="space06" visibleBindingValue="true" tooltip="Appended to all distance values. (5 mi.)">-->
-                <!--<Label>Distance:</Label>-->
-            <!--</Field>-->
-
-            <!--<Field id="pressureUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true" defaultValue=" in." tooltip="Appended to all pressure values. (30.05 in.)">-->
-                <!--<Label>Pressure:</Label>-->
-            <!--</Field>-->
-
-            <Field id="percentageUnits" type="textfield" defaultValue="%" visibleBindingId="space06" visibleBindingValue="true"
-                   tooltip="Appended to all probability and percentage values. (80%)">
+            <Field id="percentageUnits" type="textfield" defaultValue="%"  tooltip="Appended to all probability and percentage values. (80%)">
                 <Label>Percentage:</Label>
             </Field>
 
-            <Field id="rainAmountUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true"
-                   tooltip="Appended to all rain volume units.(Values reported in either in. or mm.)">
+            <Field id="rainAmountUnits" type="textfield"  tooltip="Appended to all rain volume units.(Values reported in either in. or mm.)">
                 <Label>Rain:</Label>
             </Field>
 
-            <Field id="snowAmountUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true"
-                   tooltip="Appended to all snow volume units. (Values reported in either in. or cm.)">
+            <Field id="snowAmountUnits" type="textfield"  tooltip="Appended to all snow volume units. (Values reported in either in. or cm.)">
                 <Label>Snow:</Label>
             </Field>
 
-            <Field id="temperatureUnits" type="textfield" visibleBindingId="space06" visibleBindingValue="true" defaultValue="°" tooltip="Appended to all temperature values. (75°)">
+            <Field id="temperatureUnits" type="textfield" defaultValue="°" tooltip="Appended to all temperature values. (75°)">
                 <Label>Temperature:</Label>
             </Field>
 
-            <Field id="windUnits" type="textfield" defaultValue=" mph" visibleBindingId="space06" visibleBindingValue="true" tooltip="Appended to all wind values. (5 mph)">
+            <Field id="windUnits" type="textfield" defaultValue=" mph" tooltip="Appended to all wind values. (5 mph)">
                 <Label>Wind:</Label>
+            </Field>
+
+            <Field id="space08" type="label" fontSize="small" alignWithControl="True">
+                <Label>These settings are independent of the Weather Units settings above. They do not affect the underlying value of the data point.</Label>
             </Field>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
@@ -4120,7 +4037,8 @@
         <ConfigUI>
 
             <Field id="space00" type="label" fontSize="small">
-                <Label>NOTE: you must have a cumulus or anvil plan to obtain tide data.</Label>
+                <Label>NOTE: you must have a cumulus or anvil plan to obtain tide data.
+</Label>
             </Field>
 
             <Field id="location" type="textfield" defaultValue="autoip"
@@ -4128,23 +4046,18 @@
                 <Label>Location:</Label>
             </Field>
 
-            <Field id="space01" type="label" fontSize="small">
+            <Field id="space01" type="label" fontSize="small" alignWithControl="True">
                 <Label>Enter the observation location. Locations must follow one of the example formats provided.</Label>
             </Field>
 
-            <Field id="space02" type="checkbox" tooltip="Check to show observation location examples.">
-                <Label>Examples:</Label>
-                <Description>Show/Hide</Description>
-            </Field>
-
-            <Field id="space03" type="label" visibleBindingId="space02" visibleBindingValue="true" fontSize="small">
-                <Label>- Automatic IP detection (autoip)
-                    - City (i.e., CA/San_Francisco, Canada/Toronto)
-                    - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
-                    - ICAO Airport Station (i.e., KORD, CYYZ)
-                    - Personal Weather Station (i.e., pws:KMNCHASK10)
-                    - US ZIP (i.e., 12345)
-                </Label>
+            <Field id="space03" type="label" fontSize="small" alignWithControl="True">
+                <Label>Examples:
+  - Automatic IP detection (autoip)
+  - City (i.e., CA/San_Francisco, Canada/Toronto)
+  - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
+  - ICAO Airport Station (i.e., KORD, CYYZ)
+  - Personal Weather Station (i.e., pws:KMNCHASK10)
+  - US ZIP (i.e., 12345)</Label>
             </Field>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
@@ -4789,38 +4702,32 @@
                 <Label>Location:</Label>
             </Field>
 
-            <Field id="space00" type="label" fontSize="small">
+            <Field id="space00" type="label" fontSize="small" alignWithControl="True">
                 <Label>Enter the observation location. Locations must follow one of the example formats provided.</Label>
             </Field>
 
-            <Field id="space01" type="checkbox" tooltip="Check to show observation location examples.">
-                <Label>Examples:</Label>
-                <Description>Show/Hide</Description>
+            <Field id="space02" type="label" fontSize="small" alignWithControl="True">
+                <Label>Examples:
+  - Automatic IP detection (autoip)
+  - City (i.e., CA/San_Francisco, Canada/Toronto)
+  - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
+  - ICAO Airport Station (i.e., KORD, CYYZ)
+  - Personal Weather Station (i.e., pws:KMNCHASK10)
+  - US ZIP (i.e., 12345)</Label>
             </Field>
 
-            <Field id="space02" type="label" visibleBindingId="space01" visibleBindingValue="true" fontSize="small">
-                <Label>- Automatic IP detection (autoip)
-                    - City (i.e., CA/San_Francisco, Canada/Toronto)
-                    - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
-                    - ICAO Airport Station (i.e., KORD, CYYZ)
-                    - Personal Weather Station (i.e., pws:KMNCHASK10)
-                    - US ZIP (i.e., 12345)
-                </Label>
+            <Field id="displayValuesTitle" type="label" alignText="Right">
+                <Label>
+Display Values</Label>
             </Field>
 
             <Field id="separator00" type="separator"/>
-
-            <Field id="space03" type="checkbox" tooltip="Check to show weather units settings.">
-                <Label>Weather Units:</Label>
-                <Description>Show/Hide</Description>
-            </Field>
 
             <Field id="space04" type="label" fontSize="small">
                 <Label>Controls how values will be displayed throughout Indigo. They are independent of the Display Units settings below.</Label>
             </Field>
 
-            <Field id="configMenuUnits" type="menu" defaultValue="S" visibleBindingId="space03" visibleBindingValue="true"
-                   tooltip="Please select the desired measurement units for this location.">
+            <Field id="configMenuUnits" type="menu" defaultValue="S" tooltip="Please select the desired measurement units for this location.">
                 <Label>Standard or Metric:</Label>
                 <List>
                     <Option value="S">Standard (°F and MPH)</Option>
@@ -4830,8 +4737,7 @@
                 </List>
             </Field>
 
-            <Field id="itemListUiUnits" type="menu" defaultValue="S" visibleBindingId="space03" visibleBindingValue="true"
-                   tooltip="Please select how you would like temperatures displayed in the main Indigo Item List window.">
+            <Field id="itemListUiUnits" type="menu" defaultValue="S" tooltip="Please select how you would like temperatures displayed in the main Indigo Item List window.">
                 <Label>Item List Display:</Label>
                 <List>
                     <Option value="S">Standard Units - °F</Option>
@@ -4843,73 +4749,74 @@
                 </List>
             </Field>
 
+            <Field id="displayUnitsLabel" type="label" alignText="Right">
+                <Label>
+Display Units</Label>
+            </Field>
+
             <Field id="separator01" type="separator"/>
 
-            <Field id="space05" type="checkbox" tooltip="Check to show display units settings.">
-                <Label>Display Units:</Label>
-                <Description>Show/Hide</Description>
-            </Field>
-
             <Field id="space06" type="label" fontSize="small">
-                <Label>Controls how values will be displayed on control pages, etc.</Label>
+                <Label>Controls how values will be displayed on control pages, etc. These settings are independent of the Weather Units settings above. They do not affect the underlying value of the data point.</Label>
             </Field>
 
-            <Field id="space07" type="label" visibleBindingId="space05" visibleBindingValue="true" fontSize="small">
-                <Label>These settings are independent of the Weather Units settings above. They do not affect the underlying value of the data point.</Label>
-            </Field>
-
-            <Field id="distanceUnits" type="textfield" defaultValue=" mi." visibleBindingId="space05" visibleBindingValue="true" tooltip="Appended to all distance values. (5 mi.)">
+            <Field id="distanceUnits" type="textfield" defaultValue=" mi." tooltip="Appended to all distance values. (5 mi.)">
                 <Label>Distance:</Label>
             </Field>
 
-            <Field id="percentageUnits" type="textfield" defaultValue="%" visibleBindingId="space05" visibleBindingValue="true"
-                   tooltip="Appended to all probability and percentage values. (80%)">
+            <Field id="percentageUnits" type="textfield" defaultValue="%" tooltip="Appended to all probability and percentage values. (80%)">
                 <Label>Percentage:</Label>
             </Field>
 
-            <Field id="pressureUnits" type="textfield" visibleBindingId="space05" visibleBindingValue="true" defaultValue=" in." tooltip="Appended to all pressure values. (30.05 in.)">
+            <Field id="pressureUnits" type="textfield" defaultValue=" in." tooltip="Appended to all pressure values. (30.05 in.)">
                 <Label>Pressure:</Label>
             </Field>
 
-            <Field id="rainUnits" type="textfield" defaultValue=" in." visibleBindingId="space05" visibleBindingValue="true" tooltip="Appended to all rain values. (0.5 in.)">
+            <Field id="rainUnits" type="textfield" defaultValue=" in." tooltip="Appended to all rain values. (0.5 in.)">
                 <Label>Rainfall:</Label>
             </Field>
 
-            <Field id="temperatureUnits" type="textfield" visibleBindingId="space05" visibleBindingValue="true" defaultValue="°" tooltip="Appended to all temperature values. (75°)">
+            <Field id="temperatureUnits" type="textfield" defaultValue="°" tooltip="Appended to all temperature values. (75°)">
                 <Label>Temperature:</Label>
             </Field>
 
-            <Field id="windUnits" type="textfield" defaultValue=" mph" visibleBindingId="space05" visibleBindingValue="true" tooltip="Appended to all wind values. (5 mph)">
+            <Field id="windUnits" type="textfield" defaultValue=" mph" tooltip="Appended to all wind values. (5 mph)">
                 <Label>Wind:</Label>
             </Field>
 
-            <Field id="separator02" type="separator"/>
-
             <Field id="suppressWeatherAlerts" type="checkbox" defaultValue="false" tooltip="Check to suppress severe weather alerts for this device only.">
-                <Label>Suppress Severe Weather Alerts:</Label>
+                <Label/>
+                <Description>Suppress Severe Weather Alerts:</Description>
             </Field>
 
-            <Field id="space11" type="label" fontSize="small">
+            <Field id="space11" type="label" fontSize="small" alignWithControl="True">
                 <Label>If severe weather alert logging is enabled, checking this box will suppress alerts for this device only.</Label>
             </Field>
 
+            <Field id="weatherSummaryLabel" type="label" alignText="Right">
+                <Label>
+Email Summary</Label>
+            </Field>
+
+            <Field id="weatherSummarySeparator" type="separator"/>
+
+            <Field id="space12" type="label" fontSize="small">
+                <Label>If enabled, the plugin will send one email each day with a summary of select weather information. In order to receive the summary, you must enable notifications of
+plugin updates within the WUnderground plugin settings dialog.</Label>
+            </Field>
+
             <Field id="weatherSummaryEmail" type="checkbox" defaultValue="false" tooltip="Check to enable daily weather summary email messages.">
-                <Label>Receive Email Summary:</Label>
+                <Label/>
+                <Description>Receive Email Summary</Description>
             </Field>
 
             <Field id="weatherSummaryEmailTime" type="menu" defaultValue="01:00" tooltip="Select the time that you would like the weather summary to be sent. It is recommended to set this value to 01:00 or later.">
-                <Label>Receive Email Summary:</Label>
+                <Label>Send Time:</Label>
                 <List class="self" filter="" method="generatorTime" dynamicReload="true"/>
             </Field>
 
             <Field id="weatherSummaryEmailSent" type="checkbox" defaultValue="false" hidden="true">
                 <Label>Receive Email Summary:</Label>
-            </Field>
-
-            <Field id="space12" type="label" fontSize="small">
-                <Label>If checked, the plugin will send one email each day with a summary of select weather information. In order to receive the summary, you must enable notifications of
-plugin updates within the WUnderground plugin settings dialog.
-                </Label>
             </Field>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">

@@ -9,10 +9,10 @@
     </Field>
 
     <Field id="termsOfService" type="label" fontSize="mini">
-        <Label>Data provided by Weather Underground, LLC. This plugin and its author are in no way affiliated with Weather Underground.</Label>
+        <Label>Data are provided by Weather Underground, LLC. This plugin and its author are in no way affiliated with Weather Underground.</Label>
     </Field>
 
-    <Field id="space00" type="label"/>
+    <Field id="space00" type="label" fontSize="mini"/>
 
     <Field id="space001" type="label" alignText="right">
         <Label>Plugin Settings:</Label>
@@ -20,26 +20,50 @@
 
 	<Field id="simpleSeparator0" type="separator"/>
 
+    <Field id="space01" type="label" fontSize="small" alignWithControl="True">
+        <Label>The plugin requires an API key to retrieve data from Weather Underground. If needed, you can click this button to sign up for an API key:</Label>
+    </Field>
+
+    <!-- ======== Launch a Safari session with the UW API web page ======== -->
+    <Field id="launchWU" type="button">
+        <Label/>
+        <Title>Sign Up For a Key at Weather Underground</Title>
+        <CallbackMethod>wundergroundSite</CallbackMethod>
+    </Field>
+
+    <Field id="launchWUparameters" type="textfield" defaultValue="https://www.wunderground.com/api/" hidden="True">
+        <Label/>
+    </Field>
+    <!-- ================================================================== -->
+
+    <Field id="apiKey" type="textfield" defaultValue="apiKey" tooltip="Please enter the Weather Underground API Key (required).">
+        <Label>API key:</Label>
+    </Field>
+
+    <Field id="callCounter" type="textfield" defaultValue="500" tooltip="Please enter the maximum number of WU calls for your plan. The base developer plan is 500 downloads per day.">
+        <Label>Daily Limit:</Label>
+    </Field>
+
     <Field id="dailyCallCounter" type="textfield" defaultValue="0" readonly= "true" tooltip="The number of API calls today so far.">
         <Label>API Calls Today:</Label>
     </Field>
 
-    <Field id="showPluginSettings" type="checkbox" tooltip="Check to show plugin settings.">
-        <Label>Plugin Settings:</Label>
-        <Description>Show/Hide</Description>
+    <Field id="downloadInterval" type="menu" defaultValue="900"
+           tooltip="Please select the desired frequency for data downloads. Controls how often the plugin will reach out to Weather Underground, and the daily limit for the number of downloads.">
+        <Label>Call Interval:</Label>
+        <List>
+            <Option value="300">5 Minutes</Option>
+            <Option value="600">10 Minutes</Option>
+            <Option value="900">15 Minutes</Option>
+            <Option value="1800">30 Minutes</Option>
+            <Option value="3600">1 Hour</Option>
+            <Option value="21600">6 Hours</Option>
+            <Option value="43200">12 Hours</Option>
+            <Option value="86400">1 Day</Option>
+        </List>
     </Field>
 
-    <Field id="space01" type="label" fontSize="small">
-        <Label>The plugin requires an API key to retrieve data from Weather Underground.</Label>
-    </Field>
-
-    <Field id="apiKey" type="textfield" defaultValue="apiKey" visibleBindingId="showPluginSettings" visibleBindingValue="true"
-           tooltip="Please enter the Weather Underground API Key (required).">
-        <Label>API key:</Label>
-    </Field>
-
-    <Field id="language" type="menu" defaultValue="EN" visibleBindingId="showPluginSettings" visibleBindingValue="true"
-           tooltip="Please select the desired language. Controls data returned from Weather Underground.">
+    <Field id="language" type="menu" defaultValue="EN" tooltip="Please select the desired language. Controls data returned from Weather Underground.">
         <Label>Language:</Label>
         <List>
             <Option value="F">Afrikaans</Option>
@@ -127,56 +151,25 @@
         </List>
     </Field>
 
-    <Field id="separator01a" type="separator"/>
-
-    <Field id="showDownloadSettings" type="checkbox" tooltip="Check to show download settings.">
-        <Label>Download Settings:</Label>
-        <Description>Show/Hide</Description>
-    </Field>
-
-    <Field id="space02" type="label" fontSize="small">
-        <Label>Controls how often the plugin will reach out to Weather Underground, and the daily limit for the number of downloads.</Label>
-    </Field>
-
-    <Field id="downloadInterval" type="menu" defaultValue="900" visibleBindingId="showDownloadSettings" visibleBindingValue="true"
-           tooltip="Please enter the desired frequency for data downloads.">
-        <Label>Interval:</Label>
-        <List>
-            <Option value="300">5 Minutes</Option>
-            <Option value="600">10 Minutes</Option>
-            <Option value="900">15 Minutes</Option>
-            <Option value="1800">30 Minutes</Option>
-            <Option value="3600">1 Hour</Option>
-            <Option value="21600">6 Hours</Option>
-            <Option value="43200">12 Hours</Option>
-            <Option value="86400">1 Day</Option>
-        </List>
-    </Field>
-
-    <Field id="callCounter" type="textfield" defaultValue="500" visibleBindingId="showDownloadSettings" visibleBindingValue="true"
-           tooltip="Please enter the maximum number of WU calls for your plan. The base developer plan is 500 downloads per day.">
-        <Label>Limit:</Label>
-    </Field>
-
-    <Field id="ignoreEstimated" type="checkbox" defaultValue="false" visibleBindingId="showDownloadSettings" visibleBindingValue="true"
+    <Field id="ignoreEstimated" type="checkbox" defaultValue="false"
            tooltip="If checked, the plugin will not update weather data if Weather Underground reports that the data are estimated.">
         <Label/>
-        <Description>Skip Update if Estimated</Description>
+        <Description>Skip Update if Data are Estimated</Description>
+    </Field>
+
+    <Field id="valueDisplayHeaderSpace" type="label" fontSize="mini"/>
+
+    <Field id="showTemperatureSettings" type="label" alignText="Right">
+        <Label>Value Display:</Label>
     </Field>
 
     <Field id="separator02a" type="separator"/>
 
-    <Field id="showTemperatureSettings" type="checkbox" tooltip="Check to show value display settings.">
-        <Label>Value Display:</Label>
-        <Description>Show/Hide</Description>
+    <Field id="space03" type="label" fontSize="small" alignWithControl="True">
+        <Label>Controls how the plugin displays certain values.</Label>
     </Field>
 
-    <Field id="space03" type="label" fontSize="small">
-        <Label>Controls the precision of certain values displayed by Indigo.</Label>
-    </Field>
-
-    <Field id="uiDateFormat" type="menu" defaultValue="DD-MM-YYYY" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
-           tooltip="Please select the desired display format for date values.">
+    <Field id="uiDateFormat" type="menu" defaultValue="DD-MM-YYYY" tooltip="Please select the desired display format for date values.">
         <Label>Date UI Value:</Label>
         <List>
             <Option value="DD-MM-YYYY">DD-MM-YYYY</Option>
@@ -185,8 +178,7 @@
         </List>
     </Field>
 
-    <Field id="uiHumidityDecimal" type="menu" defaultValue="1" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
-           tooltip="Please select the desired number of decimal places to display for humidity values in control pages.">
+    <Field id="uiHumidityDecimal" type="menu" defaultValue="1" tooltip="Please select the desired number of decimal places to display for humidity values in control pages.">
         <Label>Humidity UI Value:</Label>
         <List>
             <Option value="0">0 decimal places</Option>
@@ -194,7 +186,7 @@
         </List>
     </Field>
 
-    <Field id="itemListTempDecimal" type="menu" defaultValue="1" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
+    <Field id="itemListTempDecimal" type="menu" defaultValue="1"
            tooltip="Please select the desired number of decimal places to display for temperature values in the item list (main list of Indigo devices.)">
         <Label>Temperature Item List:</Label>
         <List>
@@ -203,8 +195,7 @@
         </List>
     </Field>
 
-    <Field id="uiTempDecimal" type="menu" defaultValue="1" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
-           tooltip="Please select the desired number of decimal places to display for temperature values in control pages.">
+    <Field id="uiTempDecimal" type="menu" defaultValue="1" tooltip="Please select the desired number of decimal places to display for temperature values in control pages.">
         <Label>Temperature UI Value:</Label>
         <List>
             <Option value="0">0 decimal places</Option>
@@ -212,8 +203,7 @@
         </List>
     </Field>
 
-    <Field id="uiTimeFormat" type="menu" defaultValue="military" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
-           tooltip="Please select the desired display format for time values.">
+    <Field id="uiTimeFormat" type="menu" defaultValue="military" tooltip="Please select the desired display format for time values.">
         <Label>Time UI Value:</Label>
         <List>
             <Option value="standard">12 Hour</Option>
@@ -221,8 +211,7 @@
         </List>
     </Field>
 
-    <Field id="uiWindDecimal" type="menu" defaultValue="1" visibleBindingId="showTemperatureSettings" visibleBindingValue="true"
-           tooltip="Please select the desired number of decimal places to display for wind values in control pages.">
+    <Field id="uiWindDecimal" type="menu" defaultValue="1" tooltip="Please select the desired number of decimal places to display for wind values in control pages.">
         <Label>Wind UI Value:</Label>
         <List>
             <Option value="0">0 decimal places</Option>
@@ -230,31 +219,28 @@
         </List>
     </Field>
 
+    <Field id="alertLoggingHeaderSpace" type="label" fontSize="mini"/>
+
     <Field id="alertLabel" type="label" alignText="Right">
         <Label>Alert Logging</Label>
     </Field>
 
     <Field id="separator03" type="separator"/>
 
-    <Field id="showAlertSettings" type="checkbox" tooltip="Check to show alert logging settings.">
-        <Label>Display Settings:</Label>
-        <Descriptionn/>
+    <Field id="space04" type="label" fontSize="small" alignWithControl="True">
+        <Label>Controls whether the plugin will write severe weather alert information to the Indigo Events log.</Label>
     </Field>
 
-    <Field id="space04" type="label" fontSize="small" visibleBindingId="showAlertSettings" visibleBindingValue="true">
-        <Label>Controls whether the plugin will write severe weather alert information to the log.</Label>
-    </Field>
-
-    <Field id="alertLogging" type="checkbox" defaultValue="false" visibleBindingId="showAlertSettings" visibleBindingValue="true"
+    <Field id="alertLogging" type="checkbox" defaultValue="false"
            tooltip="Enables (disables) logging of severe weather alerts. Checking this box means that you do want to see severe weather alerts in the log. This setting applies to all weather devices.">
-        <Label>Log active alert messages:</Label>
-        <Description>Enable/Disable</Description>
+        <Label/>
+        <Description>Enable/Disable Active Alert Messages</Description>
     </Field>
 
-    <Field id="noAlertLogging" type="checkbox" defaultValue="false" visibleBindingId="showAlertSettings" visibleBindingValue="true"
+    <Field id="noAlertLogging" type="checkbox" defaultValue="false"
            tooltip="Hides (shows) log message when there are no severe weather alerts. Checking this box means that you do not want to see these messages in the log. This setting applies to all weather devices.">
-        <Label>Hide "No Alert" messages:</Label>
-        <Description>Enable/Disable</Description>
+        <Label/>
+        <Description>Hide "No Alert" messages:</Description>
     </Field>
 
     <!-- Notifications Template -->

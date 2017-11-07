@@ -69,6 +69,8 @@ https://github.com/DaveL17/WUnderground/blob/master/LICENSE
 # TODO: Set up "working hours" -- the plugin won't make a call unless it's within working hours.
 # TODO: Bolster the docs.
 # TODO: Remove .idea directory (and all its files) before making repo public.
+# TODO: Update the images for index.html to reflect new version (only plugin config?)
+# TODO: Device config dialogs without the show/hide stuff.
 
 # ================================== IMPORTS ==================================
 
@@ -79,6 +81,7 @@ import simplejson
 import socket
 import sys
 import time
+import webbrowser
 try:
     import requests  # (weather data)
 except ImportError:
@@ -139,15 +142,10 @@ class Plugin(indigo.PluginBase):
     def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
         indigo.PluginBase.__init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
 
-        self.debug = self.pluginPrefs.get('showDebugInfo', True)
         self.masterWeatherDict = {}
         self.masterTriggerDict = {}
         self.updater = indigoPluginUpdateChecker.updateChecker(self, "https://davel17.github.io/WUnderground/wunderground7_version.html")
         self.wuOnline = True
-
-        self.plugin_file_handler.setFormatter(logging.Formatter('%(asctime)s.%(msecs)03d\t%(levelname)-10s\t%(name)s.%(funcName)-28s %(msg)s', datefmt='%Y-%m-%d %H:%M:%S'))
-        self.debug      = True
-        self.debugLevel = int(self.pluginPrefs.get('showDebugLevel', '30'))
 
         # ====================== Initialize DLFramework =======================
 
@@ -160,15 +158,28 @@ class Plugin(indigo.PluginBase):
         # Log pluginEnvironment information when plugin is first started
         self.Fogbert.pluginEnvironment()
 
-        # Convert old debugLevel scale (low, medium, high or 1, 2, 3) to new scale (logger).
-        debug_level = self.pluginPrefs.get('showDebugLevel', '30')  # Get current debug level
-        debug_level = self.Fogbert.convertDebugLevel(debug_level)  # If it's the old [low, medium, high], convert it
-        if 0 < debug_level <= 3 and self.debug:
-            self.pluginPrefs['showDebugLevel'] = '10'
-        else:
-            self.pluginPrefs['showDebugLevel'] = '30'
+        # =====================================================================
 
-        self.indigo_log_handler.setLevel(self.debugLevel)
+        # ================== Initialize Debugging Protocols ===================
+
+        # Get current debug level. This value could be left over from prior
+        # versions of the plugin.
+        debug_level = self.pluginPrefs.get('showDebugLevel', '30')
+
+        # Convert old debugLevel scale (low, medium, high or 1, 2, 3) to new
+        # scale (logger).  If it's the old [low, medium, high], convert it.
+        debug_level = self.Fogbert.convertDebugLevel(debug_level)
+
+        if 0 < debug_level <= 3:
+            if self.pluginPrefs.get('showDebugInfo', True):
+                self.pluginPrefs['showDebugLevel'] = '10'
+            else:
+                self.pluginPrefs['showDebugLevel'] = '30'
+
+        # Set the format and level handlers for the logger
+        self.plugin_file_handler.setFormatter(logging.Formatter('%(asctime)s.%(msecs)03d\t%(levelname)-10s\t%(name)s.%(funcName)-28s %(msg)s', datefmt='%Y-%m-%d %H:%M:%S'))
+        self.indigo_log_handler.setLevel(int(self.pluginPrefs['showDebugLevel']))
+
         # =====================================================================
 
         # try:
@@ -184,7 +195,7 @@ class Plugin(indigo.PluginBase):
         method to request a complete refresh of all weather data (Actions.XML
         call.) """
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
+        if int(self.pluginPrefs['showDebugLevel']) <= 20:
             self.logger.debug(u"actionRefreshWeather called.")
             self.logger.debug(u"valuesDict: {0}".format(valuesDict))
 
@@ -194,9 +205,6 @@ class Plugin(indigo.PluginBase):
         """ Maintains a count of daily calls to Weather Underground to help
         ensure that the plugin doesn't go over a user-defined limit. The limit
         is set within the plugin config dialog. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"callCount() method called.")
 
         calls_made = self.pluginPrefs['dailyCallCounter']  # Calls today so far
         calls_max = self.pluginPrefs.get('callCounter', 500)  # Max calls allowed per day
@@ -219,7 +227,7 @@ class Plugin(indigo.PluginBase):
 
             # Calculate how many calls are left for debugging purposes.
             calls_left = calls_max - calls_made
-            self.logger.debug(u"  {0} callsLeft = ({1} - {2})".format(calls_left, calls_max, calls_made))
+            self.logger.debug(u"API calls left: {0}".format(calls_left))
 
     def callDay(self):
         """ Manages the day for the purposes of maintaining the call counter
@@ -227,24 +235,21 @@ class Plugin(indigo.PluginBase):
 
         call_day           = self.pluginPrefs['dailyCallDay']
         call_limit_reached = self.pluginPrefs.get('dailyCallLimitReached', False)
-        debug_level        = self.pluginPrefs.get('showDebugLevel', 1)
+        debug_level        = int(self.pluginPrefs.get('showDebugLevel', '30'))
         sleep_time         = self.pluginPrefs.get('downloadInterval', 15)
         todays_date        = dt.datetime.today().date()
         today_str          = u"{0}".format(todays_date)
         today_unstr        = dt.datetime.strptime(call_day, "%Y-%m-%d")
         today_unstr_conv   = today_unstr.date()
 
-        if debug_level <= 10:
-            self.logger.debug(u"callDay() method called.")
-
         if debug_level <= 20:
-            self.logger.debug(u"  callDay: {0}".format(call_day))
-            self.logger.debug(u"  dailyCallLimitReached: {0}".format(call_limit_reached))
-            self.logger.debug(u"  Is todays_date: {0} greater than dailyCallDay: {1}?".format(todays_date, today_unstr_conv))
+            self.logger.debug(u"callDay: {0}".format(call_day))
+            self.logger.debug(u"dailyCallLimitReached: {0}".format(call_limit_reached))
+            self.logger.debug(u"Todays_date: {0} / dailyCallDay: {1}".format(todays_date, today_unstr_conv))
 
         # Check if callDay is a default value and set to today if it is.
         if call_day in ["", "2000-01-01"]:
-            self.logger.debug(u"  Initializing variable dailyCallDay: {0}".format(today_str))
+            self.logger.debug(u"Initializing variable dailyCallDay: {0}".format(today_str))
 
             self.pluginPrefs['dailyCallDay'] = today_str
 
@@ -264,18 +269,18 @@ class Plugin(indigo.PluginBase):
                     self.logger.debug(u"Exception updating weather summary email sent value. Error: (Line {0}  {1})".format(sys.exc_traceback.tb_lineno, error))
 
             if debug_level <= 20:
-                self.logger.debug(u"  Today is a new day. Reset the call counter.\n"
-                                  u"  Reset dailyCallLimitReached to: False\n"
-                                  u"  Reset dailyCallCounter to: 0\n"
-                                  u"  Update dailyCallDay to: {0}".format(today_str))
+                self.logger.debug(u"Today is a new day. Reset the call counter.\n"
+                                  u"Reset dailyCallLimitReached to: False\n"
+                                  u"Reset dailyCallCounter to: 0\n"
+                                  u"Update dailyCallDay to: {0}".format(today_str))
             self.updater.checkVersionPoll()
 
         else:
             if debug_level <= 20:
-                self.logger.debug(u"    Today is not a new day.")
+                self.logger.debug(u"Today is not a new day.")
 
         if call_limit_reached:
-            self.logger.info(u"    Daily call limit reached. Taking the rest of the day off.")
+            self.logger.info(u"Daily call limit reached. Taking the rest of the day off.")
             self.sleep(sleep_time)
 
         else:
@@ -285,9 +290,6 @@ class Plugin(indigo.PluginBase):
     def checkVersionNow(self):
         """ The checkVersionNow() method will call the Indigo Plugin Update
         Checker based on a user request. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"checkVersionNow() method called.")
 
         try:
             self.updater.checkVersionNow()
@@ -300,11 +302,8 @@ class Plugin(indigo.PluginBase):
         """ User closes config menu. The validatePrefsConfigUI() method will
         also be called. """
 
-        debug_level = valuesDict['showDebugLevel']
+        debug_level = int(valuesDict['showDebugLevel'])
         show_debug = valuesDict['showDebugInfo']
-
-        if debug_level <= 10:
-            self.logger.debug(u"closedPrefsConfigUi() method called.")
 
         if userCancelled:
             self.logger.debug(u"  User prefs dialog cancelled.")
@@ -331,7 +330,7 @@ class Plugin(indigo.PluginBase):
         """ commsKillAll() sets the enabled status of all plugin devices to
         false. """
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
+        if int(self.pluginPrefs['showDebugLevel']) <= 20:
             self.logger.debug(u"commsKillAll method() called.")
 
         for dev in indigo.devices.itervalues("self"):
@@ -345,7 +344,7 @@ class Plugin(indigo.PluginBase):
         """ commsUnkillAll() sets the enabled status of all plugin devices to
         true. """
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
+        if int(self.pluginPrefs['showDebugLevel']) <= 20:
             self.logger.debug(u"commsUnkillAll method() called.")
 
         for dev in indigo.devices.itervalues("self"):
@@ -358,7 +357,7 @@ class Plugin(indigo.PluginBase):
     def debugToggle(self):
         """ Toggle debug on/off. """
 
-        debug_level = self.pluginPrefs['showDebugLevel']
+        debug_level = int(self.pluginPrefs['showDebugLevel'])
 
         if not self.debug:
             self.pluginPrefs['showDebugInfo'] = True
@@ -427,9 +426,6 @@ class Plugin(indigo.PluginBase):
 
         file_name = '{0}/{1} Wunderground.txt'.format(indigo.server.getLogsFolderPath(), dt.datetime.today().date())
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"dumpTheJSON() method called.")
-
         try:
 
             with open(file_name, 'w') as logfile:
@@ -452,9 +448,6 @@ class Plugin(indigo.PluginBase):
         """ The emailForecast() method will construct and send a summary of
         select weather information to the user based on the email address
         specified for plugin update notifications. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u'emailForecast() method called.')
 
         try:
             summary_wanted = dev.pluginProps.get('weatherSummaryEmail', '')
@@ -608,29 +601,23 @@ class Plugin(indigo.PluginBase):
         functionally the same. Thanks to "jheddings" for the better
         implementation of this method. """
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"fixCorruptedData(self, state_name={0}, val={1})".format(state_name, val))
-
         try:
             val = float(val)
 
             if val < -55.728:  # -99 F = -55.728 C
-                self.logger.debug(u"Fixed corrupted data. Returning: {0}, {1}".format(-99.0, u"--"))
+                self.logger.debug(u"Formatted missing data. Returning: {0}, {1}".format(-99.0, u"--"))
                 return -99.0, u"--"
 
             else:
                 return val, str(val)
 
         except ValueError:
-            self.logger.debug(u"Fixed corrupted data. Returning: {0}, {1}".format(-99.0, u"--"))
+            self.logger.debug(u"Imputing missing data. Returning: {0}, {1}".format(-99.0, u"--"))
             return -99.0, u"--"
 
     def fixPressureSymbol(self, state_name, val):
         """ Converts the barometric pressure symbol to something more human
         friendly. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"fixPressureSymbol(self, state_name={0}, val={1})".format(state_name, val))
 
         try:
             if val == "+":
@@ -646,32 +633,12 @@ class Plugin(indigo.PluginBase):
             self.logger.debug(u"Exception in fixPressureSymbol. Error: (Line {0}  {1})".format(sys.exc_traceback.tb_lineno, error))
             return val
 
-    def verboseWindNames(self, state_name, val):
-        """ The verboseWindNames() method takes possible wind direction values and
-        standardizes them across all device types and all reporting stations to
-        ensure that we wind up with values that we can recognize. """
-
-        wind_dict = {'N': 'north', 'NNE': 'north northeast', 'NE': 'northeast', 'ENE': 'east northeast', 'E': 'east', 'ESE': 'east southeast', 'SE': 'southeast',
-                     'SSE': 'south southeast', 'S': 'south', 'SSW': 'south southwest', 'SW': 'southwest', 'WSW': 'west southwest', 'W': 'west', 'WNW': 'west northwest',
-                     'NW': 'northwest', 'NNW': 'north northwest'}
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"verboseWindNames(self, state_name={0}, val={1})".format(state_name, val))
-
-        try:
-            return wind_dict[val]
-        except KeyError:
-            return val
-
     def floatEverything(self, state_name, val):
         """ This doesn't actually float everything. Select values are sent here
         to see if they float. If they do, a float is returned. Otherwise, a
         Unicode string is returned. This is necessary because Weather
         Underground will send values that won't float even when they're
         supposed to. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"floatEverything(self, state_name={0}, val={1})".format(state_name, val))
 
         try:
             return float(val)
@@ -682,22 +649,29 @@ class Plugin(indigo.PluginBase):
 
     def generatorTime(self, filter="", valuesDict=None, typeId="", targetId=0):
         """Creates a list of times for use in setting salutation settings."""
+
         self.logger.debug(u"generatorTime() called.")
 
-        return [(hour, u"{0:02.0f}:00".format(hour)) for hour in range(0, 24)]
+        return [(u"{0:02.0f}:00".format(hour), u"{0:02.0f}:00".format(hour)) for hour in range(0, 24)]
 
     def getDeviceConfigUiValues(self, valuesDict, typeId, devId):
-        """Called when a device configuration dialog is opened. """
+        """Called when a device configuration dialog is opened."""
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
+        if int(self.pluginPrefs['showDebugLevel']) <= 20:
             self.logger.debug(u"getDeviceConfigUiValues() called.")
+
+        # weatherSummaryEmailTime is set by a generator. We need this bit to
+        # pre-populate the control with the default value when a new device is
+        # created.
+        if typeId == 'wunderground' and 'weatherSummaryEmailTime' not in valuesDict.keys():
+            valuesDict['weatherSummaryEmailTime'] = "01:00"
 
         return valuesDict
 
     def getLatLong(self, valuesDict, typeId, devId):
         """Called when a device configuration dialog is opened. """
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
+        if int(self.pluginPrefs['showDebugLevel']) <= 20:
             self.logger.debug(u"getDeviceConfigUiValues() called.")
 
         latitude, longitude = indigo.server.getLatitudeAndLongitude()
@@ -706,18 +680,26 @@ class Plugin(indigo.PluginBase):
 
         return valuesDict
 
+    def getPrefsConfigUiValues(self):
+        """ This routine returns the UI values for the configuration dialog;
+        the default is to simply return the self.pluginPrefs dictionary. It can
+        be used to dynamically set defaults at run time """
+
+        self.logger.debug(u'Called getPrefsConfigUiValues(self):')
+        prefs_config_ui_values = self.pluginPrefs
+        # prefs_config_ui_values['foo'] = u'None'
+
+        return prefs_config_ui_values
+
     def getSatelliteImage(self, dev):
         """ The getSatelliteImage() method will download a file from a user-
         specified location and save it to a user-specified folder on the local
         server. This method is used by the Satellite Image Downloader device 
         type. """
 
-        debug_level = self.pluginPrefs['showDebugLevel']
+        debug_level = int(self.pluginPrefs['showDebugLevel'])
         destination = dev.pluginProps['imageDestinationLocation']
         source      = dev.pluginProps['imageSourceLocation']
-
-        if debug_level <= 10:
-            self.logger.debug(u"getSatelliteImage() method called.")
 
         try:
             if destination.endswith((".gif", ".jpg", ".jpeg", ".png")):
@@ -757,7 +739,7 @@ class Plugin(indigo.PluginBase):
         Weather Underground. The construction of the image is based upon user
         preferences defined in the WUnderground Radar device type. """
 
-        debug_level = self.pluginPrefs['showDebugLevel']
+        debug_level = int(self.pluginPrefs['showDebugLevel'])
         location    = ''
         name        = dev.pluginProps['imagename']
         parms       = ''
@@ -786,9 +768,6 @@ class Plugin(indigo.PluginBase):
             'timelabel': dev.pluginProps.get('timelabel', True),
             'width': int(dev.pluginProps.get('width', 500)),
         }
-
-        if debug_level <= 10:
-            self.logger.debug(u"getSatelliteImage() method called.")
 
         try:
 
@@ -872,10 +851,7 @@ class Plugin(indigo.PluginBase):
         """ Grab the JSON for the device. A separate call must be made for each
         weather device because the data are location specific. """
 
-        debug_level = self.pluginPrefs['showDebugLevel']
-
-        if debug_level <= 10:
-            self.logger.debug(u"getWeatherData() method called.")
+        debug_level = int(self.pluginPrefs['showDebugLevel'])
 
         if dev.model not in ['Satellite Image Downloader', 'WUnderground Satellite Image Downloader']:
             try:
@@ -890,7 +866,7 @@ class Plugin(indigo.PluginBase):
 
                 if location in self.masterWeatherDict.keys():
                     # We already have the data, so no need to get it again.
-                    self.logger.debug(u"  Location already in master weather dictionary.")
+                    self.logger.debug(u"Location already in master weather dictionary.")
 
                 else:
                     # We don't have this location's data yet. Go and get the data and add it to the masterWeatherDict.
@@ -952,7 +928,7 @@ class Plugin(indigo.PluginBase):
                     data_cycle_time = (dt.datetime.min + data_cycle_time).time()
 
                     if debug_level <= 30 and simplejson_string != "":
-                        self.logger.debug(u"[{0} download: {1} seconds]".format(dev.name, data_cycle_time.strftime('%S.%f')))
+                        self.logger.debug(u"[  {0} download: {1} seconds  ]".format(dev.name, data_cycle_time.strftime('%S.%f')))
 
                     # Load the JSON data from the file.
                     try:
@@ -987,9 +963,6 @@ class Plugin(indigo.PluginBase):
         Indigo Item List. Note: this method needs to return a string rather
         than a Unicode string (for now.) """
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"itemListTemperatureFormat(self, val={0})".format(val))
-
         try:
             if self.pluginPrefs.get('itemListTempDecimal', 0) == 0:
                 val = float(val)
@@ -1003,7 +976,7 @@ class Plugin(indigo.PluginBase):
     def listOfDevices(self, typeId, valuesDict, targetId, devId):
         """ listOfDevices returns a list of plugin devices. """
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
+        if int(self.pluginPrefs['showDebugLevel']) <= 20:
             self.logger.debug(u"listOfDevices method() called.")
             self.logger.debug(u"typeID: {0}".format(typeId))
             self.logger.debug(u"targetId: {0}".format(targetId))
@@ -1019,7 +992,7 @@ class Plugin(indigo.PluginBase):
         """ listOfDevices returns a list of plugin devices limited to weather
         devices only (not forecast devices, etc. """
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
+        if int(self.pluginPrefs['showDebugLevel']) <= 20:
             self.logger.debug(u"listOfDevices method() called.")
             self.logger.debug(u"typeID: {0}".format(typeId))
             self.logger.debug(u"targetId: {0}".format(targetId))
@@ -1057,9 +1030,6 @@ class Plugin(indigo.PluginBase):
     def parseAlmanacData(self, dev):
         """ The parseAlmanacData() method takes selected almanac data and
         parses it to device states. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"parseAlmanacData(self, dev) method called.")
 
         try:
             almanac_states_list  = []
@@ -1134,9 +1104,6 @@ class Plugin(indigo.PluginBase):
 
         current_observation       = self.nestedLookup(weather_data, keys=('current_observation', 'observation_time'))
         current_observation_epoch = self.nestedLookup(weather_data, keys=('current_observation', 'observation_epoch'))
-
-        if debug_level <= 10:
-            self.logger.debug(u"parseAlerts(self, dev) method called.")
 
         try:
             alerts_states_list.append({'key': 'currentObservation', 'value': current_observation, 'uiValue': current_observation})
@@ -1215,7 +1182,7 @@ class Plugin(indigo.PluginBase):
                         alert_counter += 1
 
                     if alert_logging and not alerts_suppressed:
-                        self.logger.info(u"{0}".format(alert_array[alert][2]))
+                        self.logger.info(u"\n{0}".format(alert_array[alert][2]))
 
             if attribution != u"":
                 self.logger.info(attribution)
@@ -1249,9 +1216,6 @@ class Plugin(indigo.PluginBase):
         7. Last Quarter (P): + Last_Quarter
         8. Waning Crescent (I): + Waning_Crescent
         """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"parseAstronomyData(self, dev) method called.")
 
         astronomy_states_list = []
         location              = dev.pluginProps['location']
@@ -1338,9 +1302,6 @@ class Plugin(indigo.PluginBase):
         parses it to device states. (Note that this is only for the weather
         device and not for the hourly or 10 day forecast devices which have
         their own methods.)"""
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"parseForecastData(self, dev) method called.")
 
         forecast_states_list = []
         config_menu_units    = dev.pluginProps.get('configMenuUnits', '')
@@ -1593,9 +1554,6 @@ class Plugin(indigo.PluginBase):
         current_observation_time  = self.nestedLookup(weather_data, keys=('current_observation', 'observation_time'))
         station_id                = self.nestedLookup(weather_data, keys=('current_observation', 'station_id'))
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"parseHourlyData(self, dev) method called.")
-
         try:
             hourly_forecast_states_list.append({'key': 'currentObservation', 'value': current_observation_time, 'uiValue': current_observation_time})
             hourly_forecast_states_list.append({'key': 'currentObservationEpoch', 'value': current_observation_epoch, 'uiValue': current_observation_epoch})
@@ -1735,9 +1693,6 @@ class Plugin(indigo.PluginBase):
     def parseTenDayData(self, dev):
         """ The parseTenDayData() method takes 10 day forecast data and
         parses it to device states. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"parseTenDayData(self, dev) method called.")
 
         ten_day_forecast_states_list = []
         config_menu_units           = dev.pluginProps.get('configMenuUnits', '')
@@ -1928,9 +1883,6 @@ class Plugin(indigo.PluginBase):
         """ The parseTidesData() method takes tide data and parses it to
         device states. """
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"parseTidesData(self, dev) method called.")
-
         tide_states_list = []
         location         = dev.pluginProps['location']
 
@@ -2012,9 +1964,6 @@ class Plugin(indigo.PluginBase):
     def parseWeatherData(self, dev):
         """ The parseWeatherData() method takes weather data and parses it to
         Weather Device states. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"parseWeatherData(self, dev) method called.")
 
         try:
             weather_states_list = []
@@ -2364,9 +2313,6 @@ class Plugin(indigo.PluginBase):
         sleep_time = self.pluginPrefs.get('downloadInterval', 15)
         self.wuOnline = True
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"refreshWeatherData() method called.")
-
         # Check to see if the daily call limit has been reached.
         try:
 
@@ -2462,13 +2408,18 @@ class Plugin(indigo.PluginBase):
                                 # Note: WUnderground have been known to send data that are 5-6 months old. This flag helps ensure that known data are retained if the new data is not
                                 # actually newer that what we already have.
                                 try:
-                                    # New devices may not have an epoch yet.
+                                    # New devices may not have an epoch value yet.
                                     device_epoch = dev.states['currentObservationEpoch']
                                     try:
                                         device_epoch = int(device_epoch)
                                     except ValueError:
                                         device_epoch = 0
-                                    weather_data_epoch = int(self.masterWeatherDict[location]['current_observation']['observation_epoch'])
+
+                                    # If we don't know the age of the data, we don't update.
+                                    try:
+                                        weather_data_epoch = int(self.masterWeatherDict[location]['current_observation']['observation_epoch'])
+                                    except ValueError:
+                                        weather_data_epoch = 0
 
                                     good_time = device_epoch <= weather_data_epoch
                                     if not good_time:
@@ -2527,11 +2478,11 @@ class Plugin(indigo.PluginBase):
     def runConcurrentThread(self):
         """ Main plugin thread. """
 
-        self.logger.debug(u"runConcurrentThread initiated.")
+        self.logger.debug(u"Initializing main thread.")
 
         download_interval = int(self.pluginPrefs.get('downloadInterval', 15))
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
+        if int(self.pluginPrefs['showDebugLevel']) <= 20:
             self.logger.debug(u"Sleeping for 5 seconds to give the host process a chance to catch up (if it needs to.)")
         self.sleep(5)
 
@@ -2546,7 +2497,7 @@ class Plugin(indigo.PluginBase):
                 plugin_cycle_time = (dt.datetime.now() - start_time)
                 plugin_cycle_time = (dt.datetime.min + plugin_cycle_time).time()
 
-                self.logger.debug(u"[Plugin execution time: {0} seconds]".format(plugin_cycle_time.strftime('%S.%f')))
+                self.logger.debug(u"[  Plugin execution time: {0} seconds  ]".format(plugin_cycle_time.strftime('%S.%f')))
                 self.sleep(download_interval)
 
         except self.StopThread as error:
@@ -2556,12 +2507,12 @@ class Plugin(indigo.PluginBase):
     def shutdown(self):
         """ Plugin shutdown routines. """
 
-        self.logger.debug(u"Plugin shutdown() method called.")
+        pass
 
     def startup(self):
         """ Plugin startup routines. """
 
-        self.logger.debug(u"Plugin startup called.")
+        pass
 
     def triggerFireOfflineDevice(self):
         """ The triggerFireOfflineDevice method will examine the time of the
@@ -2579,9 +2530,6 @@ class Plugin(indigo.PluginBase):
         Note that the trigger will only fire during routine weather update
         cycles and will not be triggered when a data refresh is called from
         the Indigo Plugins menu."""
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"triggerFireOfflineDevice method() called.")
 
         try:
             for dev in indigo.devices.itervalues(filter='self'):
@@ -2630,8 +2578,7 @@ class Plugin(indigo.PluginBase):
 
         dev_id = str(trigger.pluginProps['listOfDevices'])
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"triggerStartProcessing method() called.")
+        self.logger.debug(u"Initializing trigger processing.")
 
         try:
             self.masterTriggerDict[dev_id] = (trigger.pluginProps['offlineTimer'], trigger.id)
@@ -2642,16 +2589,13 @@ class Plugin(indigo.PluginBase):
     def triggerStopProcessing(self, trigger):
         """"""
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
+        if int(self.pluginPrefs['showDebugLevel']) <= 20:
             self.logger.debug(u"triggerStopProcessing method() called.")
             self.logger.debug(u"trigger: {0}".format(trigger))
 
     def uiFormatPercentage(self, dev, state_name, val):
         """ Adjusts the decimal precision of percentage values for display in
         control pages, etc. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"uiFormatPercentage(self, dev, state_name={0}, val={1})".format(state_name, val))
 
         humidity_decimal = int(self.pluginPrefs.get('uiHumidityDecimal', 1))
         percentage_units = dev.pluginProps.get('percentageUnits', '')
@@ -2660,15 +2604,12 @@ class Plugin(indigo.PluginBase):
             return u"{0:0.{1}f}{2}".format(float(val), int(humidity_decimal), percentage_units)
 
         except ValueError as error:
-            self.logger.debug(u"Error formatting uiPercentage: {0}".format(error))
+            self.logger.debug(u"Error formatting {0} uiPercentage: {1} -- [{2}]".format(state_name, val, error))
             return u"{0}{1}".format(val, percentage_units)
 
     def uiFormatRain(self, dev, state_name, val):
         """ Adjusts the decimal precision of rain values for display in control
         pages, etc. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"uiFormatRain(self, dev, state_name={0}, val={1}).".format(state_name, val))
 
         try:
             rain_units = dev.pluginProps.get('rainUnits', '')
@@ -2682,15 +2623,12 @@ class Plugin(indigo.PluginBase):
             return u"{0}{1}".format(val, rain_units)
 
         except ValueError as error:
-            self.logger.debug(u"Error formatting uiRain: {0}".format(error))
+            self.logger.debug(u"Error formatting {0} uiRain ({1}): [{2}]".format(state_name, val, error))
             return u"{0}".format(val)
 
     def uiFormatSnow(self, dev, state_name, val):
         """ Adjusts the decimal precision of snow values for display in control
         pages, etc. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"uiFormatSnow(self, dev, state_name={0}, val={1}).".format(state_name, val))
 
         if val in ["NA", "N/A", "--", ""]:
             return val
@@ -2699,15 +2637,12 @@ class Plugin(indigo.PluginBase):
             return u"{0}{1}".format(val, dev.pluginProps.get('snowAmountUnits', ''))
 
         except ValueError as error:
-            self.logger.debug(u"Error formatting uiSnow: {0}".format(error))
+            self.logger.debug(u"Error formatting {0} uiSnow ({1}): [{2}]".format(state_name, val, error))
             return u"{0}".format(val)
 
     def uiFormatTemperature(self, dev, state_name, val):
         """ Adjusts the decimal precision of certain temperature values and
         appends the desired units string for display in control pages, etc. """
-
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"uiFormatTemperature(self, dev, state_name={0}, val={1})".format(state_name, val))
 
         temp_decimal = int(self.pluginPrefs.get('uiTempDecimal', 1))
         temperature_units = dev.pluginProps.get('temperatureUnits', '')
@@ -2716,7 +2651,7 @@ class Plugin(indigo.PluginBase):
             return u"{0:0.{1}f}{2}".format(float(val), int(temp_decimal), temperature_units)
 
         except ValueError as error:
-            self.logger.debug(u"Can not format uiTemperature. This is likely normal.".format(error))
+            self.logger.debug(u"Error formatting {0} uiTemperature ({1}): [{2}]".format(state_name, val, error))
             return u"--"
 
     def uiFormatWind(self, dev, state_name, val):
@@ -2726,20 +2661,15 @@ class Plugin(indigo.PluginBase):
         wind_decimal = self.pluginPrefs.get('uiWindDecimal', 1)
         wind_units   = dev.pluginProps.get('windUnits', '')
 
-        if self.pluginPrefs['showDebugLevel'] <= 20:
-            self.logger.debug(u"uiFormatWind(self, state_name={0}, val={1}), dec={2}".format(state_name, val, wind_decimal))
-
         try:
             return u"{0:0.{1}f}{2}".format(float(val), int(wind_decimal), wind_units)
 
         except ValueError as error:
-            self.logger.debug(u"Error formatting uiTemperature: {0}".format(error))
+            self.logger.debug(u"Error formatting {0} uiWind ({1}): [{2}]".format(state_name, val, error))
             return u"{0}".format(val)
 
     def validateDeviceConfigUi(self, valuesDict, typeID, devId):
         """ Validate select device config menu settings. """
-
-        self.logger.debug(u"validateDeviceConfigUi() method called.")
 
         error_msg_dict = indigo.Dict()
 
@@ -2910,7 +2840,7 @@ class Plugin(indigo.PluginBase):
                     return False, valuesDict, error_msg_dict
 
                 # Debug output can contain sensitive data.
-                if self.pluginPrefs['showDebugLevel'] <= 20:
+                if int(self.pluginPrefs['showDebugLevel']) <= 20:
                     self.logger.debug(u"typeID: {0}".format(typeID))
                     self.logger.debug(u"devId: {0}".format(devId))
                     self.logger.debug(u"============ valuesDict ============\n")
@@ -2926,8 +2856,6 @@ class Plugin(indigo.PluginBase):
 
     def validatePrefsConfigUi(self, valuesDict):
         """ Validate select plugin config menu settings. """
-
-        self.logger.debug(u"validatePrefsConfigUi() method called.")
 
         api_key_config      = valuesDict['apiKey']
         call_counter_config = valuesDict['callCounter']
@@ -2977,3 +2905,41 @@ class Plugin(indigo.PluginBase):
             self.logger.debug(u"Exception in validatePrefsConfigUi API key test. Error: (Line {0}  {1})".format(sys.exc_traceback.tb_lineno, error))
 
         return True, valuesDict
+
+    def verboseWindNames(self, state_name, val):
+        """ The verboseWindNames() method takes possible wind direction values and
+        standardizes them across all device types and all reporting stations to
+        ensure that we wind up with values that we can recognize. """
+
+        wind_dict = {'N': 'north',
+                     'North': 'north',
+                     'NNE': 'north northeast',
+                     'NE': 'northeast',
+                     'ENE': 'east northeast',
+                     'E': 'east',
+                     'East': 'east',
+                     'ESE': 'east southeast',
+                     'SE': 'southeast',
+                     'SSE': 'south southeast',
+                     'S': 'south',
+                     'South': 'south',
+                     'SSW': 'south southwest',
+                     'SW': 'southwest',
+                     'WSW': 'west southwest',
+                     'W': 'west',
+                     'West': 'west',
+                     'WNW': 'west northwest',
+                     'NW': 'northwest',
+                     'NNW': 'north northwest'}
+
+        try:
+            return wind_dict[val]
+
+        except KeyError as error:
+            self.logger.debug(u"Error formatting {0} verbose wind names: {1} -- [{2}]".format(state_name, val, error))
+            return val
+
+    def wundergroundSite(self, valuesDict):
+        """ Launch a web browser session with the valuesDict parm containing
+        the target URL. """
+        self.Fogbert.lauchWebPage(valuesDict['launchWUparameters'])

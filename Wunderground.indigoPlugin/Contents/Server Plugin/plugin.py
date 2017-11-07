@@ -67,7 +67,6 @@ https://github.com/DaveL17/WUnderground/blob/master/LICENSE
 
 # TODO: Set up weather forecast email as a concatenation rather than one big string and consider whether to remove history and record data from email if the data aren't available. (WU7)
 # TODO: Set up "working hours" -- the plugin won't make a call unless it's within working hours.
-# TODO: Bolster the docs.
 # TODO: Remove .idea directory (and all its files) before making repo public.
 # TODO: Update the images for index.html to reflect new version (only plugin config?)
 # TODO: Device config dialogs without the show/hide stuff.

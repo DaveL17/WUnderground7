@@ -1,15 +1,23 @@
-WUnderground7 Plugin - Developed by: DaveL17
+WUnderground 7 Plugin - Developed by: DaveL17
 
-Note: WUnderground7 requires Indigo v7
+Note: WUnderground 7 requires Indigo 7
 
-v7.0.01
+7.0.03
+- Updates toggle debug to logger.
+
+7.0.01
 - Implements API 2.0 (requires Indigo v7).
 - Adds button to plugin config dialog to open browser session with Weather
-  Underground for users to sign up for API key.
+  Underground for new users to sign up for API key.
 - Adds setting to all weather devices to allow user to control time of day
   setting to receive weather email summary.
-- Takes advantage of API improvements for device state updates (uses many fewer
-  system resources).
-- Takes advantage of API improvements for debug logging.
-- Limits list of devices for severe weather alert trigger to only weather devices (not forecast devices, etc.)
+- Takes advantage of Indigo API improvements for device state updates (uses
+  many fewer system resources).
+- Takes advantage of Indigo API improvements for debug logging.
+- Limits list of devices for severe weather alert trigger to only weather
+  devices (only weather devices have alert information available.)
+- Removes call to forecast API (because forecast10day includes everything
+  forecast does.)
 - Code consolidation using common code framework.
+- Code refinements.
+- Plugin UI refinements.

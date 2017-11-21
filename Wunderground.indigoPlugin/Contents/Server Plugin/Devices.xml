@@ -177,7 +177,7 @@
                 <Label>Enter the observation location. Locations must follow one of the example formats provided.</Label>
             </Field>
 
-            <Field id="space03" type="label" fontSize="small">
+            <Field id="space03" type="label" alignWithControl="True" fontSize="small">
                 <Label>Examples:
   - Automatic IP detection (autoip)
   - City (i.e., CA/San_Francisco, Canada/Toronto)
@@ -363,7 +363,7 @@
                 <Label>Enter the observation location. Locations must follow one of the example formats provided.</Label>
             </Field>
 
-            <Field id="space03" type="label" fontSize="small">
+            <Field id="space03" type="label" alignWithControl="True" fontSize="small">
                 <Label>Examples:
   - Automatic IP detection (autoip)
   - City (i.e., CA/San_Francisco, Canada/Toronto)
@@ -2777,6 +2777,16 @@ Location</Label>
             <Field id="location" type="textfield" defaultValue="autoip" visibleBindingId="imagetype" visibleBindingValue="locationbox"
                    tooltip="Please enter the location of the radar image.  If using a personal weather station, be sure to begin the location with PWS:(pws_name).">
                 <Label>Location:</Label>
+            </Field>
+
+            <Field id="locationExamples" type="label" alignWithControl="True" fontSize="small" visibleBindingId="imagetype" visibleBindingValue="locationbox">
+                <Label>Examples:
+  - Automatic IP detection (autoip)
+  - City (i.e., CA/San_Francisco, Canada/Toronto)
+  - Latitude/Longitude (i.e., 48.86,2.29 or -33.86,151.22)
+  - ICAO Airport Station (i.e., KORD, CYYZ)
+  - Personal Weather Station (i.e., pws:KMNCHASK10)
+  - US ZIP (i.e., 12345)</Label>
             </Field>
 
             <Field id="minlat" type="textfield" defaultValue="39.0" visibleBindingId="imagetype" visibleBindingValue="boundingbox"

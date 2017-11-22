@@ -4,26 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_WUndergroundLogo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_control_pages.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_pluginConfigDialog.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_pluginMenuItems.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weatherDeviceConfigDialog.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weatherForecast.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weatherForecast_plus_clear.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weatherForecast_plus_cloudy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weatherForecast_plus_rain.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weather_location_offline.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weather_plus_clear.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weather_plus_cloudy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weather_plus_nt_clear.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weather_plus_nt_cloudy.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weather_plus_nt_rain.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_weather_plus_rain.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/img/img_wundergroundLogo_4c_horz.png" afterPath="" />
+    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="Reconnecting repo to Git">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_changelog.txt" afterPath="$PROJECT_DIR$/_changelog.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <manually-removed-from-ignored>
       <directory path=".idea/" />
@@ -61,7 +44,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Info.plist" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Info.plist" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -83,15 +66,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LICENSE" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/LICENSE">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <first_editor relative-caret-position="120">
+                <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Actions.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -178,7 +181,7 @@
         <option value="DaveL17 &lt;dave.lehrer@icloud.com&gt;" />
       </list>
     </option>
-    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -200,9 +203,9 @@
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/_changelog.txt" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -219,7 +222,7 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -293,12 +296,6 @@
               <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
               <item name="WUnderground7" type="462c0819:PsiDirectoryNode" />
               <item name="Wunderground.indigoPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WUnderground7" type="462c0819:PsiDirectoryNode" />
-              <item name="Wunderground.indigoPlugin" type="462c0819:PsiDirectoryNode" />
               <item name="Contents" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -307,14 +304,6 @@
               <item name="Wunderground.indigoPlugin" type="462c0819:PsiDirectoryNode" />
               <item name="Contents" type="462c0819:PsiDirectoryNode" />
               <item name="Server Plugin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WUnderground7" type="462c0819:PsiDirectoryNode" />
-              <item name="Wunderground.indigoPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name="Contents" type="462c0819:PsiDirectoryNode" />
-              <item name="Server Plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="DLFramework" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -692,7 +681,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511289450166</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Reconnecting repo to Git">
+      <created>1511317491177</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1511317491177</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView">
@@ -706,13 +702,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19957082" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19957082" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5028612" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297568" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.49713877" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18454936" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -781,7 +778,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" />
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
     <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
@@ -850,7 +846,6 @@
     <entry file="file://$PROJECT_DIR$/../dave's modules/DLFramework.py" />
     <entry file="file://$PROJECT_DIR$/Wunderground7.indigoPlugin/Contents/Server Plugin/DLFramework.py" />
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_notifications.xml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml" />
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/__init__.py" />
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/indigoPluginUpdateChecker.py" />
     <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
@@ -923,10 +918,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist">
+    <entry file="file://$PROJECT_DIR$/_changelog.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -941,10 +936,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_changelog.txt">
+    <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -952,11 +947,27 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <first_editor relative-caret-position="120">
+            <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

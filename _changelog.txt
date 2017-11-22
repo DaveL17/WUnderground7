@@ -4,6 +4,7 @@ Note: WUnderground 7 requires Indigo 7
 
 7.0.03
 - Updates toggle debug to logger.
+- Moves plugin documentation to wiki
 
 7.0.01
 - Implements API 2.0 (requires Indigo v7).

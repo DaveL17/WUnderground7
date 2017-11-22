@@ -1,24 +1,33 @@
-Version: 7.0.1
+Version: 7.0.03
 EmailSubject: Wunderground 7 Indigo Plugin - Update Available
 EmailBody: The Wunderground 7 Plugin you are using has been updated.
 
-A WUnderground7 Plugin update is now available.
+A WUnderground 7 Plugin update is now available.
 
 *******************************************************************************
 Welcome to the new and improved Wunderground plugin. This version of the plugin
 takes advantage of the latest features of Indigo 7.
 
 This and future versions of the plugin are NOT compatible with any versions of
-Indigo prior to version 6.
+Indigo prior to version 7.
 *******************************************************************************
 
-v7.0.1
-- Now configured to take advantage of Indigo 7 and Indigo API 2.0.
+- Adds button to plugin config dialog to open browser session with Weather Underground for new users to sign up for API key
+- Adds setting to all weather devices to allow users to control time of day setting to receive weather email summary
+- Implements API 2.0 (requires Indigo v7)
+- Takes advantage of Indigo API improvements for device state updates (uses fewer system resources)
+- Takes advantage of Indigo API improvements for debug logging
+- Limits list of devices for severe weather alert trigger to only weather devices (only weather devices have alert information available)
+- Removes call to forecast API (because forecast10day includes everything forecast does)
+- Code consolidation using common code framework
+- Moves plugin documentation to Github wiki
+- Code refinements
+- Plugin UI refinements
 
 As always, if something doesn't seem quite right, please let me know.
 
 # The update can be downloaded at the following link:
-# https://davel17.github.io/WUnderground/
+# https://davel17.github.io/WUnderground7/
 
 # Forum information on the plugin can be found here:
 # http://forums.indigodomo.com/viewtopic.php?f=134&t=11726

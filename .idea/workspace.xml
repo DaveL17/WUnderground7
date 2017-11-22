@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wunderground7_version.html" afterPath="$PROJECT_DIR$/wunderground7_version.html" />
     </list>
     <manually-removed-from-ignored>
       <directory path=".idea/" />
@@ -75,7 +76,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
@@ -84,6 +85,16 @@
                 <folding />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wunderground7_version.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -103,16 +114,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="257">
               <caret line="20" column="71" lean-forward="false" selection-start-line="20" selection-start-column="70" selection-end-line="20" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -206,7 +207,6 @@
         <option value="$PROJECT_DIR$/Wunderground7.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
         <option value="$PROJECT_DIR$/Wunderground7.indigoPlugin/Contents/Server Plugin/plugin.py" />
         <option value="$PROJECT_DIR$/Wunderground7.indigoPlugin/Contents/Info.plist" />
-        <option value="$PROJECT_DIR$/wunderground7_version.html" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
@@ -217,6 +217,7 @@
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/wunderground7_version.html" />
       </list>
     </option>
   </component>
@@ -720,7 +721,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511320979335</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Fixes readme.md images">
+      <created>1511320996159</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1511320996159</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TodoView">
@@ -802,7 +810,8 @@
     <MESSAGE value="Removes .idea files from VCS?" />
     <MESSAGE value="Reconnecting repo to Git" />
     <MESSAGE value="Fixes support urls" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixes support urls" />
+    <MESSAGE value="Fixes readme.md images" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes readme.md images" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -881,13 +890,6 @@
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_notifications.xml" />
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/__init__.py" />
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/indigoPluginUpdateChecker.py" />
-    <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_debugging.xml" />
     <entry file="file://$PROJECT_DIR$/img/img_pluginConfigDialog.png">
       <provider selected="true" editor-type-id="images">
@@ -1003,6 +1005,14 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="25" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>

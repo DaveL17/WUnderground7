@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Events>
-    <SupportURL>https://davel17.github.io/WUnderground/</SupportURL>
+    <SupportURL>https://github.com/DaveL17/WUnderground7/wiki</SupportURL>
     <Event id="weatherAlert">
         <Name>Severe Weather Alert</Name>
             <ConfigUI>

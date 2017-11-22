@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <manually-removed-from-ignored>
       <directory path=".idea/" />
@@ -78,12 +76,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="120">
-                <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <first_editor relative-caret-position="90">
+                <caret line="6" column="92" lean-forward="false" selection-start-line="6" selection-start-column="92" selection-end-line="6" selection-end-column="92" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -131,7 +129,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MenuItems.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MenuItems.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -216,10 +214,10 @@
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/_changelog.txt" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -709,7 +707,14 @@
       <option name="project" value="LOCAL" />
       <updated>1511319687506</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Fixes support urls">
+      <created>1511320668506</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1511320668506</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TodoView">
@@ -790,7 +795,8 @@
     <MESSAGE value="Adds additional error handling when Weather Underground sends a data &#10;value that is not the of proper Type (i.e., list or dict instead of an&#10;expected string)." />
     <MESSAGE value="Removes .idea files from VCS?" />
     <MESSAGE value="Reconnecting repo to Git" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reconnecting repo to Git" />
+    <MESSAGE value="Fixes support urls" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes support urls" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -925,17 +931,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="120">
-            <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -991,6 +986,17 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="90">
+            <caret line="6" column="92" lean-forward="false" selection-start-line="6" selection-start-column="92" selection-end-line="6" selection-end-column="92" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

@@ -2,6 +2,9 @@ WUnderground 7 Plugin - Developed by: DaveL17
 
 Note: WUnderground 7 requires Indigo 7
 
+7.0.04
+- Corrects info.plist reference to API version.
+
 7.0.03
 - Updates toggle debug to logger.
 - Moves plugin documentation to wiki

@@ -71,6 +71,7 @@ https://github.com/DaveL17/WUnderground7/blob/master/LICENSE
 # TODO: Remove .idea directory (and all its files) before making repo public.
 # TODO: Check whether European alert attribution must be displayed with each data download (WU6 and WU7).
 # TODO: Some kind of control to dump all the dicts and whatnot to the log.
+# TODO: Provide a parsed version of the European Weather Alert attribution.
 
 # ================================== IMPORTS ==================================
 
@@ -151,6 +152,11 @@ class Plugin(indigo.PluginBase):
 
         self.date_format = self.Formatter.dateFormat()
         self.time_format = self.Formatter.timeFormat()
+
+        # Weather Underground Attribution and disclaimer.
+        indigo.server.log(u"{0:*^130}".format(""))
+        indigo.server.log(u"{0:*^130}".format("  Data are provided by Weather Underground, LLC. This plugin and its author are in no way affiliated with Weather Underground.  "))
+        indigo.server.log(u"{0:*^130}".format(""))
 
         # Log pluginEnvironment information when plugin is first started
         self.Fogbert.pluginEnvironment()

@@ -68,25 +68,22 @@ https://github.com/DaveL17/WUnderground7/blob/master/LICENSE
 # New Features
 
 # Enhancements
-# TODO: Remove .idea directory (and all its files) before making repo public.
-# TODO: Check whether European alert attribution must be displayed with each data download (WU6 and WU7).
 # TODO: Some kind of control to dump all the dicts and whatnot to the log.
-# TODO: Provide a parsed version of the European Weather Alert attribution.
 
 # ================================== IMPORTS ==================================
 
 # Built-in modules
+import cgi
 import datetime as dt
 import logging
+import re
+import requests  # (weather data)
 import simplejson
 import socket
 import sys
 import time
-try:
-    import requests  # (weather data)
-except ImportError:
-    import urllib   # (satellite imagery)
-    import urllib2  # (weather data fallback)
+import urllib   # (satellite imagery)
+import urllib2  # (weather data fallback)
 
 # Third-party modules
 from DLFramework import indigoPluginUpdateChecker
@@ -109,7 +106,7 @@ __copyright__ = Dave.__copyright__
 __license__   = Dave.__license__
 __build__     = Dave.__build__
 __title__     = "WUnderground7 Plugin for Indigo Home Control"
-__version__   = "7.0.04"
+__version__   = "7.0.05"
 
 # =============================================================================
 
@@ -142,7 +139,7 @@ class Plugin(indigo.PluginBase):
 
         self.masterWeatherDict = {}
         self.masterTriggerDict = {}
-        self.updater = indigoPluginUpdateChecker.updateChecker(self, "https://davel17.github.io/WUnderground7/wunderground7_version.html")
+        self.updater = indigoPluginUpdateChecker.updateChecker(self, "https://raw.githubusercontent.com/DaveL17/WUnderground7/master/wunderground7_version.html")
         self.wuOnline = True
 
         # ====================== Initialize DLFramework =======================
@@ -1066,9 +1063,14 @@ class Plugin(indigo.PluginBase):
 
                     # Per Weather Underground TOS, attribution must be provided for European weather alert source. If appropriate, write it to the log.
                     try:
-                        attribution = u"European weather alert {0}".format(item['attribution'])
+                        # Attempt to clean out HTML tags.
+                        tag_re      = re.compile(r'(<!--.*?-->|<[^>]*>)')
+                        no_tags     = tag_re.sub('', item['attribution'])  # Remove well-formed tags
+                        clean       = cgi.escape(no_tags)  # Clean up anything else by escaping
+                        attribution = u"European weather alert {0}".format(clean)
+
                     except (KeyError, Exception):
-                        pass
+                        attribution = u"European weather alert {0}".format(item['attribution'])
 
                 if len(alert_array) == 1:
                     # If user has enabled alert logging, write alert message to the Indigo log.
@@ -2422,7 +2424,6 @@ class Plugin(indigo.PluginBase):
 
     def startup(self):
         """ Plugin startup routines. """
-
         pass
 
     def triggerFireOfflineDevice(self):

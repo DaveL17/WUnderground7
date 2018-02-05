@@ -2,8 +2,15 @@ WUnderground 7 Plugin - Developed by: DaveL17
 
 Note: WUnderground 7 requires Indigo 7
 
+7.0.05
+- Improves robustness when Weather Underground is not responding.
+- Cleans up European weather alert attribution to remove HTML tags.
+- Updates plugin update checker to use curl to overcome outdated security of
+  Apple's Python install.
+
 7.0.04
 - Corrects info.plist reference to API version.
+- Adds attribution to Indigo log when the plugin is initialized.
 
 7.0.03
 - Updates toggle debug to logger.

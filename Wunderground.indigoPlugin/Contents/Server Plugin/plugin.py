@@ -69,6 +69,7 @@ https://github.com/DaveL17/WUnderground7/blob/master/LICENSE
 
 # Enhancements
 # TODO: Some kind of control to dump all the dicts and whatnot to the log.
+# TODO: Version check so that the plugin will enable only if Indigo 7 is present.
 
 # ================================== IMPORTS ==================================
 
@@ -106,7 +107,7 @@ __copyright__ = Dave.__copyright__
 __license__   = Dave.__license__
 __build__     = Dave.__build__
 __title__     = "WUnderground7 Plugin for Indigo Home Control"
-__version__   = "7.0.05"
+__version__   = "7.0.06"
 
 # =============================================================================
 
@@ -1070,7 +1071,7 @@ class Plugin(indigo.PluginBase):
                         attribution = u"European weather alert {0}".format(clean)
 
                     except (KeyError, Exception):
-                        attribution = u"European weather alert {0}".format(item['attribution'])
+                        attribution = u""
 
                 if len(alert_array) == 1:
                     # If user has enabled alert logging, write alert message to the Indigo log.

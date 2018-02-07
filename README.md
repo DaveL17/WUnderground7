@@ -8,3 +8,7 @@ Underground API service and Indigo.
 
 *Data are provided by Weather Underground, LLC. This plugin and its author are 
 in no way affiliated with Weather Underground.*
+
+Notes: The WUnderground plugin requires Internet access to
+obtain weather data from the service. It also requires Internet 
+access to check for plugin software updates.

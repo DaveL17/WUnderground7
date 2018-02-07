@@ -2,6 +2,9 @@ WUnderground 7 Plugin - Developed by: DaveL17
 
 Note: WUnderground 7 requires Indigo 7
 
+7.0.06
+- Fixes bug in severe weather alert data attributions.
+
 7.0.05
 - Improves robustness when Weather Underground is not responding.
 - Cleans up European weather alert attribution to remove HTML tags.

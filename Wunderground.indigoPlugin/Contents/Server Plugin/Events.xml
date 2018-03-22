@@ -13,7 +13,7 @@
 
                 <Field id="listOfDevices" type="menu">
                     <Label>Location:</Label>
-                    <List class="self" filter="" method="listOfWeatherDevices" dynamicReload="true"/>
+                    <List class="self" filter="self" method="listOfWeatherDevices" dynamicReload="true"/>
                 </Field>
 
             </ConfigUI>
@@ -34,7 +34,7 @@
 
                 <Field id="listOfDevices" type="menu">
                     <Label>Location:</Label>
-                    <List class="self" filter="" method="listOfDevices" dynamicReload="true"/>
+                    <List class="self" filter="self" method="listOfDevices" dynamicReload="true"/>
                 </Field>
 
             </ConfigUI>

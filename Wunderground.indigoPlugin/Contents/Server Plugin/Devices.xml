@@ -9,6 +9,7 @@
 
         <ConfigUI>
 
+
             <Field id="space00" type="label" fontSize="small">
                 <Label>Almanac information available to all Weather Underground plans (Stratus, Cumulus, Anvil)</Label>
             </Field>
@@ -40,6 +41,8 @@
             <Field id="space07" type="label" fontSize="small" alignWithControl="True">
                 <Label>Controls how values will be displayed on control pages, etc.</Label>
             </Field>
+
+            <Field id="isWeatherDevice" type="checkbox" defaultValue="true" hidden="true"/>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
             </Field>
@@ -158,8 +161,7 @@
 
     <!-- Astronomy -->
 
-    <Device
-            id="wundergroundAstronomy" type="custom">
+    <Device id="wundergroundAstronomy" type="custom">
         <Name>WUnderground Astronomy</Name>
 
         <ConfigUI>
@@ -186,6 +188,8 @@
   - Personal Weather Station (i.e., pws:KMNCHASK10)
   - US ZIP (i.e., 12345)</Label>
             </Field>
+
+            <Field id="isWeatherDevice" type="checkbox" defaultValue="true" hidden="true"/>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
             </Field>
@@ -344,8 +348,7 @@
 
     <!-- Hourly Forecast -->
 
-    <Device
-            id="wundergroundHourly" type="custom">
+    <Device id="wundergroundHourly" type="custom">
         <Name>WUnderground Hourly Forecast</Name>
 
         <ConfigUI>
@@ -436,6 +439,8 @@ Display Units</Label>
             <Field id="space08" type="label" fontSize="small" alignWithControl="True">
                 <Label>These settings are independent of the Weather Units settings above. They do not affect the underlying value of the data point.</Label>
             </Field>
+
+            <Field id="isWeatherDevice" type="checkbox" defaultValue="true" hidden="true"/>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
             </Field>
@@ -2712,6 +2717,8 @@ file:///Users/username/Desktop/imagefile.png
 /Users/username/Desktop/imagefile.png</Label>
             </Field>
 
+            <Field id="isWeatherDevice" type="checkbox" defaultValue="false" hidden="true"/>
+
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
             </Field>
 
@@ -2932,6 +2939,8 @@ Features</Label>
                 <Description>(Display smoothed radar returns)</Description>
             </Field>
 
+            <Field id="isWeatherDevice" type="checkbox" defaultValue="false" hidden="true"/>
+
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True"/>
 
         </ConfigUI>
@@ -3025,15 +3034,15 @@ Display Units</Label>
                 <Label>Controls how values will be displayed on control pages, etc.</Label>
             </Field>
 
-            <Field id="percentageUnits" type="textfield" defaultValue="%"  tooltip="Appended to all probability and percentage values. (80%)">
+            <Field id="percentageUnits" type="textfield" defaultValue="%" tooltip="Appended to all probability and percentage values. (80%)">
                 <Label>Percentage:</Label>
             </Field>
 
-            <Field id="rainAmountUnits" type="textfield"  tooltip="Appended to all rain volume units.(Values reported in either in. or mm.)">
+            <Field id="rainAmountUnits" type="textfield" defaultValue=" in." tooltip="Appended to all rain volume units.(Values reported in either in. or mm.)">
                 <Label>Rain:</Label>
             </Field>
 
-            <Field id="snowAmountUnits" type="textfield"  tooltip="Appended to all snow volume units. (Values reported in either in. or cm.)">
+            <Field id="snowAmountUnits" type="textfield" defaultValue=" in." tooltip="Appended to all snow volume units. (Values reported in either in. or cm.)">
                 <Label>Snow:</Label>
             </Field>
 
@@ -3048,6 +3057,8 @@ Display Units</Label>
             <Field id="space08" type="label" fontSize="small" alignWithControl="True">
                 <Label>These settings are independent of the Weather Units settings above. They do not affect the underlying value of the data point.</Label>
             </Field>
+
+            <Field id="isWeatherDevice" type="checkbox" defaultValue="true" hidden="true"/>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
             </Field>
@@ -4040,8 +4051,7 @@ Display Units</Label>
 
     <!-- Tide Forecast -->
 
-    <Device
-            id="wundergroundTides" type="custom">
+    <Device id="wundergroundTides" type="custom">
         <Name>WUnderground Tides</Name>
 
         <ConfigUI>
@@ -4069,6 +4079,8 @@ Display Units</Label>
   - Personal Weather Station (i.e., pws:KMNCHASK10)
   - US ZIP (i.e., 12345)</Label>
             </Field>
+
+            <Field id="isWeatherDevice" type="checkbox" defaultValue="true" hidden="true"/>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
                 <Label/>
@@ -4828,6 +4840,8 @@ plugin updates within the WUnderground plugin settings dialog.</Label>
             <Field id="weatherSummaryEmailSent" type="checkbox" defaultValue="false" hidden="true">
                 <Label>Receive Email Summary:</Label>
             </Field>
+
+            <Field id="isWeatherDevice" type="checkbox" defaultValue="true" hidden="true"/>
 
             <Field id="deviceVersion" type="textfield" defaultValue="1" hidden="True">
             </Field>

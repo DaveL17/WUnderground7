@@ -7,8 +7,6 @@
     <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_changelog.txt" afterDir="false" />
     </list>
@@ -41,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="plugin.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="plugin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1730">
-              <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+            <state relative-caret-position="458">
+              <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
               <folding>
                 <element signature="e#4849#4859#0" expanded="true" />
               </folding>
@@ -62,11 +60,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_changelog.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_changelog.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_changelog.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+            <state relative-caret-position="60">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wunderground7_version.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -75,7 +82,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>daily call limit has not been reached`</find>
       <find>plugin cycle</find>
       <find>can not format</find>
       <find>download</find>
@@ -105,6 +111,7 @@
       <find>#</find>
       <find>alert</find>
       <find>shown</find>
+      <find>downloadinter</find>
     </findStrings>
     <replaceStrings>
       <replace>debug_level &lt;=</replace>
@@ -148,12 +155,12 @@
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
-        <option value="$PROJECT_DIR$/wunderground7_version.html" />
-        <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
-        <option value="$PROJECT_DIR$/_changelog.txt" />
+        <option value="$PROJECT_DIR$/wunderground7_version.html" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
+        <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
+        <option value="$PROJECT_DIR$/_changelog.txt" />
       </list>
     </option>
   </component>
@@ -556,7 +563,21 @@
       <option name="project" value="LOCAL" />
       <updated>1521683627913</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="- Rounds off values for weather device forecast values. Some PWSs will&#10;  report decimal-level precision even though it's unlikely that they &#10;  mean to.&#10;- Changes to the poll frequency and Temperature Item List plugin &#10;  preferences now take effect when preferences are saved (all other &#10;  display preferences continue to take effect during the next scheduled &#10;  poll.)&#10;- Standardizes all timeouts at 20 seconds (from 10 seconds) and reduces &#10;  the urllib backup timeout to 20 seconds (from 30 seconds). Timeouts &#10;  now 20 seconds across all calls.&#10;- Adds validation for weather location offline trigger settings.&#10;- Limits weather location offline triggers to one per location.&#10;- Improves indication of offline weather sites (improves upon v7.0.08).&#10;- Improves handling of Indigo UI images for on/offline.&#10;- Fixes bug where changes to weather location offline trigger were made &#10;  while the trigger was disabled.&#10;- Fixes typo in metric forecast email ('mm' instead of 'nm').&#10;- Code enhancements.">
+      <created>1523059336207</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1523059336207</updated>
+    </task>
+    <task id="LOCAL-00034" summary="- Updates version checker.">
+      <created>1523068070033</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1523068070033</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TodoView">
@@ -579,13 +600,13 @@
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49713877" weight="0.32991013" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.556701" weight="0.3004292" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.556701" visible="true" weight="0.3004292" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.3298969" />
       <window_info anchor="right" id="Database" order="3" weight="0.3297568" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32947233" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info active="true" id="Structure" order="2" sideWeight="0.44329897" visible="true" weight="0.3004292" />
+      <window_info id="Structure" order="2" sideWeight="0.44329897" weight="0.3004292" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3992298" />
       <window_info id="Favorites" order="1" show_stripe_button="false" sideWeight="0.5006435" side_tool="true" weight="0.3004292" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -652,7 +673,9 @@
     <MESSAGE value="- Fixes bug in severe weather alert data attributions." />
     <MESSAGE value="- Improves code commenting and adds Sphinx compatibility to docstrings.&#10;- Improves UI experience when weather locations go offline.&#10;- Improves UI experience when user changes device settings (while &#10;  waiting for the next API call).&#10;- Adds API 2.0 device state updates to weather devices (fewer resources &#10;  used, speed increased).&#10;- Fixes bug in setting WindShortString state for weather devices.&#10;- Fixed bug in Ten Day Forecast devices for setting for rain and snow &#10;  default units.&#10;- Adds version check to ensure that user is running Indigo 7 or greater." />
     <MESSAGE value="Updates version checker." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates version checker." />
+    <MESSAGE value="- Rounds off values for weather device forecast values. Some PWSs will&#10;  report decimal-level precision even though it's unlikely that they &#10;  mean to.&#10;- Changes to the poll frequency and Temperature Item List plugin &#10;  preferences now take effect when preferences are saved (all other &#10;  display preferences continue to take effect during the next scheduled &#10;  poll.)&#10;- Standardizes all timeouts at 20 seconds (from 10 seconds) and reduces &#10;  the urllib backup timeout to 20 seconds (from 30 seconds). Timeouts &#10;  now 20 seconds across all calls.&#10;- Adds validation for weather location offline trigger settings.&#10;- Limits weather location offline triggers to one per location.&#10;- Improves indication of offline weather sites (improves upon v7.0.08).&#10;- Improves handling of Indigo UI images for on/offline.&#10;- Fixes bug where changes to weather location offline trigger were made &#10;  while the trigger was disabled.&#10;- Fixes typo in metric forecast email ('mm' instead of 'nm').&#10;- Code enhancements." />
+    <MESSAGE value="- Updates version checker." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Updates version checker." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -794,24 +817,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="8" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
           <caret line="28" column="132" selection-start-line="28" selection-start-column="132" selection-end-line="28" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -822,13 +831,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_changelog.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="41">
@@ -836,13 +838,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1730">
-          <caret line="152" lean-forward="true" selection-start-line="152" selection-end-line="152" />
+        <state relative-caret-position="458">
+          <caret line="122" column="23" selection-start-line="122" selection-start-column="23" selection-end-line="122" selection-end-column="23" />
           <folding>
             <element signature="e#4849#4859#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_changelog.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
         </state>
       </provider>
     </entry>

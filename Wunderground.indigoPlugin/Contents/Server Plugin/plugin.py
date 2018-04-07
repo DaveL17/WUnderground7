@@ -120,7 +120,7 @@ __copyright__ = Dave.__copyright__
 __license__   = Dave.__license__
 __build__     = Dave.__build__
 __title__     = "WUnderground7 Plugin for Indigo Home Control"
-__version__   = "7.0.09"
+__version__   = "7.0.10"
 
 # =============================================================================
 
@@ -158,7 +158,7 @@ class Plugin(indigo.PluginBase):
     def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
         indigo.PluginBase.__init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
 
-        self.download_interval = dt.timedelta(seconds=self.pluginPrefs.get('downloadInterval', '900'))
+        self.download_interval = dt.timedelta(seconds=int(self.pluginPrefs.get('downloadInterval', '900')))
         self.masterWeatherDict = {}
         self.masterTriggerDict = {}
         self.updater = indigoPluginUpdateChecker.updateChecker(self, "https://raw.githubusercontent.com/DaveL17/WUnderground7/master/wunderground7_version.html")
@@ -241,7 +241,7 @@ class Plugin(indigo.PluginBase):
             self.indigo_log_handler.setLevel(int(valuesDict['showDebugLevel']))
 
             # ============================= Update Poll Time ==============================
-            self.download_interval = dt.timedelta(seconds=self.pluginPrefs.get('downloadInterval', '900'))
+            self.download_interval = dt.timedelta(seconds=int(self.pluginPrefs.get('downloadInterval', '900')))
             last_poll              = self.pluginPrefs.get('lastSuccessfulPoll', "1970-01-01 00:00:00")
 
             try:
@@ -342,7 +342,7 @@ class Plugin(indigo.PluginBase):
             while True:
 
                 # Load the download interval in case it's changed
-                self.download_interval = dt.timedelta(seconds=self.pluginPrefs.get('downloadInterval', '900'))
+                self.download_interval = dt.timedelta(seconds=int(self.pluginPrefs.get('downloadInterval', '900')))
 
                 # If the next poll attempt hasn't been changed to tomorrow, let's update it
                 if self.next_poll_attempt == "1970-01-01 00:00:00" or not self.next_poll_attempt.day > dt.datetime.now().day:
@@ -2872,7 +2872,7 @@ class Plugin(indigo.PluginBase):
 
         api_key = self.pluginPrefs['apiKey']
         daily_call_limit_reached = self.pluginPrefs.get('dailyCallLimitReached', False)
-        self.download_interval   = dt.timedelta(seconds=self.pluginPrefs.get('downloadInterval', '900'))
+        self.download_interval   = dt.timedelta(seconds=int(self.pluginPrefs.get('downloadInterval', '900')))
         self.wuOnline = True
 
         # Check to see if the daily call limit has been reached.

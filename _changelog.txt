@@ -2,6 +2,9 @@ WUnderground 7 Plugin - Developed by: DaveL17
 
 Note: WUnderground 7 requires Indigo 7
 
+7.0.10
+- Fixes bug in setting timedelta for plugin refresh cycle.
+
 7.0.09
 - Rounds off values for weather device forecast values. Some PWSs will
   report decimal-level precision even though it's unlikely that they mean to.

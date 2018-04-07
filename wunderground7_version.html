@@ -1,17 +1,27 @@
-Version: 7.0.07
+Version: 7.0.09
 EmailSubject: Wunderground 7 Indigo Plugin - Update Available
 EmailBody: The Wunderground 7 Plugin you are using has been updated.
 
 A WUnderground 7 Plugin update is now available.
 
-v7.0.07
+v7.0.09
 
-- Improves UI experience when weather locations go offline.
-- Improves UI experience when user changes device settings (while waiting for the next API call).
-- Adds API 2.0 device state updates to weather devices (fewer resources used, speed increased).
-- Fixes bug in setting WindShortString state for weather devices.
-- Fixed bug in Ten Day Forecast devices for setting for rain and snow default units.
-- Adds version check to ensure that user is running Indigo 7 or greater.
+- Rounds off values for weather device forecast values. Some PWSs will
+  report decimal-level precision even though it's unlikely that they mean to.
+- Changes to the poll frequency and Temperature Item List plugin preferences
+  now take effect when preferences are saved (all other display preferences
+  continue to take effect during the next scheduled poll.)
+- Standardizes all timeouts at 20 seconds (from 10 seconds) and reduces the
+  urllib backup timeout to 20 seconds (from 30 seconds). Timeouts now 20
+  seconds across all calls.
+- Adds validation for weather location offline trigger settings.
+- Limits weather location offline triggers to one per location.
+- Improves indication of offline weather sites (improves upon v7.0.08).
+- Improves handling of Indigo UI images for on/offline.
+- Fixes bug where changes to weather location offline trigger were made while
+  the trigger was disabled.
+- Fixes typo in metric forecast email ('mm' instead of 'nm').
+- Code enhancements.
 
 As always, if something doesn't seem quite right, please let me know.
 

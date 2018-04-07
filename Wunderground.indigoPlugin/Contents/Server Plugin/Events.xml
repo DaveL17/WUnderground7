@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
+
 <Events>
+
     <SupportURL>https://github.com/DaveL17/WUnderground7/wiki</SupportURL>
     <Event id="weatherAlert">
         <Name>Severe Weather Alert</Name>
@@ -11,32 +13,34 @@
 
                 <Field id="weatherAlertSpacer" type="label"/>
 
-                <Field id="listOfDevices" type="menu">
+                <Field id="listOfDevices" type="menu" tooltip="Please select a weather location to monitor.">
                     <Label>Location:</Label>
                     <List class="self" filter="self" method="listOfWeatherDevices" dynamicReload="true"/>
                 </Field>
 
             </ConfigUI>
     </Event>
+
     <Event id="weatherSiteOffline">
         <Name>Weather Location Offline</Name>
             <ConfigUI>
 
                 <Field id="offlineTimerLabel" type="label">
-                    <Label>The Weather Underground Plugin can fire a trigger if a weather site has stopped reporting.  Enter the number of minutes to wait before an event is triggered. (i.e., 12 hours = 720, Day = 1440, Week = 10080)</Label>
+                    <Label>Enter the number of minutes to use to determine offline status. The plugin will compare the site's latest observation time to the current time and fire the trigger if the difference is greater than the value specified.</Label>
                 </Field>
 
                 <Field id="offlineTimerSpacer" type="label"/>
 
-                <Field id="offlineTimer" type="textfield" defaultValue="60">
+                <Field id="offlineTimer" type="textfield" defaultValue="60" tooltip="Please enter a positive integer value in minutes (greater than zero).">
                     <Label>Minutes:</Label>
                 </Field>
 
-                <Field id="listOfDevices" type="menu">
+                <Field id="listOfDevices" type="menu" tooltip="Please select a weather location to monitor.">
                     <Label>Location:</Label>
                     <List class="self" filter="self" method="listOfDevices" dynamicReload="true"/>
                 </Field>
 
             </ConfigUI>
     </Event>
+
 </Events>

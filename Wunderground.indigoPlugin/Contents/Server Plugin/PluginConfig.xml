@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <PluginConfig>
+
     <Field id="infoLabel00" type="label">
         <Label>WUnderground 7 Plugin</Label>
     </Field>
@@ -11,6 +12,14 @@
     <Field id="termsOfService" type="label" fontSize="mini">
         <Label>Data are provided by Weather Underground, LLC. This plugin and its author are in no way affiliated with Weather Underground.</Label>
     </Field>
+
+<!--Hidden Controls-->
+
+    <Field id="launchWUparameters" type="textfield" defaultValue="https://www.wunderground.com/api/" hidden="True">
+        <Label/>
+    </Field>
+
+<!-- End Hidden Controls -->
 
     <Field id="space00" type="label" fontSize="mini"/>
 
@@ -24,17 +33,11 @@
         <Label>The plugin requires an API key to retrieve data from Weather Underground. If needed, you can click this button to sign up for an API key:</Label>
     </Field>
 
-    <!-- ======== Launch a Safari session with the UW API web page ======== -->
     <Field id="launchWU" type="button">
         <Label/>
         <Title>Sign Up For a Key at Weather Underground</Title>
         <CallbackMethod>wundergroundSite</CallbackMethod>
     </Field>
-
-    <Field id="launchWUparameters" type="textfield" defaultValue="https://www.wunderground.com/api/" hidden="True">
-        <Label/>
-    </Field>
-    <!-- ================================================================== -->
 
     <Field id="apiKey" type="textfield" defaultValue="apiKey" tooltip="Please enter the Weather Underground API Key (required).">
         <Label>API key:</Label>
@@ -44,7 +47,15 @@
         <Label>Daily Limit:</Label>
     </Field>
 
-    <Field id="dailyCallCounter" type="textfield" defaultValue="0" readonly= "true" tooltip="The number of API calls today so far.">
+    <Field id="lastSuccessfulPoll" type="textfield" defaultValue="1970-01-01 00:00:00" readonly="True" hidden="False">
+        <Label>Last Successful Poll:</Label>
+    </Field>
+
+    <Field id="nextPoll" type="textfield" defaultValue="1970-01-01 00:00:00" readonly="True" hidden="False" >
+        <Label>Next Scheduled Poll:</Label>
+    </Field>
+
+    <Field id="dailyCallCounter" type="textfield" defaultValue="0" readonly= "True" tooltip="The number of API calls today so far.">
         <Label>API Calls Today:</Label>
     </Field>
 
@@ -166,7 +177,7 @@
     <Field id="separator02a" type="separator"/>
 
     <Field id="space03" type="label" fontSize="small" alignWithControl="True">
-        <Label>Controls how the plugin displays certain values.</Label>
+        <Label>Controls how the plugin displays certain values. With the exception of changes to the Temperature Item List preference, changes will be applied during the next scheduled poll.</Label>
     </Field>
 
     <Field id="uiDateFormat" type="menu" defaultValue="YYYY-MM-DD" tooltip="Please select the desired display format for date values.">
@@ -183,6 +194,19 @@
         <List>
             <Option value="0">0 decimal places</Option>
             <Option value="1">1 decimal place</Option>
+        </List>
+    </Field>
+
+    <Field id="uiPressureTrend" type="menu" defaultValue="text" tooltip="Please select the desired display format for the pressure trend symbol.">
+        <Label>Pressure UI Value:</Label>
+        <List>
+            <Option value="graphic">Graphic (&#x2B06; | &#x2B07; | &#x27A1;)</Option>
+            <Option value="lower_letters">Lowercase Letters (r | f | s)</Option>
+            <Option value="lower_words">Lowercase Words (rising | falling | steady)</Option>
+            <Option value="native">Native (+ | - | 0)</Option>
+            <Option value="text">Text (^ | v | -)</Option>
+            <Option value="upper_letters">Uppercase Letters (R | F | S)</Option>
+            <Option value="upper_words">Uppercase Words (Rising | Falling | Steady)</Option>
         </List>
     </Field>
 

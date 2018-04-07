@@ -2,6 +2,28 @@ WUnderground 7 Plugin - Developed by: DaveL17
 
 Note: WUnderground 7 requires Indigo 7
 
+7.0.09
+- Rounds off values for weather device forecast values. Some PWSs will
+  report decimal-level precision even though it's unlikely that they mean to.
+- Changes to the poll frequency and Temperature Item List plugin preferences
+  now take effect when preferences are saved (all other display preferences
+  continue to take effect during the next scheduled poll.)
+- Standardizes all timeouts at 20 seconds (from 10 seconds) and reduces the
+  urllib backup timeout to 20 seconds (from 30 seconds). Timeouts now 20
+  seconds across all calls.
+- Adds validation for weather location offline trigger settings.
+- Limits weather location offline triggers to one per location.
+- Improves indication of offline weather sites (improves upon v7.0.08).
+- Improves handling of Indigo UI images for on/offline.
+- Fixes bug where changes to weather location offline trigger were made while
+  the trigger was disabled.
+- Fixes typo in metric forecast email ('mm' instead of 'nm').
+- Code enhancements.
+
+7.0.08
+- Adds new plugin configuration option for pressure trend display.
+- Improves indication of offline weather sites.
+
 7.0.07
 - Improves code commenting and adds Sphinx compatibility to docstrings.
 - Improves UI experience when weather locations go offline.

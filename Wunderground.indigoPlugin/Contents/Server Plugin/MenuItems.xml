@@ -13,6 +13,11 @@
 
     <MenuItem id="titleSeparator" type="separator"/>
 
+    <MenuItem id="checkForUpdates">
+        <Name>Check for Plugin Updates</Name>
+        <CallbackMethod>checkVersionNow</CallbackMethod>
+    </MenuItem>
+
     <MenuItem id="refreshWeatherData">
         <Name>Refresh Data Now</Name>
         <CallbackMethod>refreshWeatherData</CallbackMethod>
@@ -21,18 +26,6 @@
     <MenuItem id="dumpTheXML">
         <Name>Write Weather Data to File</Name>
         <CallbackMethod>dumpTheJSON</CallbackMethod>
-    </MenuItem>
-
-    <MenuItem id="titleSeparator1" type="separator"/>
-
-    <MenuItem id="checkForUpdates">
-        <Name>Check for Plugin Updates</Name>
-        <CallbackMethod>checkVersionNow</CallbackMethod>
-    </MenuItem>
-
-    <MenuItem id="toggleDebug">
-        <Name>Toggle Debugging</Name>
-        <CallbackMethod>debugToggle</CallbackMethod>
     </MenuItem>
 
 </MenuItems>

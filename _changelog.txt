@@ -2,12 +2,27 @@ WUnderground 7 Plugin - Developed by: DaveL17
 
 Note: WUnderground 7 requires Indigo 7
 
+7.0.11
+- IMPORTANT: due to changes in the pricing model for the Weather Underground
+  API, development of the WUnderground plugin will cease with this release.
+
+  I will continue to provide bug fixes, but there will be no further feature
+  development.
+
+- Adds new plugin configuration option for time format. 12 hour time with AM/PM
+  (12:34 PM) or without (12:34).
+- Removes Toggle Debug option from plugin menu.
+- Coerces UI value for precipitation to always display two decimal precision
+  (will not apply unless a valid number is provided by WU).
+- Fixes bug in hourly forecast device for rain, snow and wind state values for
+  standard units (F and MPH) only.
+
 7.0.10
 - Fixes bug in setting timedelta for plugin refresh cycle.
 
 7.0.09
-- Rounds off values for weather device forecast values. Some PWSs will
-  report decimal-level precision even though it's unlikely that they mean to.
+- Rounds off values for weather device forecast values. Some PWSs will report
+  decimal-level precision even though it's unlikely that they mean to.
 - Changes to the poll frequency and Temperature Item List plugin preferences
   now take effect when preferences are saved (all other display preferences
   continue to take effect during the next scheduled poll.)

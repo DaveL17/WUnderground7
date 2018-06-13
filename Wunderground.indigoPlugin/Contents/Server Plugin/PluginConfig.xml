@@ -230,7 +230,8 @@
     <Field id="uiTimeFormat" type="menu" defaultValue="military" tooltip="Please select the desired display format for time values.">
         <Label>Time UI Value:</Label>
         <List>
-            <Option value="standard">12 Hour</Option>
+            <Option value="standard">12 Hour (without AM/PM)</Option>
+            <Option value="standard_am_pm">12 Hour (with AM/PM)</Option>
             <Option value="military">24 Hour</Option>
         </List>
     </Field>

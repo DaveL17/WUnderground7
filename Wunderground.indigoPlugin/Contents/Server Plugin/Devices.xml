@@ -406,8 +406,7 @@ Display Values</Label>
             </Field>
 
             <Field id="displayUnitsLabel" type="label" alignText="Right">
-                <Label>
-Display Units</Label>
+                <Label>Display Units</Label>
             </Field>
 
             <Field id="separator01" type="separator"/>

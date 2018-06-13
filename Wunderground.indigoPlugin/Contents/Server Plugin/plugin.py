@@ -83,6 +83,8 @@ https://github.com/DaveL17/WUnderground7/blob/master/LICENSE
 
 # Enhancements
 # TODO: during no comm event, get a message for every device. Could it be just once per poll? Comes back to life okay when comms restored.
+# TODO: Weather device set to 'autoip' will generate the missing location information message, even though it's actually not missing.
+# TODO: Change log message for data dump to appear regardless of debug level set.
 
 # ================================== IMPORTS ==================================
 
@@ -120,7 +122,7 @@ __copyright__ = Dave.__copyright__
 __license__   = Dave.__license__
 __build__     = Dave.__build__
 __title__     = "WUnderground7 Plugin for Indigo Home Control"
-__version__   = "7.0.10"
+__version__   = "7.0.11"
 
 # =============================================================================
 
@@ -132,14 +134,13 @@ kDefaultPluginPrefs = {
     u'dailyCallDay': "1970-01-01",      # API call counter date.
     u'dailyCallLimitReached': "false",  # Has the daily call limit been reached?
     u'downloadInterval': "900",         # Frequency of weather updates.
-    u'ignoreEstimated' : False,         # Accept estimated conditions, or not
+    u'ignoreEsimated' : False,         # Accept estimated conditions, or not
     u'itemListTempDecimal': "1",        # Precision for Indigo Item List.
     u'language': "EN",                  # Language for WU text.
     u'lastSuccessfulPoll': "1970-01-01 00:00:00",  # Last successful plugin cycle
     u'launchWUparameters' : "https://www.wunderground.com/api/",  # url for launch API button
     u'nextPoll': "",                    # Last successful plugin cycle
     u'noAlertLogging': "false",         # Suppresses "no active alerts" logging.
-    u'oldDebugLevel': "20",             # Store for debug level when toggle debug method used
     u'showDebugLevel': "30",            # Logger level.
     u'uiDateFormat': "DD-MM-YYYY",     # Preferred date format string.
     u'uiHumidityDecimal': "1",          # Precision for Indigo UI display (humidity).
@@ -157,6 +158,9 @@ class Plugin(indigo.PluginBase):
 
     def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
         indigo.PluginBase.__init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
+
+        self.pluginIsInitializing = True
+        self.pluginIsShuttingDown = False
 
         self.download_interval = dt.timedelta(seconds=int(self.pluginPrefs.get('downloadInterval', '900')))
         self.masterWeatherDict = {}
@@ -226,6 +230,8 @@ class Plugin(indigo.PluginBase):
         #     pydevd.settrace('localhost', port=5678, stdoutToServer=True, stderrToServer=True, suspend=False)
         # except:
         #     pass
+
+        self.pluginIsInitializing = False
 
     def __del__(self):
         indigo.PluginBase.__del__(self)
@@ -374,7 +380,7 @@ class Plugin(indigo.PluginBase):
 
     def shutdown(self):
 
-        pass
+        self.pluginIsShuttingDown = True
 
     def startup(self):
 
@@ -829,47 +835,6 @@ class Plugin(indigo.PluginBase):
             except Exception as error:
                 self.logger.error(u"Exception when trying to unkill all comms. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
 
-    def debugToggle(self):
-        """
-        Toggle debug level
-
-        If user wants to quickly invoke debug logging, they can select 'Toggle Debug'
-        from the plugin configuration menu.  If the level was other than 10, we store
-        the current level and set the logger to 10. If the level was already 10, we
-        return a message that debugging is already turned on and direct the user to the
-        plugin config menu to select another logging level.
-
-        -----
-        """
-
-        debug_level     = int(self.pluginPrefs.get('showDebugLevel', '30'))
-        old_debug_level = int(self.pluginPrefs['oldDebugLevel'])
-
-        self.pluginPrefs['oldDebugLevel'] = debug_level
-
-        if debug_level == 10:
-
-            # Debug already on
-            if old_debug_level == 10:
-                indigo.server.log(u"Debug logging set manually. Please use plugin settings to change logging level.")
-                return
-
-            # Toggle debug off
-            else:
-                self.pluginPrefs['showDebugLevel'] = old_debug_level
-                self.indigo_log_handler.setLevel(old_debug_level)
-                self.pluginPrefs['oldDebugLevel'] = debug_level
-                indigo.server.log(u"Debug logging disabled.")
-                return
-
-        # Toggle debug on
-        else:
-            self.pluginPrefs['showDebugLevel'] = 10
-            self.pluginPrefs['oldDebugLevel'] = debug_level
-            self.indigo_log_handler.setLevel(10)
-            self.logger.debug(u"Debug logging enabled.")
-            return
-
     def dumpTheJSON(self):
         """
         Dump copy of weather JSON to file
@@ -897,7 +862,7 @@ class Plugin(indigo.PluginBase):
                     logfile.write(u"Location Specified: {0}\n".format(key).encode('utf-8'))
                     logfile.write(u"{0}\n\n".format(self.masterWeatherDict[key]).encode('utf-8'))
 
-            self.logger.info(u"Weather data written to: {0}".format(file_name))
+            indigo.server.log(u"Weather data written to: {0}".format(file_name))
 
         except IOError:
             self.logger.info(u"Unable to write to Indigo Log folder.")
@@ -946,8 +911,8 @@ class Plugin(indigo.PluginBase):
 
                 weather_data = self.masterWeatherDict[location]
 
-                temp_high_record_year        = self.nestedLookup(weather_data, keys=('almanac', 'temp_high', 'recordyear'))
-                temp_low_record_year         = self.nestedLookup(weather_data, keys=('almanac', 'temp_low', 'recordyear'))
+                temp_high_record_year        = int(self.nestedLookup(weather_data, keys=('almanac', 'temp_high', 'recordyear')))
+                temp_low_record_year         = int(self.nestedLookup(weather_data, keys=('almanac', 'temp_low', 'recordyear')))
                 today_record_high_metric     = self.nestedLookup(weather_data, keys=('almanac', 'temp_high', 'record', 'C'))
                 today_record_high_standard   = self.nestedLookup(weather_data, keys=('almanac', 'temp_high', 'record', 'F'))
                 today_record_low_metric      = self.nestedLookup(weather_data, keys=('almanac', 'temp_low', 'record', 'C'))
@@ -1202,7 +1167,7 @@ class Plugin(indigo.PluginBase):
                 return False
 
         except Exception as error:
-            self.logger.error(u"Error downloading satellite image. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+            self.logger.error(u"[{0}] Error downloading satellite image. (Line {1}) {2}".format(dev.name, sys.exc_traceback.tb_lineno, error))
             dev.updateStateOnServer('onOffState', value=False, uiValue=u"No comm")
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
 
@@ -1357,7 +1322,7 @@ class Plugin(indigo.PluginBase):
             location = dev.pluginProps.get('location', 'autoip')
 
             if location == 'autoip':
-                self.logger.warning(u"Missing location information for device: {0}. Attempting to automatically determine location using your IP address.".format(dev.name))
+                self.logger.warning(u"[{0}]. Automatically determining your location using 'autoip'.".format(dev.name))
 
             if location in self.masterWeatherDict.keys():
                 # We already have the data; no need to get it again.
@@ -2178,7 +2143,7 @@ class Plugin(indigo.PluginBase):
                         hourly_forecast_states_list.append({'key': u"h{0}_snow".format(fore_counter_text), 'value': value, 'uiValue': ui_value})
 
                     # Standard QPF, Snow and Wind:
-                    if config_menu_units == ("I", "S"):
+                    if config_menu_units in ("I", "S"):
 
                         value, ui_value = self.fixCorruptedData(state_name="h{0}_qpf".format(fore_counter_text), val=fore_qpf_standard)
                         ui_value = self.uiFormatRain(dev=dev, state_name="h{0}_qpf".format(fore_counter_text), val=ui_value)
@@ -2252,7 +2217,7 @@ class Plugin(indigo.PluginBase):
             for observation in forecast_day:
 
                 conditions         = self.nestedLookup(observation, keys=('conditions',))
-                forecast_day       = self.nestedLookup(observation, keys=('date', 'epoch'))
+                forecast_date      = self.nestedLookup(observation, keys=('date', 'epoch'))
                 fore_pop           = self.nestedLookup(observation, keys=('pop',))
                 fore_qpf_metric    = self.nestedLookup(observation, keys=('qpf_allday', 'mm'))
                 fore_qpf_standard  = self.nestedLookup(observation, keys=('qpf_allday', 'in'))
@@ -2286,8 +2251,8 @@ class Plugin(indigo.PluginBase):
                     ten_day_forecast_states_list.append({'key': u"d{0}_day".format(fore_counter_text), 'value': weekday, 'uiValue': weekday})
 
                     # Forecast day
-                    forecast_day = time.strftime('%Y-%m-%d', time.localtime(float(forecast_day)))
-                    ten_day_forecast_states_list.append({'key': u"d{0}_date".format(fore_counter_text), 'value': forecast_day, 'uiValue': forecast_day})
+                    forecast_date = time.strftime('%Y-%m-%d', time.localtime(float(forecast_date)))
+                    ten_day_forecast_states_list.append({'key': u"d{0}_date".format(fore_counter_text), 'value': forecast_date, 'uiValue': forecast_date})
 
                     # Pop
                     value, ui_value = self.fixCorruptedData(state_name="d{0}_pop".format(fore_counter_text), val=fore_pop)
@@ -2984,6 +2949,7 @@ class Plugin(indigo.PluginBase):
                                     good_time = device_epoch <= weather_data_epoch
                                     if not good_time:
                                         self.logger.info(u"Latest data are older than data we already have. Skipping {0} update.".format(dev.name))
+
                                 except KeyError:
                                     self.logger.info(u"{0} cannot determine age of data. Skipping until next scheduled poll.".format(dev.name))
                                     good_time = False
@@ -3231,7 +3197,7 @@ class Plugin(indigo.PluginBase):
             return val
 
         try:
-            return u"{0}{1}".format(val, rain_units)
+            return u"{0:0.2f}{1}".format(float(val), rain_units)
 
         except ValueError:
             return u"{0}".format(val)

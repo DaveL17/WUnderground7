@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_changelog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wunderground7_version.html" beforeDir="false" afterPath="$PROJECT_DIR$/wunderground7_version.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <manually-removed-from-ignored>
       <directory path=".idea/" />
@@ -48,8 +40,8 @@
       <file leaf-file-name="plugin.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="382" column="40" selection-start-line="382" selection-start-column="40" selection-end-line="382" selection-end-column="40" />
+            <state relative-caret-position="2145">
+              <caret line="156" column="6" selection-start-line="156" selection-start-column="6" selection-end-line="156" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -81,11 +73,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_changelog.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_changelog.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_changelog.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+            <state relative-caret-position="165">
+              <caret line="11" selection-start-line="5" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="60">
+                <caret line="4" column="91" selection-start-line="4" selection-start-column="91" selection-end-line="4" selection-end-column="91" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -174,7 +178,6 @@
         <option value="$PROJECT_DIR$/Wunderground7.indigoPlugin/Contents/Info.plist" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
@@ -184,6 +187,7 @@
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
         <option value="$PROJECT_DIR$/_changelog.txt" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -629,7 +633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523095044675</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="7.0.11&#10;- IMPORTANT: due to changes in the pricing model for the Weather &#10;  Underground API, development of the WUnderground plugin will cease &#10;  with this release.&#10;&#10;  I will continue to provide bug fixes, but there will be no further &#10;  feature development.&#10;  &#10;- Adds new plugin configuration option for time format. 12 hour time &#10;  with AM/PM (12:34 PM) or without (12:34).&#10;- Removes Toggle Debug option from plugin menu.&#10;- Coerces UI value for precipitation to always display two decimal &#10;  precision (will not apply unless a valid number is provided by WU).&#10;- Fixes bug in hourly forecast device for rain, snow and wind state &#10;  values for standard units (F and MPH) only.">
+      <created>1528889790502</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1528889790502</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView">
@@ -652,11 +663,11 @@
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49713877" weight="0.32991013" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5315315" visible="true" weight="0.2274678" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.52895755" visible="true" weight="0.23319027" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.3297568" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info active="true" id="Structure" order="2" sideWeight="0.46846846" side_tool="true" visible="true" weight="0.2274678" />
+      <window_info id="Structure" order="2" sideWeight="0.47104248" side_tool="true" visible="true" weight="0.23319027" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3992298" />
       <window_info id="Favorites" order="1" show_stripe_button="false" sideWeight="0.5006435" side_tool="true" weight="0.3004292" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -729,7 +740,8 @@
     <MESSAGE value="- Updates version checker." />
     <MESSAGE value="- Fixes bug in setting timedelta for plugin refresh cycle." />
     <MESSAGE value="Updates version checker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates version checker" />
+    <MESSAGE value="7.0.11&#10;- IMPORTANT: due to changes in the pricing model for the Weather &#10;  Underground API, development of the WUnderground plugin will cease &#10;  with this release.&#10;&#10;  I will continue to provide bug fixes, but there will be no further &#10;  feature development.&#10;  &#10;- Adds new plugin configuration option for time format. 12 hour time &#10;  with AM/PM (12:34 PM) or without (12:34).&#10;- Removes Toggle Debug option from plugin menu.&#10;- Coerces UI value for precipitation to always display two decimal &#10;  precision (will not apply unless a valid number is provided by WU).&#10;- Fixes bug in hourly forecast device for rain, snow and wind state &#10;  values for standard units (F and MPH) only." />
+    <option name="LAST_COMMIT_MESSAGE" value="7.0.11&#10;- IMPORTANT: due to changes in the pricing model for the Weather &#10;  Underground API, development of the WUnderground plugin will cease &#10;  with this release.&#10;&#10;  I will continue to provide bug fixes, but there will be no further &#10;  feature development.&#10;  &#10;- Adds new plugin configuration option for time format. 12 hour time &#10;  with AM/PM (12:34 PM) or without (12:34).&#10;- Removes Toggle Debug option from plugin menu.&#10;- Coerces UI value for precipitation to always display two decimal &#10;  precision (will not apply unless a valid number is provided by WU).&#10;- Fixes bug in hourly forecast device for rain, snow and wind state &#10;  values for standard units (F and MPH) only." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -820,7 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$PROJECT_DIR$/_config.yml" />
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/indigoPluginUpdateChecker.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -841,13 +852,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
           <caret line="28" column="132" selection-start-line="28" selection-start-column="132" selection-end-line="28" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -900,17 +904,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="382" column="40" selection-start-line="382" selection-start-column="40" selection-end-line="382" selection-end-column="40" />
+        <state relative-caret-position="2145">
+          <caret line="156" column="6" selection-start-line="156" selection-start-column="6" selection-end-line="156" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_changelog.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="2" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="5" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="60">
+            <caret line="4" column="91" selection-start-line="4" selection-start-column="91" selection-end-line="4" selection-end-column="91" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,9 @@
 # ![Logo](https://github.com/DaveL17/WUnderground7/wiki/img/img_WUndergroundLogo.png)
 
+**IMPORTANT: due to changes in the pricing model for the Weather Underground API, development of the WUnderground plugin will cease with the latest release.**
+
+**I will continue to provide bug fixes, but there will be no further feature development.**
+
 The Wunderground 7 plugin allows users to create weather devices for Indigo that 
 are linked to Weather Underground by providing a bridge between the Weather 
 Underground API service and Indigo.

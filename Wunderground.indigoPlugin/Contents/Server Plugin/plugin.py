@@ -72,20 +72,6 @@ https://github.com/DaveL17/WUnderground7/blob/master/LICENSE
 
 # =================================== TO DO ===================================
 
-# New Features
-# TODO: trap instances where WU returns an error exists (i.e., ['response']['error']). If all okay, this will result in a KeyError. (WU 8?)
-# TODO: convert alertStatus state to binary (WU 8?)
-# TODO: migrate to individual refresh cycles for individual devices? Consider that a weather location and a forecast location could be for the same location. (WU 8?)
-# TODO: If latest data are older than data we already have, the Item list onOffStates are set to "". Should be last temp, icons off.
-# TODO: set the Indigo UI value to max calls (or something) when that happens. Fringe case for sure.
-# TODO: Consider a method that's for "what should the Indigo UI look like?" and combine all the various calls to onOffState and the icons.
-#       Can then call that method from the end of runConcurrentThread, startComm, etc.
-
-# Enhancements
-# TODO: during no comm event, get a message for every device. Could it be just once per poll? Comes back to life okay when comms restored.
-# TODO: Weather device set to 'autoip' will generate the missing location information message, even though it's actually not missing.
-# TODO: Change log message for data dump to appear regardless of debug level set.
-
 # ================================== IMPORTS ==================================
 
 # Built-in modules
@@ -102,7 +88,7 @@ import urllib   # (satellite imagery fallback)
 import urllib2  # (weather data fallback)
 
 # Third-party modules
-from DLFramework import indigoPluginUpdateChecker
+# from DLFramework import indigoPluginUpdateChecker
 try:
     import indigo
 except ImportError:
@@ -122,7 +108,7 @@ __copyright__ = Dave.__copyright__
 __license__   = Dave.__license__
 __build__     = Dave.__build__
 __title__     = "WUnderground7 Plugin for Indigo Home Control"
-__version__   = "7.0.11"
+__version__   = "7.0.12"
 
 # =============================================================================
 
@@ -134,7 +120,7 @@ kDefaultPluginPrefs = {
     u'dailyCallDay': "1970-01-01",      # API call counter date.
     u'dailyCallLimitReached': "false",  # Has the daily call limit been reached?
     u'downloadInterval': "900",         # Frequency of weather updates.
-    u'ignoreEsimated' : False,         # Accept estimated conditions, or not
+    u'ignoreEstimated' : False,         # Accept estimated conditions, or not
     u'itemListTempDecimal': "1",        # Precision for Indigo Item List.
     u'language': "EN",                  # Language for WU text.
     u'lastSuccessfulPoll': "1970-01-01 00:00:00",  # Last successful plugin cycle
@@ -165,7 +151,7 @@ class Plugin(indigo.PluginBase):
         self.download_interval = dt.timedelta(seconds=int(self.pluginPrefs.get('downloadInterval', '900')))
         self.masterWeatherDict = {}
         self.masterTriggerDict = {}
-        self.updater = indigoPluginUpdateChecker.updateChecker(self, "https://raw.githubusercontent.com/DaveL17/WUnderground7/master/wunderground7_version.html")
+        # self.updater = indigoPluginUpdateChecker.updateChecker(self, "https://raw.githubusercontent.com/DaveL17/WUnderground7/master/wunderground7_version.html")
         self.wuOnline = True
         self.pluginPrefs['dailyCallLimitReached'] = False
 
@@ -780,28 +766,28 @@ class Plugin(indigo.PluginBase):
                     self.logger.error(u"Error setting email sent value. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
 
             self.logger.debug(u"Reset call limit, call counter and call day.")
-            self.updater.checkVersionPoll()
+            # self.updater.checkVersionPoll()
 
         self.logger.debug(u"New call day: {0}".format(todays_date > today_date))
 
         if call_limit_reached:
             self.logger.info(u"Daily call limit reached. Taking the rest of the day off.")
 
-    def checkVersionNow(self):
-        """
-        Immediate call to determine if running latest version
-
-        The checkVersionNow() method will call the Indigo Plugin Update Checker based
-        on a user request.
-
-        -----
-        """
-
-        try:
-            self.updater.checkVersionNow()
-
-        except Exception as error:
-            self.logger.warning(u"Unable to check plugin update status. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+    # def checkVersionNow(self):
+    #     """
+    #     Immediate call to determine if running latest version
+    #
+    #     The checkVersionNow() method will call the Indigo Plugin Update Checker based
+    #     on a user request.
+    #
+    #     -----
+    #     """
+    #
+    #     try:
+    #         self.updater.checkVersionNow()
+    #
+    #     except Exception as error:
+    #         self.logger.warning(u"Unable to check plugin update status. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
 
     def commsKillAll(self):
         """

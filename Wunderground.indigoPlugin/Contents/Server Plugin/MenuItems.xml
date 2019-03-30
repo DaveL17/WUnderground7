@@ -13,10 +13,10 @@
 
     <MenuItem id="titleSeparator" type="separator"/>
 
-    <MenuItem id="checkForUpdates">
-        <Name>Check for Plugin Updates</Name>
-        <CallbackMethod>checkVersionNow</CallbackMethod>
-    </MenuItem>
+<!--    <MenuItem id="checkForUpdates">-->
+<!--        <Name>Check for Plugin Updates</Name>-->
+<!--        <CallbackMethod>checkVersionNow</CallbackMethod>-->
+<!--    </MenuItem>-->
 
     <MenuItem id="refreshWeatherData">
         <Name>Refresh Data Now</Name>

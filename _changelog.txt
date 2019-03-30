@@ -2,6 +2,9 @@ WUnderground 7 Plugin - Developed by: DaveL17
 
 Note: WUnderground 7 requires Indigo 7
 
+7.0.12
+- Deprecates plugin and disables update checking.
+
 7.0.11
 - IMPORTANT: due to changes in the pricing model for the Weather Underground
   API, development of the WUnderground plugin will cease with this release.

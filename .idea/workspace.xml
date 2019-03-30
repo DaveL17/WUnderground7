@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Resources/icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/indigoPluginUpdateChecker.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/indigoPluginUpdateChecker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_changelog.txt" afterDir="false" />
     </list>
     <manually-removed-from-ignored>
       <directory path=".idea/" />
     </manually-removed-from-ignored>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,68 +43,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="plugin.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2145">
-              <caret line="156" column="6" selection-start-line="156" selection-start-column="6" selection-end-line="156" selection-end-column="6" />
+            <state relative-caret-position="-15">
+              <caret line="73" selection-start-line="73" selection-end-line="73" />
+              <folding>
+                <element signature="e#4642#4652#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MenuItems.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="template_debugging.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_debugging.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="38" selection-start-line="3" selection-end-line="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_changelog.txt" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/_changelog.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" selection-start-line="5" selection-end-line="11" />
+            <state relative-caret-position="75">
+              <caret line="5" selection-start-line="5" selection-end-line="6" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="60">
-                <caret line="4" column="91" selection-start-line="4" selection-start-column="91" selection-end-line="4" selection-end-column="91" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wunderground7_version.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="563">
+              <caret line="271" selection-start-line="271" selection-end-line="272" />
             </state>
           </provider>
         </entry>
@@ -107,17 +77,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>'%Y-%m-%d %H:%M:%S.%f'</find>
-      <find>.%f</find>
-      <find>sleep</find>
-      <find>scheduled poll</find>
-      <find>unable to reach</find>
-      <find>while</find>
-      <find>skipping</find>
-      <find>todo</find>
-      <find>#</find>
-      <find>alert</find>
-      <find>shown</find>
       <find>downloadinter</find>
       <find>almanac</find>
       <find>temp_high_record_year</find>
@@ -137,6 +96,17 @@
       <find>-99</find>
       <find>uiTimeFormat</find>
       <find>currentObservation24hr</find>
+      <find>igno</find>
+      <find>config</find>
+      <find>configm</find>
+      <find>check_version_now</find>
+      <find>rebuild ma</find>
+      <find>checkversionnow</find>
+      <find>checkversionn</find>
+      <find>address</find>
+      <find>checker</find>
+      <find>checkVersionPoll</find>
+      <find>updater</find>
     </findStrings>
     <replaceStrings>
       <replace>debug_level &lt;=</replace>
@@ -156,8 +126,6 @@
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="DaveL17 &lt;davel17@users.noreply.github.com&gt;" />
-        <option value="Dave" />
-        <option value="DaveL17 &lt;dave.lehrer@icloud.com&gt;" />
       </list>
     </option>
     <option name="UPDATE_TYPE" value="REBASE" />
@@ -179,23 +147,18 @@
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" />
-        <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
         <option value="$PROJECT_DIR$/wunderground7_version.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/LICENSE" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
+        <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
         <option value="$PROJECT_DIR$/_changelog.txt" />
-        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="22" />
@@ -240,14 +203,6 @@
               <item name="Contents" type="462c0819:PsiDirectoryNode" />
               <item name="Server Plugin" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="WUnderground7" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WUnderground7" type="462c0819:PsiDirectoryNode" />
-              <item name="Wunderground.indigoPlugin" type="462c0819:PsiDirectoryNode" />
-              <item name="Contents" type="462c0819:PsiDirectoryNode" />
-              <item name="Server Plugin" type="462c0819:PsiDirectoryNode" />
-              <item name="DLFramework" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -258,6 +213,9 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="options.lastSelected" value="preferences.updates" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -296,6 +254,7 @@
       </PathMappingSettings>
       <option name="REDIRECT_OUTPUT" value="true" />
       <option name="SUSPEND_AFTER_CONNECT" value="false" />
+      <method v="2" />
     </configuration>
     <configuration name="Wunderground" type="PyRemoteDebugConfigurationType" factoryName="Python Remote Debug">
       <option name="PORT" value="5678" />
@@ -309,6 +268,7 @@
       </PathMappingSettings>
       <option name="REDIRECT_OUTPUT" value="true" />
       <option name="SUSPEND_AFTER_CONNECT" value="true" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="PyRemoteDebugConfigurationType" factoryName="Python Remote Debug">
       <option name="PORT" value="0" />
@@ -320,6 +280,7 @@
       </PathMappingSettings>
       <option name="REDIRECT_OUTPUT" value="true" />
       <option name="SUSPEND_AFTER_CONNECT" value="true" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="WUnderground7" />
@@ -339,6 +300,9 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="plugin" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="WUnderground7" />
@@ -358,11 +322,14 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.plugin" />
       <item itemvalue="Python Remote Debug.WUnderground7" />
       <item itemvalue="Python Remote Debug.Wunderground" />
-      <item itemvalue="Python.plugin" />
     </list>
     <recent_temporary>
       <list>
@@ -380,6 +347,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1502030633889</updated>
+      <workItem from="1546274428353" duration="11000" />
+      <workItem from="1553975229862" duration="758000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <created>1502030759161</created>
@@ -640,8 +609,18 @@
       <option name="project" value="LOCAL" />
       <updated>1528889790502</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Deprecation announcement.">
+      <created>1528891280153</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1528891280153</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="769000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -653,70 +632,41 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="874" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32991013" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5028612" side_tool="true" weight="0.32991013" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5179028" visible="true" weight="0.24964234" />
+      <window_info id="Favorites" order="1" show_stripe_button="false" sideWeight="0.5006435" side_tool="true" weight="0.3004292" />
+      <window_info id="Structure" order="2" sideWeight="0.48209718" side_tool="true" visible="true" weight="0.24964234" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32947233" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32991013" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49713877" weight="0.32991013" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3992298" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32991013" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.52895755" visible="true" weight="0.23319027" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="3" weight="0.3297568" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info id="Structure" order="2" sideWeight="0.47104248" side_tool="true" visible="true" weight="0.23319027" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3992298" />
-      <window_info id="Favorites" order="1" show_stripe_button="false" sideWeight="0.5006435" side_tool="true" weight="0.3004292" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.3298969" />
-      <window_info anchor="right" id="Data View" order="3" weight="0.3297568" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32947233" />
-    </layout>
-    <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5028612" side_tool="true" weight="0.32991013" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49713877" weight="0.32991013" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Data View" order="4" weight="0.3297568" />
-      <window_info active="true" id="Structure" order="2" sideWeight="0.83912486" side_tool="true" visible="true" weight="0.2353362" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.3298969" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32991013" />
-      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49713877" weight="0.32991013" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32991013" />
-      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32991013" />
-      <window_info anchor="bottom" id="Python Console" order="8" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32947233" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.16087516" weight="0.3004292" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3992298" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5028612" side_tool="true" weight="0.32991013" />
-      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Data View" order="4" weight="0.3297568" />
       <window_info anchor="right" id="Database" order="5" weight="0.3297568" />
-      <window_info id="Favorites" order="1" show_stripe_button="false" sideWeight="0.5006435" side_tool="true" weight="0.3004292" />
-    </layout-to-restore>
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Initial commit." />
     <MESSAGE value="Implements first PluginConfig.xml template." />
     <MESSAGE value="Changing template to symlink (trying something)." />
     <MESSAGE value="Changing template to hard link (trying something)." />
@@ -741,69 +691,10 @@
     <MESSAGE value="- Fixes bug in setting timedelta for plugin refresh cycle." />
     <MESSAGE value="Updates version checker" />
     <MESSAGE value="7.0.11&#10;- IMPORTANT: due to changes in the pricing model for the Weather &#10;  Underground API, development of the WUnderground plugin will cease &#10;  with this release.&#10;&#10;  I will continue to provide bug fixes, but there will be no further &#10;  feature development.&#10;  &#10;- Adds new plugin configuration option for time format. 12 hour time &#10;  with AM/PM (12:34 PM) or without (12:34).&#10;- Removes Toggle Debug option from plugin menu.&#10;- Coerces UI value for precipitation to always display two decimal &#10;  precision (will not apply unless a valid number is provided by WU).&#10;- Fixes bug in hourly forecast device for rain, snow and wind state &#10;  values for standard units (F and MPH) only." />
-    <option name="LAST_COMMIT_MESSAGE" value="7.0.11&#10;- IMPORTANT: due to changes in the pricing model for the Weather &#10;  Underground API, development of the WUnderground plugin will cease &#10;  with this release.&#10;&#10;  I will continue to provide bug fixes, but there will be no further &#10;  feature development.&#10;  &#10;- Adds new plugin configuration option for time format. 12 hour time &#10;  with AM/PM (12:34 PM) or without (12:34).&#10;- Removes Toggle Debug option from plugin menu.&#10;- Coerces UI value for precipitation to always display two decimal &#10;  precision (will not apply unless a valid number is provided by WU).&#10;- Fixes bug in hourly forecast device for rain, snow and wind state &#10;  values for standard units (F and MPH) only." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="20" />
-    </breakpoint-manager>
+    <MESSAGE value="Deprecation announcement." />
+    <option name="LAST_COMMIT_MESSAGE" value="Deprecation announcement." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="45" selection-start-line="45" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="8" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_notifications.xml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_debugging.xml" />
-    <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_notifications.xml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_debugging.xml" />
-    <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_debugging.xml" />
-    <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/template_debugging.xml" />
     <entry file="file:///Library/Application Support/Perceptive Automation/Indigo 7/IndigoPluginHost.app/Contents/PlugIns/plugin_base.py" />
     <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/logging/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -833,32 +724,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_config.yml" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/indigoPluginUpdateChecker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2017.3/python_stubs/-2125986627/__builtin__.py" />
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="61" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="356">
           <caret line="28" column="132" selection-start-line="28" selection-start-column="132" selection-end-line="28" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="429" column="39" selection-start-line="429" selection-start-column="23" selection-end-line="429" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -883,13 +753,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2475">
@@ -897,10 +760,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="60">
+            <caret line="4" column="91" selection-start-line="4" selection-start-column="91" selection-end-line="4" selection-end-column="91" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="61" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" selection-start-line="15" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/indigoPluginUpdateChecker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="117" selection-start-line="117" selection-end-line="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="691">
+          <caret line="389" column="30" selection-start-line="389" selection-start-column="23" selection-end-line="389" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="232" column="60" selection-start-line="232" selection-start-column="60" selection-end-line="232" selection-end-column="60" />
+        <state relative-caret-position="563">
+          <caret line="271" selection-start-line="271" selection-end-line="272" />
         </state>
       </provider>
     </entry>
@@ -913,25 +821,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2145">
-          <caret line="156" column="6" selection-start-line="156" selection-start-column="6" selection-end-line="156" selection-end-column="6" />
+        <state relative-caret-position="-15">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+          <folding>
+            <element signature="e#4642#4652#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_changelog.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="5" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="60">
-            <caret line="4" column="91" selection-start-line="4" selection-start-column="91" selection-end-line="4" selection-end-column="91" />
-          </first_editor>
-          <second_editor />
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="6" />
         </state>
       </provider>
     </entry>

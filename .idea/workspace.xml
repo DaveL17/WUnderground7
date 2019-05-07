@@ -4,9 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="Deprecates plugin and disables update checking.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="Adds release shield." />
     <manually-removed-from-ignored>
       <directory path=".idea/" />
     </manually-removed-from-ignored>
@@ -38,11 +36,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-15">
+            <state relative-caret-position="1095">
               <caret line="73" selection-start-line="73" selection-end-line="73" />
-              <folding>
-                <element signature="e#4642#4652#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -56,11 +51,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="15">
+                <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -77,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
+            <state relative-caret-position="4065">
               <caret line="271" selection-start-line="271" selection-end-line="272" />
             </state>
           </provider>
@@ -159,7 +166,6 @@
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Events.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Devices.xml" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/LICENSE" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/MenuItems.xml" />
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml" />
@@ -167,10 +173,11 @@
         <option value="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" />
         <option value="$PROJECT_DIR$/_changelog.txt" />
         <option value="$PROJECT_DIR$/wunderground7_version.html" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
@@ -359,6 +366,7 @@
       <updated>1502030633889</updated>
       <workItem from="1546274428353" duration="11000" />
       <workItem from="1553975229862" duration="1167000" />
+      <workItem from="1557259321695" duration="56000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <created>1502030759161</created>
@@ -640,11 +648,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553980452784</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Adds release shield.">
+      <created>1557259365043</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1557259365043</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1178000" />
+    <option name="totallyTimeSpent" value="1234000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -659,9 +674,9 @@
     <frame x="0" y="23" width="1440" height="874" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5179028" visible="true" weight="0.24964234" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.51662403" visible="true" weight="0.2532189" />
       <window_info id="Favorites" order="1" show_stripe_button="false" sideWeight="0.5006435" side_tool="true" weight="0.3004292" />
-      <window_info id="Structure" order="2" sideWeight="0.48209718" side_tool="true" visible="true" weight="0.24964234" />
+      <window_info id="Structure" order="2" sideWeight="0.48337597" side_tool="true" visible="true" weight="0.2532189" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32947233" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32991013" />
@@ -691,7 +706,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Changing template to symlink (trying something)." />
     <MESSAGE value="Changing template to hard link (trying something)." />
     <MESSAGE value="Confirming all templates as hard links." />
     <MESSAGE value="- Refactors so that plugin can be installed over WUnderground 6.x &#10;installations." />
@@ -716,7 +730,8 @@
     <MESSAGE value="7.0.11&#10;- IMPORTANT: due to changes in the pricing model for the Weather &#10;  Underground API, development of the WUnderground plugin will cease &#10;  with this release.&#10;&#10;  I will continue to provide bug fixes, but there will be no further &#10;  feature development.&#10;  &#10;- Adds new plugin configuration option for time format. 12 hour time &#10;  with AM/PM (12:34 PM) or without (12:34).&#10;- Removes Toggle Debug option from plugin menu.&#10;- Coerces UI value for precipitation to always display two decimal &#10;  precision (will not apply unless a valid number is provided by WU).&#10;- Fixes bug in hourly forecast device for rain, snow and wind state &#10;  values for standard units (F and MPH) only." />
     <MESSAGE value="Deprecation announcement." />
     <MESSAGE value="Deprecates plugin and disables update checking." />
-    <option name="LAST_COMMIT_MESSAGE" value="Deprecates plugin and disables update checking." />
+    <MESSAGE value="Adds release shield." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adds release shield." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///Library/Application Support/Perceptive Automation/Indigo 7/IndigoPluginHost.app/Contents/PlugIns/plugin_base.py" />
@@ -777,16 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="60">
-            <caret line="4" column="91" selection-start-line="4" selection-start-column="91" selection-end-line="4" selection-end-column="91" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/Actions.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -822,20 +827,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="271" selection-start-line="271" selection-end-line="272" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
+        <state relative-caret-position="1095">
           <caret line="73" selection-start-line="73" selection-end-line="73" />
-          <folding>
-            <element signature="e#4642#4652#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -853,10 +848,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/PluginConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4065">
+          <caret line="271" selection-start-line="271" selection-end-line="272" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wunderground7_version.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="15">
+            <caret line="1" column="71" selection-start-line="1" selection-start-column="71" selection-end-line="1" selection-end-column="71" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

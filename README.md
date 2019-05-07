@@ -1,4 +1,5 @@
 # ![Logo](https://github.com/DaveL17/WUnderground7/wiki/img/img_WUndergroundLogo.png)
+# ![shield](https://img.shields.io/github/release/DaveL17/WUnderground7.svg)
 
 **IMPORTANT: due to changes in the pricing model for the Weather Underground API, development of the WUnderground plugin will cease with the latest release.**
 

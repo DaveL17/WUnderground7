@@ -108,7 +108,7 @@ __copyright__ = Dave.__copyright__
 __license__   = Dave.__license__
 __build__     = Dave.__build__
 __title__     = "WUnderground7 Plugin for Indigo Home Control"
-__version__   = "7.0.13"
+__version__   = "7.0.14"
 
 # =============================================================================
 
@@ -222,15 +222,15 @@ class Plugin(indigo.PluginBase):
     def __del__(self):
         indigo.PluginBase.__del__(self)
 
-    def closedPrefsConfigUi(self, valuesDict, userCancelled):
+    def closedPrefsConfigUi(self, values_dict, user_cancelled):
 
         self.logger.debug(u"closedPrefsConfigUi called.")
 
-        if userCancelled:
+        if user_cancelled:
             self.logger.debug(u"User prefs dialog cancelled.")
 
-        if not userCancelled:
-            self.indigo_log_handler.setLevel(int(valuesDict['showDebugLevel']))
+        if not user_cancelled:
+            self.indigo_log_handler.setLevel(int(values_dict['showDebugLevel']))
 
             # ============================= Update Poll Time ==============================
             self.download_interval = dt.timedelta(seconds=int(self.pluginPrefs.get('downloadInterval', '900')))
@@ -268,7 +268,7 @@ class Plugin(indigo.PluginBase):
                         dev.updateStateOnServer('onOffState', value=current_on_off_state, uiValue=display_value)
 
             self.logger.debug(u"User prefs saved.")
-            # indigo.server.log(unicode(valuesDict))
+            # indigo.server.log(unicode(values_dict))
 
     def deviceStartComm(self, dev):
 
@@ -308,17 +308,17 @@ class Plugin(indigo.PluginBase):
 
         dev.updateStateOnServer('onOffState', value=False, uiValue=u"Disabled")
 
-    def getDeviceConfigUiValues(self, valuesDict, typeId, devId):
+    def getDeviceConfigUiValues(self, values_dict, type_id, dev_id):
 
         self.logger.debug(u"getDeviceConfigUiValues called.")
 
         # =========================== Populate Default Value ==========================
         # weatherSummaryEmailTime is set by a generator. We need this bit to pre-
         # populate the control with the default value when a new device is created.
-        if typeId == 'wunderground' and 'weatherSummaryEmailTime' not in valuesDict.keys():
-            valuesDict['weatherSummaryEmailTime'] = "01:00"
+        if type_id == 'wunderground' and 'weatherSummaryEmailTime' not in values_dict.keys():
+            values_dict['weatherSummaryEmailTime'] = "01:00"
 
-        return valuesDict
+        return values_dict
 
     def getPrefsConfigUiValues(self):
 
@@ -406,7 +406,7 @@ class Plugin(indigo.PluginBase):
 
         self.logger.debug(u"Stopping {0} trigger.".format(trigger.name))
 
-    def validateDeviceConfigUi(self, valuesDict, typeID, devId):
+    def validateDeviceConfigUi(self, values_dict, type_id, dev_id):
 
         self.logger.debug(u"validateDeviceConfigUi called.")
 
@@ -415,219 +415,219 @@ class Plugin(indigo.PluginBase):
         try:
 
             # WUnderground Radar Devices
-            if typeID == 'wundergroundRadar':
+            if type_id == 'wundergroundRadar':
 
-                if valuesDict['imagename'] == "" or valuesDict['imagename'].isspace():
+                if values_dict['imagename'] == "" or values_dict['imagename'].isspace():
                     error_msg_dict['imagename'] = u"You must enter a valid image name."
                     error_msg_dict['showAlertText'] = u"Image Name Error.\n\nYou must enter a valid image name."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 try:
-                    height = int(valuesDict['height'])
-                    width = int(valuesDict['width'])
+                    height = int(values_dict['height'])
+                    width = int(values_dict['width'])
                 except ValueError:
                     error_msg_dict['showAlertText'] = u"Image Size Error.\n\nImage size values must be real numbers greater than zero."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 if not height >= 100:
                     error_msg_dict['height'] = u"The image height must be at least 100 pixels."
                     error_msg_dict['showAlertText'] = u"Height Error.\n\nThe image height must be at least 100 pixels."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 if not width >= 100:
                     error_msg_dict['width'] = u"The image width must be at least 100 pixels."
                     error_msg_dict['showAlertText'] = u"Width Error.\n\nThe image width must be at least 100 pixels."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 if not height == width:
                     error_msg_dict['height'] = u"Image height and width must be the same."
                     error_msg_dict['width'] = u"Image height and width must be the same."
                     error_msg_dict['showAlertText'] = u"Size Error.\n\nFor now, the plugin only supports square radar images. Image height and width must be the same."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 try:
-                    num = int(valuesDict['num'])
+                    num = int(values_dict['num'])
                 except ValueError:
                     error_msg_dict['num'] = u"The number of frames must be between 1 - 15."
                     error_msg_dict['showAlertText'] = u"Frames Error.\n\nThe number of frames must be between 1 - 15."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 if not 0 < num <= 15:
                     error_msg_dict['num'] = u"The number of frames must be between 1 - 15."
                     error_msg_dict['showAlertText'] = u"Frames Error.\n\nThe number of frames must be between 1 - 15."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 try:
-                    timelabelx = int(valuesDict['timelabelx'])
-                    timelabely = int(valuesDict['timelabely'])
+                    timelabelx = int(values_dict['timelabelx'])
+                    timelabely = int(values_dict['timelabely'])
                 except ValueError:
                     error_msg_dict['showAlertText'] = u"Time Stamp Label Error.\n\nThe time stamp location settings must be values greater than or equal to zero."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 if not timelabelx >= 0:
                     error_msg_dict['timelabelx'] = u"The time stamp location setting must be a value greater than or equal to zero."
                     error_msg_dict['showAlertText'] = u"Time Stamp Label Error.\n\nThe time stamp location setting must be a value greater than or equal to zero."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 if not timelabely >= 0:
                     error_msg_dict['timelabely'] = u"The time stamp location setting must be a value greater than or equal to zero."
                     error_msg_dict['showAlertText'] = u"Time Stamp Label Error.\n\nThe time stamp location setting must be a value greater than or equal to zero."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
                 # Image Type: Bounding Box
-                if valuesDict['imagetype'] == 'boundingbox':
+                if values_dict['imagetype'] == 'boundingbox':
 
                     try:
-                        maxlat = float(valuesDict['maxlat'])
-                        maxlon = float(valuesDict['maxlon'])
-                        minlat = float(valuesDict['minlat'])
-                        minlon = float(valuesDict['minlon'])
+                        maxlat = float(values_dict['maxlat'])
+                        maxlon = float(values_dict['maxlon'])
+                        minlat = float(values_dict['minlat'])
+                        minlon = float(values_dict['minlon'])
                     except ValueError:
                         error_msg_dict['showAlertText'] = u"Lat/Long Value Error.\n\nLatitude and Longitude values must be expressed as real numbers. Hover over each field to see " \
                                                           u"descriptions of allowable values."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     if not -90.0 <= minlat <= 90.0:
                         error_msg_dict['minlat'] = u"The Min Lat must be between -90.0 and 90.0."
                         error_msg_dict['showAlertText'] = u"Latitude Error.\n\nMin Lat must be between -90.0 and 90.0."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     if not -90.0 <= maxlat <= 90.0:
                         error_msg_dict['maxlat'] = u"The Max Lat must be between -90.0 and 90.0."
                         error_msg_dict['showAlertText'] = u"Latitude Error.\n\nMax Lat must be between -90.0 and 90.0."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     if not -180.0 <= minlon <= 180.0:
                         error_msg_dict['minlon'] = u"The Min Long must be between -180.0 and 180.0."
                         error_msg_dict['showAlertText'] = u"Longitude Error.\n\nMin Long must be between -180.0 and 180.0."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     if not -180.0 <= maxlon <= 180.0:
                         error_msg_dict['maxlon'] = u"The Max Long must be between -180.0 and 180.0."
                         error_msg_dict['showAlertText'] = u"Longitude Error.\n\nMax Long must be between -180.0 and 180.0."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     if abs(minlat) > abs(maxlat):
                         error_msg_dict['minlat'] = u"The Max Lat must be greater than the Min Lat."
                         error_msg_dict['maxlat'] = u"The Max Lat must be greater than the Min Lat."
                         error_msg_dict['showAlertText'] = u"Latitude Error.\n\nMax Lat must be greater than the Min Lat."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     if abs(minlon) > abs(maxlon):
                         error_msg_dict['minlon'] = u"The Max Long must be greater than the Min Long."
                         error_msg_dict['maxlon'] = u"The Max Long must be greater than the Min Long."
                         error_msg_dict['showAlertText'] = u"Longitude Error.\n\nMax Long must be greater than the Min Long."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
-                elif valuesDict['imagetype'] == 'radius':
+                elif values_dict['imagetype'] == 'radius':
                     try:
-                        centerlat = float(valuesDict['centerlat'])
-                        centerlon = float(valuesDict['centerlon'])
+                        centerlat = float(values_dict['centerlat'])
+                        centerlon = float(values_dict['centerlon'])
                     except ValueError:
                         error_msg_dict['showAlertText'] = u"Lat/Long Value Error.\n\nLatitude and Longitude values must be expressed as real numbers. Hover over each field to see " \
                                                           u"descriptions of allowable values."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     try:
-                        radius = float(valuesDict['radius'])
+                        radius = float(values_dict['radius'])
                     except ValueError:
                         error_msg_dict['showAlertText'] = u"Radius Value Error.\n\nThe radius value must be a real number greater than zero"
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     if not -90.0 <= centerlat <= 90.0:
                         error_msg_dict['centerlat'] = u"Center Lat must be between -90.0 and 90.0."
                         error_msg_dict['showAlertText'] = u"Center Lat Error.\n\nCenter Lat must be between -90.0 and 90.0."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     if not -180.0 <= centerlon <= 180.0:
                         error_msg_dict['centerlon'] = u"Center Long must be between -180.0 and 180.0."
                         error_msg_dict['showAlertText'] = u"Center Long Error.\n\nCenter Long must be between -180.0 and 180.0."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                     if not radius > 0:
                         error_msg_dict['radius'] = u"Radius must be greater than zero."
                         error_msg_dict['showAlertText'] = u"Radius Error.\n\nRadius must be greater than zero."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
-                elif valuesDict['imagetype'] == 'locationbox':
-                    if valuesDict['location'].isspace():
+                elif values_dict['imagetype'] == 'locationbox':
+                    if values_dict['location'].isspace():
                         error_msg_dict['location'] = u"You must specify a valid location. Please see the plugin wiki for examples."
                         error_msg_dict['showAlertText'] = u"Location Error.\n\nYou must specify a valid location. Please see the plugin wiki for examples."
-                        return False, valuesDict, error_msg_dict
+                        return False, values_dict, error_msg_dict
 
                 return True
 
-            if valuesDict['isWeatherDevice']:
+            if values_dict['isWeatherDevice']:
 
                 # Test location setting for devices that must specify one.
-                location_config = valuesDict['location']
+                location_config = values_dict['location']
                 if not location_config:
                     error_msg_dict['location'] = u"Please specify a weather location."
                     error_msg_dict['showAlertText'] = u"Location Error.\n\nPlease specify a weather location."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
                 elif " " in location_config:
                     error_msg_dict['location'] = u"The location value can't contain spaces."
                     error_msg_dict['showAlertText'] = u"Location Error.\n\nThe location value can not contain spaces."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
                 elif "\\" in location_config:
                     error_msg_dict['location'] = u"The location value can't contain a \\ character. Replace it with a / character."
                     error_msg_dict['showAlertText'] = u"Location Error.\n\nThe location value can not contain a \\ character."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
                 elif location_config.isspace():
                     error_msg_dict['location'] = u"Please enter a valid location value."
                     error_msg_dict['showAlertText'] = u"Location Error.\n\nPlease enter a valid location value."
-                    return False, valuesDict, error_msg_dict
+                    return False, values_dict, error_msg_dict
 
         except Exception as error:
             self.logger.error(u"Error in validateDeviceConfigUI(). (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
 
         return True
 
-    def validateEventConfigUi(self, valuesDict, typeId, eventId):
+    def validateEventConfigUi(self, values_dict, type_id, event_id):
 
         self.logger.debug(u"validateEventConfigUi called.")
 
-        dev_id         = valuesDict['listOfDevices']
+        dev_id         = values_dict['listOfDevices']
         error_msg_dict = indigo.Dict()
 
         # Weather Site Offline trigger
-        if typeId == 'weatherSiteOffline':
+        if type_id == 'weatherSiteOffline':
 
             self.masterTriggerDict = {trigger.pluginProps['listOfDevices']: (trigger.pluginProps['offlineTimer'], trigger.id) for trigger in indigo.triggers.iter(filter="self.weatherSiteOffline")}
 
             # ======================== Validate Trigger Unique ========================
             # Limit weather location offline triggers to one per device
-            if dev_id in self.masterTriggerDict.keys() and eventId != self.masterTriggerDict[dev_id][1]:
+            if dev_id in self.masterTriggerDict.keys() and event_id != self.masterTriggerDict[dev_id][1]:
                 existing_trigger_id = int(self.masterTriggerDict[dev_id][1])
                 error_msg_dict['listOfDevices'] = u"Please select a weather device without an existing offline trigger."
                 error_msg_dict['showAlertText'] = u"There is an existing weather offline trigger for this location." \
                                                   u"\n\n[{0}]\n\n" \
                                                   u"You must select a location that does not have an existing trigger.".format(indigo.triggers[existing_trigger_id].name)
-                valuesDict['listOfDevices'] = ''
-                return False, valuesDict, error_msg_dict
+                values_dict['listOfDevices'] = ''
+                return False, values_dict, error_msg_dict
 
             # ============================ Validate Timer =============================
             try:
-                if int(valuesDict['offlineTimer']) <= 0:
+                if int(values_dict['offlineTimer']) <= 0:
                     raise ValueError
 
             except ValueError:
                 error_msg_dict['offlineTimer'] = u"You must enter a valid time value in minutes (positive integer greater than zero)."
                 error_msg_dict['showAlertText'] = u"Offline Time Error.\n\nYou must enter a valid offline time value. The value must be a positive integer that is greater than zero."
-                valuesDict['offlineTimer'] = ''
-                return False, valuesDict, error_msg_dict
+                values_dict['offlineTimer'] = ''
+                return False, values_dict, error_msg_dict
 
-        return True, valuesDict
+        return True, values_dict
 
-    def validatePrefsConfigUi(self, valuesDict):
+    def validatePrefsConfigUi(self, values_dict):
 
         self.logger.debug(u"validatePrefsConfigUi called.")
 
-        api_key_config      = valuesDict['apiKey']
-        call_counter_config = valuesDict['callCounter']
+        api_key_config      = values_dict['apiKey']
+        call_counter_config = values_dict['callCounter']
         error_msg_dict      = indigo.Dict()
-        update_email        = valuesDict['updaterEmail']
-        update_wanted       = valuesDict['updaterEmailsEnabled']
+        update_email        = values_dict['updaterEmail']
+        update_wanted       = values_dict['updaterEmailsEnabled']
 
         # Test api_keyconfig setting.
         try:
@@ -637,43 +637,43 @@ class Plugin(indigo.PluginBase):
                 # Screen error:
                 error_msg_dict['showAlertText'] = (u"The API key that you have entered is invalid.\n\n"
                                                    u"Reason: You have not entered a key value. Valid API keys contain alpha-numeric characters only (no spaces.)")
-                return False, valuesDict, error_msg_dict
+                return False, values_dict, error_msg_dict
 
             elif " " in api_key_config:
                 error_msg_dict['apiKey'] = u"The API key can't contain a space."
                 error_msg_dict['showAlertText'] = (u"The API key that you have entered is invalid.\n\n"
                                                    u"Reason: The key you entered contains a space. Valid API keys contain alpha-numeric characters only.")
-                return False, valuesDict, error_msg_dict
+                return False, values_dict, error_msg_dict
 
             # Test call limit config setting.
             elif not int(call_counter_config):
                 error_msg_dict['callCounter'] = u"The call counter can only contain integers."
                 error_msg_dict['showAlertText'] = u"The call counter that you have entered is invalid.\n\nReason: Call counters can only contain integers."
-                return False, valuesDict, error_msg_dict
+                return False, values_dict, error_msg_dict
 
             elif call_counter_config < 0:
                 error_msg_dict['callCounter'] = u"The call counter value must be a positive integer."
                 error_msg_dict['showAlertText'] = u"The call counter that you have entered is invalid.\n\nReason: Call counters must be positive integers."
-                return False, valuesDict, error_msg_dict
+                return False, values_dict, error_msg_dict
 
             # Test plugin update notification settings.
             elif update_wanted and update_email == "":
                 error_msg_dict['updaterEmail'] = u"If you want to be notified of updates, you must supply an email address."
                 error_msg_dict['showAlertText'] = u"The notification settings that you have entered are invalid.\n\nReason: You must supply a valid notification email address."
-                return False, valuesDict, error_msg_dict
+                return False, values_dict, error_msg_dict
 
             elif update_wanted and "@" not in update_email:
                 error_msg_dict['updaterEmail'] = u"Valid email addresses have at least one @ symbol in them (foo@bar.com)."
                 error_msg_dict['showAlertText'] = u"The notification settings that you have entered are invalid.\n\nReason: You must supply a valid notification email address."
-                return False, valuesDict, error_msg_dict
+                return False, values_dict, error_msg_dict
 
         except Exception as error:
             self.logger.error(u"Exception in validatePrefsConfigUi API key test. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
 
-        return True, valuesDict
+        return True, values_dict
 
 # WUnderground7 Methods =======================================================
-    def actionRefreshWeather(self, valuesDict):
+    def actionRefreshWeather(self, values_dict):
         """
         Refresh all weather as a result of an action call
 
@@ -682,7 +682,7 @@ class Plugin(indigo.PluginBase):
 
         -----
 
-        :param indigo.Dict valuesDict:
+        :param indigo.Dict values_dict:
         """
 
         self.logger.debug(u"Processing Action: refresh all weather data.")
@@ -1058,7 +1058,7 @@ class Plugin(indigo.PluginBase):
             self.logger.debug(u"Error floating {0} (Line {1}) {2}) (val = {3})".format(state_name, sys.exc_traceback.tb_lineno, error, val))
             return -99.0
 
-    def generatorTime(self, filter="", valuesDict=None, typeId="", targetId=0):
+    def generatorTime(self, filter="", values_dict=None, type_id="", target_id=0):
         """
         List of hours generator
 
@@ -1067,14 +1067,14 @@ class Plugin(indigo.PluginBase):
 
         -----
         :param str filter:
-        :param indigo.Dict valuesDict:
-        :param str typeId:
-        :param int targetId:
+        :param indigo.Dict values_dict:
+        :param str type_id:
+        :param int target_id:
         """
 
         return [(u"{0:02.0f}:00".format(hour), u"{0:02.0f}:00".format(hour)) for hour in range(0, 24)]
 
-    def getLatLong(self, valuesDict, typeId, devId):
+    def getLatLong(self, values_dict, type_id, dev_id):
         """
         Get server latitude and longitude
 
@@ -1083,16 +1083,16 @@ class Plugin(indigo.PluginBase):
 
         -----
 
-        :param indigo.Dict valuesDict:
-        :param str typeId:
-        :param int devId:
+        :param indigo.Dict values_dict:
+        :param str type_id:
+        :param int dev_id:
         """
 
         latitude, longitude = indigo.server.getLatitudeAndLongitude()
-        valuesDict['centerlat'] = latitude
-        valuesDict['centerlon'] = longitude
+        values_dict['centerlat'] = latitude
+        values_dict['centerlon'] = longitude
 
-        return valuesDict
+        return values_dict
 
     def getSatelliteImage(self, dev):
         """
@@ -1385,7 +1385,7 @@ class Plugin(indigo.PluginBase):
         self.wuOnline = True
         return self.masterWeatherDict
 
-    def listOfDevices(self, filter, valuesDict, targetId, triggerId):
+    def listOfDevices(self, filter, values_dict, target_id, trigger_id):
         """
         Generate list of devices for offline trigger
 
@@ -1396,17 +1396,17 @@ class Plugin(indigo.PluginBase):
         -----
 
         :param str filter:
-        :param indigo.Dict valuesDict:
-        :param str targetId:
-        :param int triggerId:
+        :param indigo.Dict values_dict:
+        :param str target_id:
+        :param int trigger_id:
         """
 
-        for key, value in valuesDict.iteritems():
+        for key, value in values_dict.iteritems():
             self.logger.debug(u"{0}: {1}".format(key, value))
 
         return [(dev.id, dev.name) for dev in indigo.devices.itervalues(filter='self')]
 
-    def listOfWeatherDevices(self, filter, valuesDict, targetId, triggerId):
+    def listOfWeatherDevices(self, filter, values_dict, target_id, trigger_id):
         """
         Generate list of devices for severe weather alert trigger
 
@@ -1416,12 +1416,12 @@ class Plugin(indigo.PluginBase):
         -----
 
         :param str filter:
-        :param indigo.Dict valuesDict:
-        :param str targetId:
-        :param int triggerId:
+        :param indigo.Dict values_dict:
+        :param str target_id:
+        :param int trigger_id:
         """
 
-        for key, value in valuesDict.iteritems():
+        for key, value in values_dict.iteritems():
             self.logger.debug(u"{0}: {1}".format(key, value))
 
         return [(dev.id, dev.name) for dev in indigo.devices.itervalues(filter='self.wunderground')]
@@ -3299,17 +3299,17 @@ class Plugin(indigo.PluginBase):
             self.logger.debug(u"Error formatting {0} verbose wind names: {1} -- [{2}]".format(state_name, val, error))
             return val
 
-    def wundergroundSite(self, valuesDict):
+    def wundergroundSite(self, values_dict):
         """
         Launch a web browser to register for API
 
-        Launch a web browser session with the valuesDict parm containing the target
+        Launch a web browser session with the values_dict parm containing the target
         URL.
 
         -----
 
-        :param indigo.Dict valuesDict:
+        :param indigo.Dict values_dict:
         """
 
-        self.Fogbert.launchWebPage(valuesDict['launchWUparameters'])
+        self.Fogbert.launchWebPage(values_dict['launchWUparameters'])
 

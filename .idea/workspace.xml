@@ -4,18 +4,13 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="Adds Indigo, Python and deprecation shields.">
+    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="Removes all references to legacy version checking.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/indigoPluginUpdateChecker.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/_changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_changelog.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wunderground7_version.html" beforeDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,11 +86,16 @@
         <option value="DaveL17 &lt;davel17@users.noreply.github.com&gt;" />
       </list>
     </option>
-    <option name="UPDATE_TYPE" value="REBASE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1TWuMNJC2bUFIwlYiOq5eSCqAkH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -114,18 +114,6 @@
       <recent name="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Resources" />
       <recent name="$PROJECT_DIR$/Wunderground7.indigoPlugin/Contents/Server Plugin/DLFramework" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Python Remote Debug.WUnderground7">
     <configuration name="WUnderground7" type="PyRemoteDebugConfigurationType" factoryName="Python Remote Debug">
@@ -223,6 +211,18 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -237,7 +237,8 @@
       <workItem from="1553975229862" duration="1167000" />
       <workItem from="1557259321695" duration="56000" />
       <workItem from="1557260677623" duration="38000" />
-      <workItem from="1573588125821" duration="33000" />
+      <workItem from="1573588125821" duration="56000" />
+      <workItem from="1576181612396" duration="289000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <created>1502030759161</created>
@@ -533,7 +534,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557260703709</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Removes all references to legacy version checking.">
+      <created>1573588170990</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1573588170990</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TodoView">
@@ -553,7 +561,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -563,7 +573,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Confirming all templates as hard links." />
     <MESSAGE value="- Refactors so that plugin can be installed over WUnderground 6.x &#10;installations." />
     <MESSAGE value="- improves converstion of debug level to logger style setting.D" />
     <MESSAGE value="- Adds button to plugin config dialog to open browser session with &#10;  Weather Underground for users to sign up for API key." />
@@ -588,6 +597,7 @@
     <MESSAGE value="Deprecates plugin and disables update checking." />
     <MESSAGE value="Adds release shield." />
     <MESSAGE value="Adds Indigo, Python and deprecation shields." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds Indigo, Python and deprecation shields." />
+    <MESSAGE value="Removes all references to legacy version checking." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removes all references to legacy version checking." />
   </component>
 </project>

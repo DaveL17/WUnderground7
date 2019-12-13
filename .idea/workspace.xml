@@ -4,12 +4,9 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="Removes all references to legacy version checking.">
+    <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="Code refinements.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_changelog.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +235,8 @@
       <workItem from="1557259321695" duration="56000" />
       <workItem from="1557260677623" duration="38000" />
       <workItem from="1573588125821" duration="56000" />
-      <workItem from="1576181612396" duration="289000" />
+      <workItem from="1576181612396" duration="626000" />
+      <workItem from="1576253392956" duration="957000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <created>1502030759161</created>
@@ -541,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573588170990</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Code refinements.">
+      <created>1576182419847</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1576182419847</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView">
@@ -573,7 +578,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="- Refactors so that plugin can be installed over WUnderground 6.x &#10;installations." />
     <MESSAGE value="- improves converstion of debug level to logger style setting.D" />
     <MESSAGE value="- Adds button to plugin config dialog to open browser session with &#10;  Weather Underground for users to sign up for API key." />
     <MESSAGE value="Adds additional error handling when Weather Underground sends a data &#10;value that is not the of proper Type (i.e., list or dict instead of an&#10;expected string)." />
@@ -598,6 +602,17 @@
     <MESSAGE value="Adds release shield." />
     <MESSAGE value="Adds Indigo, Python and deprecation shields." />
     <MESSAGE value="Removes all references to legacy version checking." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removes all references to legacy version checking." />
+    <MESSAGE value="Code refinements." />
+    <option name="LAST_COMMIT_MESSAGE" value="Code refinements." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="318" y="44" key="CommitChangelistDialog2" timestamp="1576182419523">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="318" y="44" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1576182419523" />
+    <state x="318" y="181" key="Vcs.Push.Dialog.v2" timestamp="1576182421141">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="318" y="181" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1576182421141" />
   </component>
 </project>

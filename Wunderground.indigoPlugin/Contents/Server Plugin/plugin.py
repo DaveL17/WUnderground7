@@ -84,6 +84,7 @@ import simplejson
 import socket
 import sys
 import time
+import traceback
 import urllib   # (satellite imagery fallback)
 import urllib2  # (weather data fallback)
 
@@ -108,7 +109,7 @@ __copyright__ = Dave.__copyright__
 __license__   = Dave.__license__
 __build__     = Dave.__build__
 __title__     = "WUnderground7 Plugin for Indigo Home Control"
-__version__   = "7.0.14"
+__version__   = "7.0.15"
 
 # =============================================================================
 
@@ -151,7 +152,6 @@ class Plugin(indigo.PluginBase):
         self.download_interval = dt.timedelta(seconds=int(self.pluginPrefs.get('downloadInterval', '900')))
         self.masterWeatherDict = {}
         self.masterTriggerDict = {}
-        # self.updater = indigoPluginUpdateChecker.updateChecker(self, "https://raw.githubusercontent.com/DaveL17/WUnderground7/master/wunderground7_version.html")
         self.wuOnline = True
         self.pluginPrefs['dailyCallLimitReached'] = False
 
@@ -167,12 +167,6 @@ class Plugin(indigo.PluginBase):
             self.next_poll_attempt = dt.datetime.strptime(next_poll, '%Y-%m-%d %H:%M:%S')
         except ValueError:
             self.next_poll_attempt = dt.datetime.strptime(next_poll, '%Y-%m-%d %H:%M:%S.%f')
-
-        # =========================== Version Check ===========================
-        if int(indigo.server.version[0]) >= 7:
-            pass
-        else:
-            raise Exception(u"The plugin requires Indigo 7 or later.")
 
         # ====================== Initialize DLFramework =======================
 
@@ -360,8 +354,8 @@ class Plugin(indigo.PluginBase):
                 # Wait 60 seconds before trying again.
                 self.sleep(30)
 
-        except self.StopThread as error:
-            self.logger.debug(u"StopThread: (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except self.StopThread:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
             self.logger.debug(u"Stopping WUnderground Plugin thread.")
 
     def shutdown(self):
@@ -369,6 +363,9 @@ class Plugin(indigo.PluginBase):
         self.pluginIsShuttingDown = True
 
     def startup(self):
+
+        # =========================== Version Check ===========================
+        self.Fogbert.audit_server_version(min_ver=7)
 
         for dev in indigo.devices.itervalues("self"):
             props = dev.pluginProps
@@ -559,10 +556,12 @@ class Plugin(indigo.PluginBase):
 
             except ValueError:
                 values_dict['offlineTimer'] = ''
-                error_msg_dict['offlineTimer'] = u"You must enter a valid time value in minutes (positive integer greater than zero)."
+                error_msg_dict['offlineTimer'] = u"You must enter a valid time value in minutes (positive integer " \
+                                                 u"greater than zero)."
 
         if len(error_msg_dict) > 0:
-            error_msg_dict['showAlertText'] = u"Configuration Errors\n\nThere are one or more settings that need to be corrected. Fields requiring attention will be highlighted."
+            error_msg_dict['showAlertText'] = u"Configuration Errors\n\nThere are one or more settings that need " \
+                                              u"to be corrected. Fields requiring attention will be highlighted."
             return False, values_dict, error_msg_dict
 
         return True, values_dict
@@ -694,32 +693,16 @@ class Plugin(indigo.PluginBase):
                     if 'weatherSummaryEmailSent' in dev.states:
                         dev.updateStateOnServer('weatherSummaryEmailSent', value=False)
 
-                except Exception as error:
-                    self.logger.error(u"Error setting email sent value. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+                except Exception:
+                    self.Fogbert.pluginErrorHandler(traceback.format_exc())
+                    self.logger.error(u"Error setting email sent value.")
 
             self.logger.debug(u"Reset call limit, call counter and call day.")
-            # self.updater.checkVersionPoll()
 
         self.logger.debug(u"New call day: {0}".format(todays_date > today_date))
 
         if call_limit_reached:
             self.logger.info(u"Daily call limit reached. Taking the rest of the day off.")
-
-    # def checkVersionNow(self):
-    #     """
-    #     Immediate call to determine if running latest version
-    #
-    #     The checkVersionNow() method will call the Indigo Plugin Update Checker based
-    #     on a user request.
-    #
-    #     -----
-    #     """
-    #
-    #     try:
-    #         self.updater.checkVersionNow()
-    #
-    #     except Exception as error:
-    #         self.logger.warning(u"Unable to check plugin update status. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
 
     def commsKillAll(self):
         """
@@ -734,8 +717,9 @@ class Plugin(indigo.PluginBase):
             try:
                 indigo.device.enable(dev, value=False)
 
-            except Exception as error:
-                self.logger.error(u"Exception when trying to kill all comms. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+            except Exception:
+                self.Fogbert.pluginErrorHandler(traceback.format_exc())
+                self.logger.error(u"Exception when trying to kill all comms.")
 
     def commsUnkillAll(self):
         """
@@ -750,8 +734,9 @@ class Plugin(indigo.PluginBase):
             try:
                 indigo.device.enable(dev, value=True)
 
-            except Exception as error:
-                self.logger.error(u"Exception when trying to unkill all comms. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+            except Exception:
+                self.Fogbert.pluginErrorHandler(traceback.format_exc())
+                self.logger.error(u"Exception when trying to unkill all comms.")
 
     def dumpTheJSON(self):
         """
@@ -783,6 +768,7 @@ class Plugin(indigo.PluginBase):
             indigo.server.log(u"Weather data written to: {0}".format(file_name))
 
         except IOError:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
             self.logger.info(u"Unable to write to Indigo Log folder.")
 
     def emailForecast(self, dev):
@@ -933,12 +919,14 @@ class Plugin(indigo.PluginBase):
             else:
                 pass
 
-        except (KeyError, IndexError) as error:
+        except (KeyError, IndexError):
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
             dev.updateStateOnServer('weatherSummaryEmailSent', value=True, uiValue=u"Err")
-            self.logger.debug(u"Unable to compile forecast data for {0}. (Line {1}) {2}".format(dev.name, sys.exc_traceback.tb_lineno, error))
+            self.logger.debug(u"Unable to compile forecast data for {0}.".format(dev.name))
 
-        except Exception as error:
-            self.logger.warning(u"Unable to send forecast email message. Will keep trying. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.warning(u"Unable to send forecast email message. Will keep trying.")
 
     def fixCorruptedData(self, state_name, val):
         """
@@ -965,6 +953,7 @@ class Plugin(indigo.PluginBase):
                 return val, str(val)
 
         except (ValueError, TypeError):
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
             self.logger.debug(u"Imputing {0} data. Got: {1} Returning: (-99.0, --)".format(state_name, val))
             return -99.0, u"--"
 
@@ -986,8 +975,9 @@ class Plugin(indigo.PluginBase):
         try:
             return float(val)
 
-        except (ValueError, TypeError) as error:
-            self.logger.debug(u"Error floating {0} (Line {1}) {2}) (val = {3})".format(state_name, sys.exc_traceback.tb_lineno, error, val))
+        except (ValueError, TypeError):
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.debug(u"Error floating {0} (val = {1})".format(state_name, val))
             return -99.0
 
     def generatorTime(self, filter="", values_dict=None, type_id="", target_id=0):
@@ -1058,13 +1048,15 @@ class Plugin(indigo.PluginBase):
                             img.write(chunk)
 
                 except requests.exceptions.ConnectionError:
-                    self.logger.warning(u"Error downloading satellite image. (No comm.)".format(sys.exc_traceback.tb_lineno))
+                    self.Fogbert.pluginErrorHandler(traceback.format_exc())
+                    self.logger.warning(u"Error downloading satellite image. (No comm.)")
                     dev.updateStateOnServer('onOffState', value=False, uiValue=u"No comm")
                     dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
                     return
 
                 # Requests not installed
                 except NameError:
+                    self.Fogbert.pluginErrorHandler(traceback.format_exc())
                     urllib.urlretrieve(source, destination)
 
                 dev.updateStateOnServer('onOffState', value=True, uiValue=u" ")
@@ -1084,8 +1076,9 @@ class Plugin(indigo.PluginBase):
                 dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
                 return False
 
-        except Exception as error:
-            self.logger.error(u"[{0}] Error downloading satellite image. (Line {1}) {2}".format(dev.name, sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"[{0}] Error downloading satellite image.")
             dev.updateStateOnServer('onOffState', value=False, uiValue=u"No comm")
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
 
@@ -1206,20 +1199,23 @@ class Plugin(indigo.PluginBase):
                     raise NameError
 
             except requests.exceptions.ConnectionError:
-                self.logger.warning(u"Error downloading satellite image. (No comm.)".format(sys.exc_traceback.tb_lineno))
+                self.Fogbert.pluginErrorHandler(traceback.format_exc())
+                self.logger.warning(u"Error downloading satellite image. (No comm.)")
                 dev.updateStateOnServer('onOffState', value=False, uiValue=u"No comm")
                 dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
                 return
 
             # Requests not installed
             except NameError:
+                self.Fogbert.pluginErrorHandler(traceback.format_exc())
                 urllib.urlretrieve(source, destination)
 
             # Since this uses the API, go increment the call counter.
             self.callCount()
 
-        except Exception as error:
-            self.logger.error(u"Error downloading satellite image. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Error downloading satellite image.")
             dev.updateStateOnServer('onOffState', value=False, uiValue=u"No comm")
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
 
@@ -1262,15 +1258,17 @@ class Plugin(indigo.PluginBase):
 
                 # If requests is not installed, try urllib2 instead.
                 except NameError:
+                    self.Fogbert.pluginErrorHandler(traceback.format_exc())
                     try:
                         # Connect to Weather Underground and retrieve data.
                         socket.setdefaulttimeout(20)
                         f = urllib2.urlopen(url)
                         simplejson_string = f.read()
 
-                    except Exception as error:
+                    except Exception:
+                        self.Fogbert.pluginErrorHandler(traceback.format_exc())
                         self.logger.warning(u"Unable to reach Weather Underground. Sleeping until next scheduled poll.")
-                        self.logger.debug(u"Unable to reach Weather Underground after 20 seconds. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+                        self.logger.debug(u"Unable to reach Weather Underground after 20 seconds.")
                         for dev in indigo.devices.itervalues("self"):
                             dev.updateStateOnServer("onOffState", value=False, uiValue=u" ")
                             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
@@ -1286,8 +1284,9 @@ class Plugin(indigo.PluginBase):
                 # Load the JSON data from the file.
                 try:
                     parsed_simplejson = simplejson.loads(simplejson_string, encoding="utf-8")
-                except Exception as error:
-                    self.logger.error(u"Unable to decode data. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+                except Exception:
+                    self.Fogbert.pluginErrorHandler(traceback.format_exc())
+                    self.logger.error(u"Unable to decode data.")
                     parsed_simplejson = {}
 
                 # Add location JSON to master weather dictionary.
@@ -1300,9 +1299,10 @@ class Plugin(indigo.PluginBase):
                 # We've been successful, mark device online
                 dev.updateStateOnServer('onOffState', value=True)
 
-        except Exception as error:
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
             self.logger.warning(u"Unable to reach Weather Underground. Sleeping until next scheduled poll.")
-            self.logger.debug(u"Unable to reach Weather Underground after 20 seconds. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+            self.logger.debug(u"Unable to reach Weather Underground after 20 seconds.")
 
             # Unable to fetch the JSON. Mark all devices as 'false'.
             for dev in indigo.devices.itervalues("self"):
@@ -1386,6 +1386,7 @@ class Plugin(indigo.PluginBase):
                 current = next(sub[key] for sub in current if key in sub)
 
             except StopIteration:
+                self.Fogbert.pluginErrorHandler(traceback.format_exc())
                 return default
 
         return current
@@ -1450,8 +1451,9 @@ class Plugin(indigo.PluginBase):
             dev.updateStatesOnServer(almanac_states_list)
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
 
-        except (KeyError, ValueError) as error:
-            self.logger.error(u"Problem parsing almanac data. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except (KeyError, ValueError):
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem parsing almanac data.")
             dev.updateStateOnServer('onOffState', value=False, uiValue=u" ")
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
 
@@ -1536,6 +1538,7 @@ class Plugin(indigo.PluginBase):
                         attribution = u"European weather alert {0}".format(clean)
 
                     except (KeyError, Exception):
+                        self.Fogbert.pluginErrorHandler(traceback.format_exc())
                         attribution = u""
 
                 if len(alert_array) == 1:
@@ -1571,8 +1574,9 @@ class Plugin(indigo.PluginBase):
 
             dev.updateStatesOnServer(alerts_states_list)
 
-        except Exception as error:
-            self.logger.error(u"Problem parsing weather alert data: (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem parsing weather alert data:")
             alerts_states_list.append({'key': 'onOffState', 'value': False, 'uiValue': u" "})
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
 
@@ -1681,8 +1685,9 @@ class Plugin(indigo.PluginBase):
             dev.updateStatesOnServer(astronomy_states_list)
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
 
-        except Exception as error:
-            self.logger.error(u"Problem parsing astronomy data. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem parsing astronomy data.")
             dev.updateStateOnServer('onOffState', value=False, uiValue=u" ")
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
 
@@ -1889,8 +1894,9 @@ class Plugin(indigo.PluginBase):
 
                         fore_counter += 1
 
-        except (KeyError, Exception) as error:
-            self.logger.error(u"Problem parsing weather forecast data. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except (KeyError, Exception):
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem parsing weather forecast data.")
 
         # Determine how today's forecast compares to yesterday.
         try:
@@ -1930,8 +1936,9 @@ class Plugin(indigo.PluginBase):
 
             dev.updateStatesOnServer(forecast_states_list)
 
-        except (KeyError, Exception) as error:
-            self.logger.error(u"Problem comparing forecast and history data. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except (KeyError, Exception):
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem comparing forecast and history data.")
 
             for state in ['foreTextShort', 'foreTextLong']:
                 forecast_states_list.append({'key': state, 'value': u"Unknown", 'uiValue': u"Unknown"})
@@ -2091,8 +2098,9 @@ class Plugin(indigo.PluginBase):
             dev.updateStatesOnServer(hourly_forecast_states_list)
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
 
-        except Exception as error:
-            self.logger.error(u"Problem parsing hourly forecast data. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem parsing hourly forecast data.")
             hourly_forecast_states_list.append({'key': 'onOffState', 'value': False, 'uiValue': u" "})
             dev.updateStatesOnServer(hourly_forecast_states_list)
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
@@ -2288,8 +2296,9 @@ class Plugin(indigo.PluginBase):
             dev.updateStatesOnServer(ten_day_forecast_states_list)
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
 
-        except Exception as error:
-            self.logger.error(u"Problem parsing 10-day forecast data. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem parsing 10-day forecast data.")
             ten_day_forecast_states_list.append({'key': 'onOffState', 'value': False, 'uiValue': u" "})
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
             dev.updateStatesOnServer(ten_day_forecast_states_list)
@@ -2373,8 +2382,9 @@ class Plugin(indigo.PluginBase):
             dev.updateStatesOnServer(tide_states_list)
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOn)
 
-        except Exception as error:
-            self.logger.error(u"Problem parsing tide data. (Line: {0}  Error: {1})".format(sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem parsing tide data.")
             self.logger.error(u"Note: Tide information may not be available in your area. Check Weather Underground for more information.")
 
             tide_states_list.append({'key': 'onOffState', 'value': False, 'uiValue': u" "})
@@ -2528,11 +2538,13 @@ class Plugin(indigo.PluginBase):
             pressure_trend = self.uiFormatPressureSymbol(state_name="Pressure Trend", val=pressure_trend)
             weather_states_list.append({'key': 'pressureTrend', 'value': pressure_trend, 'uiValue': pressure_trend})
 
-            # Solar Radiation (string: "0" or greater. Not always provided as a value that can float (sometimes = ""). Some sites don't report it.)
+            # Solar Radiation (string: "0" or greater. Not always provided as a value that can float (sometimes = "").
+            # Some sites don't report it.)
             s_rad, s_rad_ui = self.fixCorruptedData(state_name="Solar Radiation", val=solar_radiation)
             weather_states_list.append({'key': 'solarradiation', 'value': s_rad, 'uiValue': s_rad_ui})
 
-            # Ultraviolet light (string: 0 or greater. Not always provided as a value that can float (sometimes = ""). Some sites don't report it.)
+            # Ultraviolet light (string: 0 or greater. Not always provided as a value that can float (sometimes = "").
+            # Some sites don't report it.)
             uv, uv_ui = self.fixCorruptedData(state_name="Solar Radiation", val=uv_index)
             weather_states_list.append({'key': 'uv', 'value': uv, 'uiValue': uv_ui})
 
@@ -2562,7 +2574,8 @@ class Plugin(indigo.PluginBase):
             wind_speed_mph, wind_speed_mph_ui = self.fixCorruptedData(state_name="windGust (MPH)", val=wind_speed_mph)
             wind_speed_mps, wind_speed_mps_ui = self.fixCorruptedData(state_name="windGust (MPS)", val=int(wind_speed_kph * 0.277778))
 
-            # History (yesterday's weather).  This code needs its own try/except block because not all possible weather locations support history.
+            # History (yesterday's weather).  This code needs its own try/except block because not all possible
+            # weather locations support history.
             try:
 
                 history_max_temp_m  = self.nestedLookup(history_data, keys=('maxtempm',))
@@ -2606,8 +2619,9 @@ class Plugin(indigo.PluginBase):
                     history_low_ui = self.uiFormatTemperature(dev=dev, state_name="historyLow (S)", val=history_low_ui)
                     weather_states_list.append({'key': 'historyLow', 'value': history_low, 'uiValue': history_low_ui})
 
-            except IndexError as error:
-                self.logger.info(u"History data not supported for {0} (Line {1}) {2}".format(dev.name, sys.exc_traceback.tb_lineno, error))
+            except IndexError:
+                self.Fogbert.pluginErrorHandler(traceback.format_exc())
+                self.logger.info(u"History data not supported for {0}".format(dev.name))
 
             # Metric (M), Mixed SI (MS), Mixed (I):
             if config_menu_units in ['M', 'MS', 'I']:
@@ -2738,8 +2752,9 @@ class Plugin(indigo.PluginBase):
         except IndexError:
             self.logger.warning(u"Note: List index out of range. This is likely normal.")
 
-        except Exception as error:
-            self.logger.error(u"Problem parsing weather device data. (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem parsing weather device data.")
             dev.updateStateOnServer('onOffState', value=False, uiValue=u" ")
             dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
 
@@ -2803,10 +2818,12 @@ class Plugin(indigo.PluginBase):
 
                             self.getWeatherData(dev)
 
-                            # If we've successfully downloaded data from Weather Underground, let's unpack it and assign it to the relevant device.
+                            # If we've successfully downloaded data from Weather Underground, let's unpack it and
+                            # assign it to the relevant device.
                             try:
-                                # If a site location query returns a site unknown (in other words 'querynotfound' result, notify the user).
-                                # Note that if the query is good, the error key won't exist in the dict.
+                                # If a site location query returns a site unknown (in other words 'querynotfound'
+                                # result, notify the user). Note that if the query is good, the error key won't exist
+                                # in the dict.
                                 response = self.masterWeatherDict[location]['response']['error']['type']
                                 if response == 'querynotfound':
                                     self.logger.error(u"Location query for {0} not found. Please ensure that device location follows examples precisely.".format(dev.name))
@@ -2814,13 +2831,14 @@ class Plugin(indigo.PluginBase):
                                     dev.updateStateImageOnServer(indigo.kStateImageSel.SensorOff)
 
                             except (KeyError, Exception) as error:
-                                # Weather device types. There are multiples of these because the names of the device models evolved over time.
+                                # Weather device types. There are multiples of these because the names of the device
+                                # models evolved over time.
                                 # If the error key is not present, that's good. Continue.
                                 error = u"{0}".format(error)
                                 if error == "'error'":
                                     pass
                                 else:
-                                    self.logger.debug(u"Error: (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+                                    self.Fogbert.pluginErrorHandler(traceback.format_exc())
 
                                 # Estimated Weather Data (integer: 1 if estimated weather), not present if false.
                                 ignore_estimated = False
@@ -2837,19 +2855,21 @@ class Plugin(indigo.PluginBase):
                                 except KeyError as error:
                                     error = u"{0}".format(error)
                                     if error == "'estimated'":
-                                        # The estimated key must not be present. Therefore, we assumed the conditions are not estimated.
+                                        # The estimated key must not be present. Therefore, we assumed the conditions
+                                        # are not estimated.
                                         dev.updateStateOnServer('estimated', value="false", uiValue=u"False")
                                         ignore_estimated = False
                                     else:
-                                        self.logger.debug(u"Error: (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+                                        self.Fogbert.pluginErrorHandler(traceback.format_exc())
 
-                                except Exception as error:
-                                    self.logger.error(u"Error: (Line {0}) {1}".format(sys.exc_traceback.tb_lineno, error))
+                                except Exception:
+                                    self.Fogbert.pluginErrorHandler(traceback.format_exc())
                                     ignore_estimated = False
 
                                 # Compare last data epoch to the one we just downloaded. Proceed if the data are newer.
-                                # Note: WUnderground have been known to send data that are 5-6 months old. This flag helps ensure that known data are retained if the new data is not
-                                # actually newer that what we already have.
+                                # Note: WUnderground have been known to send data that are 5-6 months old. This flag
+                                # helps ensure that known data are retained if the new data is not actually newer that
+                                # what we already have.
                                 try:
                                     # New devices may not have an epoch value yet.
                                     device_epoch = dev.states['currentObservationEpoch']
@@ -2866,14 +2886,18 @@ class Plugin(indigo.PluginBase):
 
                                     good_time = device_epoch <= weather_data_epoch
                                     if not good_time:
-                                        self.logger.info(u"Latest data are older than data we already have. Skipping {0} update.".format(dev.name))
+                                        self.logger.info(u"Latest data are older than data we already have. Skipping "
+                                                         u"{0} update.".format(dev.name))
 
                                 except KeyError:
-                                    self.logger.info(u"{0} cannot determine age of data. Skipping until next scheduled poll.".format(dev.name))
+                                    self.Fogbert.pluginErrorHandler(traceback.format_exc())
+                                    self.logger.info(u"{0} cannot determine age of data. Skipping until next "
+                                                     u"scheduled poll.".format(dev.name))
                                     good_time = False
 
                                 # If the weather dict is not empty, the data are newer than the data we already have, an
-                                # the user doesn't want to ignore estimated weather conditions, let's update the devices.
+                                # the user doesn't want to ignore estimated weather conditions, let's update the
+                                # devices.
                                 if self.masterWeatherDict != {} and good_time and not ignore_estimated:
 
                                     # Almanac devices.
@@ -2915,8 +2939,9 @@ class Plugin(indigo.PluginBase):
 
                 self.logger.debug(u"{0} locations polled: {1}".format(len(self.masterWeatherDict.keys()), self.masterWeatherDict.keys()))
 
-        except Exception as error:
-            self.logger.error(u"Problem parsing Weather data. Dev: {0} (Line: {1} Error: {2})".format(dev.name, sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.error(u"Problem parsing Weather data. Dev: {0}".format(dev.name))
 
     def triggerProcessing(self):
         """
@@ -3086,8 +3111,9 @@ class Plugin(indigo.PluginBase):
         try:
             return translator[pref][val]
 
-        except Exception as error:
-            self.logger.debug(u"Error setting {0} pressure. (Line {1}) {2}".format(state_name, sys.exc_traceback.tb_lineno, error))
+        except Exception:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.debug(u"Error setting {0} pressure.")
             return val
 
     def uiFormatRain(self, dev, state_name, val):
@@ -3227,8 +3253,9 @@ class Plugin(indigo.PluginBase):
         try:
             return wind_dict[val]
 
-        except KeyError as error:
-            self.logger.debug(u"Error formatting {0} verbose wind names: {1} -- [{2}]".format(state_name, val, error))
+        except KeyError:
+            self.Fogbert.pluginErrorHandler(traceback.format_exc())
+            self.logger.debug(u"Error formatting {0} verbose wind names: {1}".format(state_name, val))
             return val
 
     def wundergroundSite(self, values_dict):

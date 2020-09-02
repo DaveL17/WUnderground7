@@ -27,56 +27,6 @@
     <expand />
     <select />
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="WUnderground7" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>downloadinter</find>
-      <find>almanac</find>
-      <find>temp_high_record_year</find>
-      <find>wind</find>
-      <find>hourly</find>
-      <find>missing lo</find>
-      <find>error downloading sa</find>
-      <find>forecast</find>
-      <find>forecast_day</find>
-      <find>cannot determine</find>
-      <find>updatestates</find>
-      <find>precip</find>
-      <find>precip_1</find>
-      <find>precip_today</find>
-      <find>_qpf</find>
-      <find>toggle</find>
-      <find>-99</find>
-      <find>uiTimeFormat</find>
-      <find>currentObservation24hr</find>
-      <find>igno</find>
-      <find>config</find>
-      <find>configm</find>
-      <find>check_version_now</find>
-      <find>rebuild ma</find>
-      <find>checkversionnow</find>
-      <find>checkversionn</find>
-      <find>address</find>
-      <find>checker</find>
-      <find>checkVersionPoll</find>
-      <find>updater</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>debug_level &lt;=</replace>
-      <replace>debug_level &lt;= 30</replace>
-      <replace>Dave</replace>
-      <replace>&quot;{0} {1}&quot;.format(self.date_format, self.time_format)</replace>
-      <replace>Wunderground 7</replace>
-      <replace>debug_level = int(valuesDict['showDebugLevel'])</replace>
-      <replace>int(self.pluginPrefs['showDebugLevel'])</replace>
-      <replace>precision</replace>
-      <replace>:param str</replace>
-      <replace>state_name=&quot;</replace>
-      <replace>'%Y-%m-%d %H:%M:%S.%f'</replace>
-    </replaceStrings>
-  </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
@@ -86,14 +36,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="JupyterTrust" id="4be878ac-6eca-4db1-987d-461fb8ad11ed" />
   <component name="ProjectId" id="1TWuMNJC2bUFIwlYiOq5eSCqAkH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -112,7 +64,7 @@
       <recent name="$PROJECT_DIR$/Wunderground7.indigoPlugin/Contents/Server Plugin/DLFramework" />
     </key>
   </component>
-  <component name="RunManager" selected="Python Remote Debug.WUnderground7">
+  <component name="RunManager" selected="Python.plugin">
     <configuration name="WUnderground7" type="PyRemoteDebugConfigurationType" factoryName="Python Remote Debug">
       <option name="PORT" value="5678" />
       <option name="HOST" value="localhost" />
@@ -199,8 +151,8 @@
     </configuration>
     <list>
       <item itemvalue="Python.plugin" />
-      <item itemvalue="Python Remote Debug.WUnderground7" />
-      <item itemvalue="Python Remote Debug.Wunderground" />
+      <item itemvalue="Python Debug Server.WUnderground7" />
+      <item itemvalue="Python Debug Server.Wunderground" />
     </list>
     <recent_temporary>
       <list>
@@ -208,18 +160,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -237,6 +178,10 @@
       <workItem from="1573588125821" duration="56000" />
       <workItem from="1576181612396" duration="626000" />
       <workItem from="1576253392956" duration="957000" />
+      <workItem from="1595095030949" duration="27000" />
+      <workItem from="1598981204265" duration="1144000" />
+      <workItem from="1598996102070" duration="29000" />
+      <workItem from="1599053058741" duration="261000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <created>1502030759161</created>
@@ -559,20 +504,19 @@
     </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>

@@ -109,7 +109,7 @@ __copyright__ = Dave.__copyright__
 __license__   = Dave.__license__
 __build__     = Dave.__build__
 __title__     = "WUnderground7 Plugin for Indigo Home Control"
-__version__   = "7.0.15"
+__version__   = "7.0.17"
 
 # =============================================================================
 
@@ -201,7 +201,8 @@ class Plugin(indigo.PluginBase):
                 self.pluginPrefs['showDebugLevel'] = '20'  # informational messages
 
         # Set the format and level handlers for the logger
-        self.plugin_file_handler.setFormatter(logging.Formatter('%(asctime)s.%(msecs)03d\t%(levelname)-10s\t%(name)s.%(funcName)-28s %(msg)s', datefmt='%Y-%m-%d %H:%M:%S'))
+        log_format = '%(asctime)s.%(msecs)03d\t%(levelname)-10s\t%(name)s.%(funcName)-28s %(msg)s'
+        self.plugin_file_handler.setFormatter(logging.Formatter(log_format, datefmt='%Y-%m-%d %H:%M:%S'))
         self.indigo_log_handler.setLevel(int(self.pluginPrefs['showDebugLevel']))
 
         # =====================================================================
@@ -1333,10 +1334,7 @@ class Plugin(indigo.PluginBase):
         :param int trigger_id:
         """
 
-        for key, value in values_dict.iteritems():
-            self.logger.debug(u"{0}: {1}".format(key, value))
-
-        return [(dev.id, dev.name) for dev in indigo.devices.itervalues(filter='self')]
+        return self.Fogbert.deviceList()
 
     def listOfWeatherDevices(self, filter, values_dict, target_id, trigger_id):
         """
@@ -1353,10 +1351,7 @@ class Plugin(indigo.PluginBase):
         :param int trigger_id:
         """
 
-        for key, value in values_dict.iteritems():
-            self.logger.debug(u"{0}: {1}".format(key, value))
-
-        return [(dev.id, dev.name) for dev in indigo.devices.itervalues(filter='self.wunderground')]
+        return self.Fogbert.deviceList(filter='self.wunderground')
 
     def nestedLookup(self, obj, keys, default=u"Not available"):
         """

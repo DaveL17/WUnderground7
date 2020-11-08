@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="771008c4-0e64-40a4-9a64-ad84990e7065" name="Default" comment="Code refinements.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Info.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/DLFramework/DLFramework.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wunderground.indigoPlugin/Contents/Server Plugin/plugin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_changelog.txt" beforeDir="false" afterPath="$PROJECT_DIR$/_changelog.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +49,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -181,7 +187,11 @@
       <workItem from="1595095030949" duration="27000" />
       <workItem from="1598981204265" duration="1144000" />
       <workItem from="1598996102070" duration="29000" />
-      <workItem from="1599053058741" duration="261000" />
+      <workItem from="1599053058741" duration="361000" />
+      <workItem from="1599091510553" duration="21000" />
+      <workItem from="1599094769387" duration="200000" />
+      <workItem from="1599095287779" duration="11000" />
+      <workItem from="1604849037949" duration="60000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit.">
       <created>1502030759161</created>
@@ -491,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576182419847</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Code refinements.">
+      <created>1599053400909</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1599053400909</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TodoView">
@@ -550,13 +567,13 @@
     <option name="LAST_COMMIT_MESSAGE" value="Code refinements." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="318" y="44" key="CommitChangelistDialog2" timestamp="1576182419523">
+    <state x="0" y="51" key="CommitChangelistDialog2" timestamp="1599053400770">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="318" y="44" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1576182419523" />
-    <state x="318" y="181" key="Vcs.Push.Dialog.v2" timestamp="1576182421141">
+    <state x="0" y="51" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1599053400770" />
+    <state x="329" y="221" key="Vcs.Push.Dialog.v2" timestamp="1599053405040">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="318" y="181" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1576182421141" />
+    <state x="329" y="221" key="Vcs.Push.Dialog.v2/0.23.1440.877@0.23.1440.877" timestamp="1599053405040" />
   </component>
 </project>

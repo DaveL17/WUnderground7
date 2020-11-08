@@ -2,6 +2,12 @@ WUnderground 7 Plugin - Developed by: DaveL17
 
 Note: WUnderground 7 requires Indigo 7
 
+7.0.17
+- Fixes broken link to readme logo.
+
+7.0.16
+- Further integration of DLFramework.
+
 7.0.15
 - Better integration of DLFramework.
 
